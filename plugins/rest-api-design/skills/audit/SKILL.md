@@ -66,8 +66,8 @@ Report a finding for every deviation. Tag severity by obligation level:
 - [ ] Top-level responses are **JSON objects**, never arrays/maps (#110).
 - [ ] Property names are **snake_case** (#118), consistent, pluralized arrays
   (#120); booleans/nulls used per rules (#122, #123).
-- [ ] Standard formats: dates `RFC 3339` (#169, #126), money as decimal string
-  (#171), enums as strings (#240).
+- [ ] Standard formats: dates `RFC 3339` (#169, #126), money as the common
+  money object with a decimal-number `amount` (#173), enums as strings (#240).
 
 **Pagination:**
 - [ ] Collection endpoints paginate (#159) using cursor- or offset-based schemes;
