@@ -105,6 +105,9 @@ artifact, not a second file):
   consent on a sunset date (#185) and monitor usage of the deprecated version
   (#188) before removing it. Clients must not on-board onto deprecated `v1`
   (#191).
+- For deprecating a **narrower** target later (a single endpoint or field
+  within `v1`, without retiring the whole version), use the standalone
+  **`deprecate`** skill instead of repeating this step by hand.
 
 ## Step 6 — Update meta-information (#116)
 
@@ -124,6 +127,20 @@ artifact, not a second file):
   and required consumer actions.
 - [ ] For external partners, respect the agreed after-deprecation life span
   (#186) and collect consent (#185) before any shutdown.
+
+## Verify
+
+1. Re-read the edited file; confirm it still parses (for YAML/JSON run a
+   quick parse, e.g.
+   `python -c "import yaml,sys; yaml.safe_load(open(sys.argv[1]))" <file>`).
+2. Confirm every `$ref` in the new `v2` paths/schemas resolves, and that no
+   `v1` `$ref` was accidentally repointed at a `v2` schema.
+3. If a spec linter is available in the project (`spectral`, `redocly`,
+   `swagger-cli`, `openapi-spec-validator`), run it and fix errors it reports.
+   Do not install tools unasked; if none is available, say so in the summary.
+4. Confirm `v1` paths are byte-for-byte unchanged except for the added
+   `deprecated`/header markers, and that `v2` paths pass the same naming and
+   status-code checks as a brand-new API (see the `audit` checklist).
 
 ## Output / result
 

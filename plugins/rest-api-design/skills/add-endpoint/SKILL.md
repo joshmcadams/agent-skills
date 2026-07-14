@@ -138,6 +138,19 @@ success and service-specific error responses per operation. By method:
 - [ ] Header names are `Kebab-Case` (#132); only standard or the sanctioned
   proprietary `X-` headers (#183); do not encode business semantics in headers.
 
+## Verify
+
+1. Re-read the edited file; confirm it still parses (for YAML/JSON run a
+   quick parse, e.g.
+   `python -c "import yaml,sys; yaml.safe_load(open(sys.argv[1]))" <file>`).
+2. Confirm every `$ref` added resolves within the document.
+3. If a spec linter is available in the project (`spectral`, `redocly`,
+   `swagger-cli`, `openapi-spec-validator`), run it and fix errors it reports
+   on the touched operation. Do not install tools unasked; if none is
+   available, say so in the summary.
+4. Spot-check the new operation against this plugin's audit checklist: method
+   semantics, status codes, problem+json, pagination shape if it's a list GET.
+
 ## Output
 
 1. State the detected artifact and the final operation (`METHOD /api/v1/…`).

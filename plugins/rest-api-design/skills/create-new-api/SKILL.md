@@ -233,6 +233,19 @@ components:
         instance: { type: string, format: uri-reference }
 ```
 
+## Verify
+
+1. Re-read the created file; confirm it parses (for YAML/JSON run a quick
+   parse, e.g.
+   `python -c "import yaml,sys; yaml.safe_load(open(sys.argv[1]))" <file>`).
+2. Confirm every `$ref` (Problem, SalesOrder, SalesOrderPage, etc.) resolves
+   within the document.
+3. If a spec linter is available in the project (`spectral`, `redocly`,
+   `swagger-cli`, `openapi-spec-validator`), run it and fix errors it reports.
+   Do not install tools unasked; if none is available, say so in the summary.
+4. Spot-check the new document against this plugin's audit checklist: base
+   path/version, naming, status codes, problem+json, security.
+
 ## Output / result
 
 Produce the new OpenAPI file at the chosen location, plus a short summary:

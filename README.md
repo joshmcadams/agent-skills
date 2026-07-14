@@ -17,8 +17,11 @@ One plugin, **`rest-api-design`**, containing:
 | Named op | `/new-version <version>` | Introduce a new major API version. |
 | Builder | `add-endpoint` | Add an operation (GET/POST/…) to an existing resource. |
 | Builder | `create-new-api` | Bootstrap a brand-new API specification from scratch. |
+| Builder | `modify-schema` | Add/remove/rename/retype a field, enforcing compatible-extension rules. |
+| Builder | `deprecate` | Mark an operation/path/field/version deprecated and wire `Deprecation`/`Sunset` headers. |
+| Builder | `fix-compliance` | Apply audit findings, separating safe spec-internal fixes from breaking ones. |
 | Fundamentals | `naming-conventions`, `url-design`, `json-conventions`, `http-methods-and-status` | Core design rules. |
-| Cross-cutting | `pagination`, `error-responses`, `api-compatibility`, `api-security`, `http-headers` | Concerns that span endpoints. |
+| Cross-cutting | `pagination`, `error-responses`, `api-compatibility`, `api-security`, `http-headers`, `async-operations`, `performance`, `event-design` | Concerns that span endpoints. |
 
 *"Kind" above is descriptive, not a strict taxonomy: e.g. `/audit` is listed as
 a Named op but is implemented with `type: knowledge` (it produces a report and

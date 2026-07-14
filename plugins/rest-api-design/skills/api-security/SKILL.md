@@ -1,6 +1,6 @@
 ---
 name: api-security
-description: How to secure a REST API — OAuth 2.0 / bearer access tokens, functional scopes (permissions), scope naming, least privilege, and keeping secrets out of URLs. Use when securing an API, adding auth, defining scopes or permissions, or deciding how to protect endpoints.
+description: How to secure a REST API — OAuth 2.0 / bearer access tokens, functional scopes (permissions), scope naming, least privilege, and keeping secrets out of URLs. Use when securing an API, adding auth, defining scopes or permissions, deciding how to protect endpoints, or asked to actually wire up/add security schemes and scopes to a spec ("secure this API", "add auth to my spec").
 type: knowledge
 ---
 
@@ -16,7 +16,10 @@ rules when designing or reviewing how an API is secured.
 > from upstream Zalando that are authoritative for all skills in this plugin.
 > (If `${CLAUDE_PLUGIN_ROOT}` is not defined in your environment, the plugin root is the directory two levels above this SKILL.md.)
 
-This is a **knowledge** skill — it produces guidance and reference material, not edits to an artifact. Advise; do not modify files unless asked.
+This is primarily a **knowledge** skill — advise by default. But when the user
+asks you to actually *secure the API* / *add auth* / *wire up scopes* (not just
+asks how), switch to **builder mode**: detect the artifact and edit it per
+"Applying it to a spec" below, then produce the edited file(s) and a summary.
 
 ## Rules
 
@@ -94,6 +97,47 @@ paths:
       security:
         - BearerAuth: [ business-partner-service.write ]
 ```
+
+## Applying it to a spec (builder mode)
+
+When asked to actually secure an existing API (not just explain how):
+
+1. **Detect the API artifact.** Look first for an OpenAPI document
+   (`*.yaml`/`*.yml`/`*.json` containing `openapi:`/`swagger:`; common
+   locations `openapi.yaml`, `api.yaml`, `api/`, `spec/`, `docs/`). Degrade
+   gracefully to code-first security config (Spring Security, FastAPI
+   dependencies, Express middleware, etc.) if none exists. State which
+   artifact you detected before editing.
+2. **Add `components/securitySchemes`.** `http`+`bearer` with
+   `bearerFormat: JWT` for internal/service-to-service APIs (the common
+   case, #104); a full `oauth2` scheme only for customer/partner-facing APIs
+   that actually implement those flows — never declare `oauth2` just because
+   it looks more complete.
+3. **Add a `security` requirement to every operation** that currently has
+   none (#105). Derive the scope name from the resource/operation being
+   protected, following the naming convention in rule 3 above; default to the
+   component-level form (`<application-id>.<access-mode>`) unless the audit
+   or the user calls for resource-level granularity. Assign `uid` only to
+   endpoints you can justify as genuinely unrestricted — never leave an
+   endpoint with no `security` entry at all.
+4. **Apply least privilege**: `read` on safe methods (`GET`/`HEAD`), `write`
+   on mutating ones (`POST`/`PUT`/`PATCH`/`DELETE`). Don't reuse one scope
+   across unrelated resources.
+5. **Check for secrets in URLs** while you're in the spec — flag (and offer to
+   fix) any path/query parameter that looks like it carries a credential,
+   token, or PII; move it to the `Authorization` header or the request body.
+
+## Verify
+
+1. Re-read the edited file; confirm it still parses (for YAML/JSON run a
+   quick parse, e.g.
+   `python -c "import yaml,sys; yaml.safe_load(open(sys.argv[1]))" <file>`).
+2. Confirm every operation in the touched paths now has a `security`
+   requirement (explicit scope or `uid`) — none left silently unprotected.
+3. Confirm every scope name matches `<application-id>.<access-mode>` or
+   `<application-id>.<resource-name>.<access-mode>` (#225).
+4. If a spec linter is configured in the project, run it and fix what it
+   flags on the touched paths.
 
 ## Result
 

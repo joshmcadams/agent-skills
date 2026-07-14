@@ -102,6 +102,9 @@ Output a Markdown report:
 3. **Quick wins** and **larger refactors** called out separately.
 
 Do not modify files during an audit unless the user explicitly asks for fixes.
+To apply the findings, use the **`fix-compliance`** skill — it partitions
+findings into safe-to-apply spec-internal fixes and breaking changes that need
+a migration plan, rather than editing everything blindly.
 
 ## Reference
 

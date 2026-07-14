@@ -115,6 +115,12 @@ concrete change plan (fields/endpoints affected), and — if breaking — the ne
 URL version + a **deprecation/migration plan** (spec markers, headers, timeline,
 consent, monitoring). Advise; don't rewrite the spec unless asked.
 
+To actually **apply** a compatible field-level change, use the
+**`modify-schema`** skill — it enforces the same classification rules and
+edits the artifact. To wire the deprecation markers and headers for an old
+field/endpoint/version, use the **`deprecate`** skill. To introduce the new
+major version itself, use **`new-version`**.
+
 ## Reference
 For full detail, see the guidelines bundled with this plugin (the `reference/`
 directory at the plugin root, e.g.

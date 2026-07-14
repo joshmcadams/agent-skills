@@ -125,6 +125,20 @@ Only use official status codes with their standard semantics (#243, #150).
 - Every operation returns errors as **`application/problem+json`** (RFC 9457,
   #176). Reference a shared Problem schema; never leak stack traces (#177).
 
+## Verify
+
+1. Re-read the edited file; confirm it still parses (for YAML/JSON run a
+   quick parse, e.g.
+   `python -c "import yaml,sys; yaml.safe_load(open(sys.argv[1]))" <file>`).
+2. Confirm every `$ref` added (item schema, page schema, Problem) resolves
+   within the document.
+3. If a spec linter is available in the project (`spectral`, `redocly`,
+   `swagger-cli`, `openapi-spec-validator`), run it and fix errors it reports
+   on the touched paths. Do not install tools unasked; if none is available,
+   say so in the summary.
+4. Spot-check the new paths against this plugin's audit checklist: naming,
+   pagination shape, status codes, problem+json.
+
 ## Output
 
 Produce:

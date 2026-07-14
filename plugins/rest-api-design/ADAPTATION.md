@@ -24,5 +24,6 @@ reference rule [#172](reference/json-guidelines.md#rule-172).
 
 The naming/schema/status-code rule summaries are duplicated across the
 builder skills (`add-collection`, `add-resource`, `add-endpoint`,
-`create-new-api`) and the fundamentals skills. When changing any shared rule
+`create-new-api`, `new-version`, `modify-schema`, `deprecate`,
+`fix-compliance`) and the fundamentals skills. When changing any shared rule
 summary, grep all skills for the old wording and update every copy.
