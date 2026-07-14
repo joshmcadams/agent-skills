@@ -64,23 +64,25 @@ declare it explicitly in the OpenAPI `parameters`/`headers` of the operation.
    replays it instead of re-executing. This is a standard REST concern, not a
    proprietary header — do not rename it or `X-`-prefix it.
 
-7. **Only use the sanctioned proprietary headers (#183).** Avoid proprietary
-   headers in general — express business intent via path, query, method, and
-   body. When passing generic end-to-end context, use only the defined
-   `X-`-prefixed, dash-case headers, and propagate them unchanged down the call
-   chain (#184):
-
-   | Header | Purpose |
-   |---|---|
-   | `X-Flow-ID` | Correlation id for tracing a call flow (#233); services MUST support it. |
-   | `X-Tenant-ID` | Identifies the tenant/business partner. |
-   | `X-Sales-Channel` | Sales channel / consumer segment. |
-   | `X-Frontend-Type` | Frontend app type (e.g. `mobile-app`, `browser`). |
-   | `X-Device-Type` | Device class (`smartphone`, `tablet`, `desktop`, ...). |
-   | `X-Device-OS` | Device OS (`iOS`, `Android`, ...). |
-   | `X-Mobile-Advertising-ID` | IDFA / GAID advertising identifier. |
-
-   The only allowed hop-by-hop exception is the `X-RateLimit-*` family (#153).
+7. **Avoid proprietary headers; define and propagate them when necessary (#183, #184).**
+   As a general rule, express business intent via path, query, method, and body —
+   not proprietary headers. When domain-specific context must be passed
+   end-to-end (e.g. a correlation ID for tracing, or tenant/device context from a
+   gateway), you may define proprietary headers under these conventions:
+   - Prefix with `X-` and use dash-case (`X-Example-Header`). Note: RFC 6648
+     deprecates `X-`, but it remains the widely recognized convention.
+   - Name them consistently and scope them to avoid collisions (e.g.
+     `X-MyOrg-...`). Document their purpose, allowed values, and propagation
+     expectations in the API spec.
+   - Mark them as end-to-end headers and propagate them unchanged through the
+     service call chain (#184). Do not encode business semantics that belong in
+     the path, query, or body.
+   - The correlation / flow ID (#233) is the one header every API should support:
+     pass it through all services and events for tracing and log correlation.
+     Accept UUIDs, base64, or random strings up to 128 chars; generate one if
+     none is provided and propagate it to downstream calls.
+   - The only sanctioned hop-by-hop exception is the `X-RateLimit-*` family
+     (#153).
 
 8. **Signal deprecation with `Deprecation` / `Sunset` (#187, #189).** Reflect a
    deprecated element in the API spec (#187) and, during the deprecation phase,
