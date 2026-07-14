@@ -267,7 +267,7 @@ conform to the functional naming depending on the audience ([#219](meta-informat
 <version>               ::= [Vv][0-9.]* -- major version of non compatible schemas
 ```
 
-**Hint:** The following convention (e.g. used by legacy STUPS infrastructure) is deprecated
+**Hint:** The following convention (e.g. used by some legacy infrastructure) is deprecated
 and **only** allowed for internal ([#223](meta-information.md#rule-223)) event type names:
 
 ```bnf
