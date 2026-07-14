@@ -29,8 +29,10 @@ path:
 
 components:
   parameters|headers:
+    # ETag is bundled at reference/models/headers-1.0.0.yaml — copy it into your
+    # own components and $ref locally (self-contained, #234).
     ETag:
-      $ref: 'https://opensource.zalando.com/restful-api-guidelines/models/headers-1.0.0.yaml#/ETag'
+      $ref: 'models/headers-1.0.0.yaml#/ETag'
 
   responses:
     Default:
@@ -233,14 +235,17 @@ The `ETag`, `If-Match`, and `If-None-Match` headers can be defined as follows
 in the API specification (see also the default definition below):
 
 ```yaml
+# `ETag`/`If-Match`/`If-None-Match` are bundled with this plugin at
+# reference/models/headers-1.0.0.yaml. Because specs must be self-contained
+# (#234), copy the ones you use into your own components and $ref them locally.
 components:
   parameters|headers:
     ETag:
-      $ref: 'https://opensource.zalando.com/restful-api-guidelines/models/headers-1.0.0.yaml#/ETag'
+      $ref: 'models/headers-1.0.0.yaml#/ETag'
     If-Match:
-      $ref: 'https://opensource.zalando.com/restful-api-guidelines/models/headers-1.0.0.yaml#/If-Match'
+      $ref: 'models/headers-1.0.0.yaml#/If-Match'
     If-None-Match:
-      $ref: 'https://opensource.zalando.com/restful-api-guidelines/models/headers-1.0.0.yaml#/If-None-Match'
+      $ref: 'models/headers-1.0.0.yaml#/If-None-Match'
 ```
 
 ```yaml
@@ -391,10 +396,12 @@ If you do not want to change the expiration time, you can also use the standard
 definition provided by the guideline:
 
 ```yaml
+# Idempotency-Key is bundled at reference/models/headers-1.0.0.yaml — copy it
+# into your own components and $ref locally (self-contained, #234).
 components:
   parameters|headers:
     Idempotency-Key:
-      $ref: 'https://opensource.zalando.com/restful-api-guidelines/models/headers-1.0.0.yaml#/Idempotency-Key'
+      $ref: 'models/headers-1.0.0.yaml#/Idempotency-Key'
 ```
 
 **Hint:** The key cache is not intended as request log, and therefore should

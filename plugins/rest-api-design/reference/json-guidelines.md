@@ -449,10 +449,13 @@ Money:
 APIs are encouraged to include a reference to the global schema for Money.
 
 ```yaml
+# The Money schema is bundled with this plugin at
+# reference/models/money-1.0.0.yaml. Because specs must be self-contained
+# (#234), copy it into your own components/schemas and $ref it locally.
 SalesOrder:
   properties:
     grand_total:
-      $ref: 'https://opensource.zalando.com/restful-api-guidelines/models/money-1.0.0.yaml#/Money'
+      $ref: 'models/money-1.0.0.yaml#/Money'
 ```
 
 Please note that APIs have to treat Money as a closed data type, i.e. it's not meant to be used in an inheritance hierarchy. That means the following usage is not allowed:

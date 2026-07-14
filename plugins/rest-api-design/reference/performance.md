@@ -48,12 +48,15 @@ header. This can be done by simply referencing the standard header definitions
 as follows (see also the default definition below):
 
 ```yaml
+# These header definitions are bundled with this plugin at
+# reference/models/headers-1.0.0.yaml. Because specs must be self-contained
+# (#234), copy the ones you use into your own components and $ref them locally.
 components:
   parameters|headers:
     Accept-Encoding:
-      $ref: 'https://opensource.zalando.com/restful-api-guidelines/models/headers-1.0.0.yaml#/Accept-Encoding'
+      $ref: 'models/headers-1.0.0.yaml#/Accept-Encoding'
     Content-Encoding:
-      $ref: 'https://opensource.zalando.com/restful-api-guidelines/models/headers-1.0.0.yaml#/Content-Encoding'
+      $ref: 'models/headers-1.0.0.yaml#/Content-Encoding'
 ```
 
 ```yaml
@@ -332,14 +335,17 @@ Usually, you can reuse the standard `Cache-Control`, `Vary`, and `ETag`
 response header definitions provided by the guideline as follows:
 
 ```yaml
+# `Cache-Control`/`Vary`/`ETag` are bundled with this plugin at
+# reference/models/headers-1.0.0.yaml. Because specs must be self-contained
+# (#234), copy the ones you use into your own components and $ref them locally.
 components:
   parameters|headers:
     Cache-Control:
-      $ref: 'https://opensource.zalando.com/restful-api-guidelines/models/headers-1.0.0.yaml#/Cache-Control'
+      $ref: 'models/headers-1.0.0.yaml#/Cache-Control'
     Vary:
-      $ref: 'https://opensource.zalando.com/restful-api-guidelines/models/headers-1.0.0.yaml#/Vary'
+      $ref: 'models/headers-1.0.0.yaml#/Vary'
     ETag:
-      $ref: 'https://opensource.zalando.com/restful-api-guidelines/models/headers-1.0.0.yaml#/ETag'
+      $ref: 'models/headers-1.0.0.yaml#/ETag'
 ```
 
 See also [#182](http-headers.md#rule-182).

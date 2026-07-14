@@ -49,7 +49,9 @@ responses:
     content:
       "application/problem+json":
         schema:
-          $ref: 'https://opensource.zalando.com/restful-api-guidelines/models/problem-1.0.1.yaml#/Problem'
+          # Problem is bundled at reference/models/problem-1.0.1.yaml — copy it
+          # into your own components/schemas and $ref locally (self-contained, #234).
+          $ref: 'models/problem-1.0.1.yaml#/Problem'
 ```
 
 
@@ -588,8 +590,9 @@ a subset of `application/json` by libraries and services! Thus clients need to
 include `application/problem+json` in the `Accept`-Header to trigger delivery
 of the extended failure information.
 
-The OpenAPI schema definition of the Problem JSON object can be found
-[on GitHub](https://opensource.zalando.com/restful-api-guidelines/models/problem-1.0.1.yaml). You can reference it by using:
+The OpenAPI schema definition of the Problem JSON object is bundled with this
+plugin at [`reference/models/problem-1.0.1.yaml`](models/problem-1.0.1.yaml).
+Copy it into your own spec and reference it locally (self-contained, #234):
 
 ```yaml
 responses:
@@ -598,7 +601,9 @@ responses:
     content:
       "application/problem+json":
         schema:
-          $ref: 'https://opensource.zalando.com/restful-api-guidelines/models/problem-1.0.1.yaml#/Problem'
+          # Problem is bundled at reference/models/problem-1.0.1.yaml — copy it
+          # into your own components/schemas and $ref locally (self-contained, #234).
+          $ref: 'models/problem-1.0.1.yaml#/Problem'
 ```
 
 You may define custom problem types as extensions of the Problem JSON object
@@ -624,9 +629,9 @@ identifiers in `type` and `instance` fields:
 - `/problems/connection-error#read-timeout`
 
 **Hint:** The use of [absolute URIs](https://tools.ietf.org/html/rfc3986#section-4.3) is not forbidden but strongly discouraged. If you use absolute URIs,
-please reference
-[problem-1.0.1.yaml#/Problem](https://opensource.zalando.com/restful-api-guidelines/models/problem-1.0.1.yaml#/Problem)
-instead.
+please reference the bundled
+[`problem-1.0.1.yaml#/Problem`](models/problem-1.0.1.yaml) (copied into your
+own spec) instead.
 
 
 ## MUST not expose stack traces {#rule-177}

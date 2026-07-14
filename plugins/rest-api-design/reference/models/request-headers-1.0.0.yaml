@@ -108,7 +108,7 @@ X-Frontend-Type:
     example: mobile-app
 
 X-device-Type:
-  $ref: 'https://opensource.zalando.com/restful-api-guidelines/models/request-headers-1.0.0.yaml#/X-Device-Type'
+  $ref: '#/X-Device-Type'
 
 X-Device-Type:
   name: X-Device-Type
@@ -123,7 +123,7 @@ X-Device-Type:
     example: tablet
 
 X-device-OS:
-  $ref: 'https://opensource.zalando.com/restful-api-guidelines/models/request-headers-1.0.0.yaml#/X-Device-OS'
+  $ref: '#/X-Device-OS'
 
 X-Device-OS:
   name: X-Device-OS

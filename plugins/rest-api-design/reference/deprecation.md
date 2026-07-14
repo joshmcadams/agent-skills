@@ -82,12 +82,15 @@ headers can be defined as follows in the API specification (see also the
 default definition below):
 
 ```yaml
+# `Deprecation`/`Sunset` are bundled with this plugin at
+# reference/models/headers-1.0.0.yaml. Because specs must be self-contained
+# (#234), copy the ones you use into your own components and $ref them locally.
 components:
   parameters|headers:
     Deprecation:
-      $ref: 'https://opensource.zalando.com/restful-api-guidelines/models/headers-1.0.0.yaml#/Deprecation'
+      $ref: 'models/headers-1.0.0.yaml#/Deprecation'
     Sunset:
-      $ref: 'https://opensource.zalando.com/restful-api-guidelines/models/headers-1.0.0.yaml#/Sunset'
+      $ref: 'models/headers-1.0.0.yaml#/Sunset'
 ```
 
 ```yaml
