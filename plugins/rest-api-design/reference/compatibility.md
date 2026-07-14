@@ -70,7 +70,7 @@ For schemas used in output only:
 - `enum` ranges can be reduced.
 - `enum` ranges **cannot** be extended — clients may
   not be prepared to handle it.
-- You #112 that are used for output parameters and likely to
+- You should use #112 for enumerations that are used for output parameters and likely to
   be extended with growing functionality. The API specification should be updated
   first before returning new values.
 
@@ -88,7 +88,7 @@ are allowed in both input and output.
   make sure that all constraints are clearly defined in description.
 - `enum` ranges can be reduced only if the server is ready to still accept and
    handle old values. They **cannot** be extended.
-- You #112 that are used for output parameters and likely to
+- You should use #112 for enumerations that are used for output parameters and likely to
   be extended with growing functionality. The API definition should be updated
   first before returning new values.
 

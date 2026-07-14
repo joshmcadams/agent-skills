@@ -25,7 +25,7 @@ to define API specifications. API designers are required to provide the API
 specification using a single self-contained YAML file for better readability.
 We encourage using [OpenAPI 3.1 version](https://swagger.io/specification/),
 especially for new APIs. The API specification documents should be subject to version
-control using a source code management system, and you #192.
+control using a source code management system, and you must publish them following #192.
 
 **Hint:** Our API infrastructure does not break, but might not yet fully support
 all OpenAPI 3.1 changes (e.g. displaying `examples` in Sunrise), and continues

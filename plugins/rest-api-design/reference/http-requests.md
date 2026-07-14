@@ -108,7 +108,7 @@ in the same single resource instance (see #149) without data duplication in
 case of repetition.
 
 **Hint:** To prevent unnoticed concurrent updates and duplicate creations when
-using `PUT`, you #182 to allow the server to react on stricter demands that
+using `PUT`, you should use #182 to allow the server to react on stricter demands that
 expose conflicts and prevent lost updates. See also the *Optimistic Locking* section for
 details and options.
 
@@ -141,13 +141,13 @@ the URL"*.
 - For multiple resources you **SHOULD** return `201` in the response, as long as
   they are created atomically, meaning that either all the resources are created
   or none of them are.
-  - You #152 if the request can partially fail, that is some of the resources
+  - You should use #152 if the request can partially fail, that is some of the resources
     can fail to be created.
 
 
-> **Note:** Posting the same resource twice is **not** required to be *idempotent* (check #149) and may result in multiple resources. However, you #229 to prevent this.
+> **Note:** Posting the same resource twice is **not** required to be *idempotent* (check #149) and may result in multiple resources. However, you should use #229 to prevent this.
 
-- You #253, where the resource creation would not finish by the time the
+- You may use #253, where the resource creation would not finish by the time the
   request is delivered, so the response status code **SHOULD** be `202`.
 
 
@@ -207,10 +207,10 @@ JSON Patch supports changing of array elements identified via its index, but
 not via (key) fields of the elements as typically needed for collections.
 
 **Note:** Patching the same resource twice is **not** required to be *idempotent*
-(check #149) and may result in a changing result. However, you #229 to
+(check #149) and may result in a changing result. However, you should use #229 to
 prevent this.
 
-**Hint:** To prevent unnoticed concurrent updates when using `PATCH` you #182
+**Hint:** To prevent unnoticed concurrent updates when using `PATCH` you should use #182
 to allow the server to react on stricter demands that expose conflicts and
 prevent lost updates. See the *Optimistic Locking* section and #229 for details and
 options.
@@ -329,7 +329,7 @@ to [RFC 9110 Section 9.2](https://tools.ietf.org/html/rfc9110#section-9.2):
 | `OPTIONS` | Yes | Yes | No |
 | `TRACE` | Yes | Yes | No |
 
-**Note:** #227.
+**Note:** See #227 regarding cacheability of response information.
 
 
 ## SHOULD consider to design `POST` and `PATCH` idempotent {#rule-229}

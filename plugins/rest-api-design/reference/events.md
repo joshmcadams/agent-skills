@@ -934,7 +934,7 @@ consumers:
 known as a tuple).
 - Adding a new optional field to redefine the meaning of a (previously)
   existing field (also known as a co-occurrence constraint).
-- Adding a value to an `enum` enumeration. Instead, you #112.
+- Adding a value to an `enum` enumeration. Instead, you should use #112 (extensible enums).
 
 When an incompatible change is required, it needs to be aligned with all consumers.
 Only start sending values not covered by the previous schema after all consumers
