@@ -106,7 +106,7 @@ Names of arrays should be pluralized to indicate that they contain multiple valu
 This implies in turn that object names should be singular.
 
 
-## MUST property names must be snake_case (and never camelCase) {#rule-118}
+## MUST use snake_case for property names (never camelCase) {#rule-118}
 
 Property names are restricted to ASCII snake_case strings matching regex `^[a-z_][a-z_0-9]*$`.
 The first character must be a lower case letter, or an underscore, and subsequent
