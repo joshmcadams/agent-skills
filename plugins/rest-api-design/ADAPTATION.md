@@ -20,6 +20,18 @@ Do **NOT** use media-type / `Accept`-header versioning
 that is a violation here. The media type stays plain `application/json`. See
 reference rule [#172](reference/json-guidelines.md#rule-172).
 
+## Path convention for bundled files (settled — do not relitigate)
+
+Skills reference bundled files via **`${CLAUDE_PLUGIN_ROOT}/...`**, which
+Claude Code substitutes at runtime. For any other agent runtime, every skill
+carries the fallback: the plugin root is the directory two levels above the
+SKILL.md. Do **not** swap this for relative paths like `../../reference/...`
+— a skill executes with the working directory set to the *user's project*,
+not the plugin, so bare relative paths resolve to nothing at runtime (this
+was tried in commit `5dab25d` and reverted in `d296cc5`). Skills must also
+never emit `${CLAUDE_PLUGIN_ROOT}` paths into user artifacts — copy bundled
+schemas/headers into the user's spec and `$ref` them locally.
+
 ## Maintenance
 
 The naming/schema/status-code rule summaries are duplicated across the

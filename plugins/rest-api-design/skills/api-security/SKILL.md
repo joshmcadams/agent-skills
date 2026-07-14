@@ -1,7 +1,7 @@
 ---
 name: api-security
 description: How to secure a REST API — OAuth 2.0 / bearer access tokens, functional scopes (permissions), scope naming, least privilege, and keeping secrets out of URLs. Use when securing an API, adding auth, defining scopes or permissions, deciding how to protect endpoints, or asked to actually wire up/add security schemes and scopes to a spec ("secure this API", "add auth to my spec").
-type: knowledge
+type: hybrid
 ---
 
 # Secure a REST API
@@ -26,8 +26,8 @@ asks how), switch to **builder mode**: detect the artifact and edit it per
 1. **Secure every endpoint (#104).** Every endpoint MUST be protected with
    authentication and authorization. Define protection in the OpenAPI spec using
    the `http`+`bearer` scheme (JWT) or an `oauth2` scheme. Most internal,
-   service-to-service APIs use JWT bearer tokens from the platform IAM token
-   service (`Authorization: Bearer <token>`, based on OAuth 2.0 / RFC 6750).
+   service-to-service APIs use JWT bearer tokens
+   (`Authorization: Bearer <token>`, based on OAuth 2.0 / RFC 6750).
    Use full `oauth2` flows only for customer/partner-facing APIs that actually
    support them — do not declare `oauth2` (e.g. `implicit`) if the service only
    implements a plain bearer scheme, as it leaks auth-server details.

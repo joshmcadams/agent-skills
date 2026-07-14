@@ -54,8 +54,19 @@ This is a **knowledge** skill — it produces guidance and reference material, n
 
 - [ ] Declare enums as `string`-typed with **`UPPER_SNAKE_CASE`** values, e.g.
   `VALUE`, `YET_ANOTHER_VALUE` (#240).
-- [ ] Prefer **extensible enums** (`x-extensible-enum`) for value sets that may
-  grow, so adding a value stays backward-compatible (#112).
+- [ ] Prefer **extensible enums** for value sets that may grow, so adding a
+  value stays backward-compatible (#112): list the known values under
+  `examples` and prefix the `description` with `[Extensible enum]` —
+  ```yaml
+  delivery_method:
+    type: string
+    examples: [ PARCEL, LETTER, EMAIL ]
+    description: '[Extensible enum] the chosen delivery method.'
+  ```
+  Use a closed `enum` only when the owner fully controls the value set and it
+  is complete for any future need. The legacy `x-extensible-enum` keyword has
+  the same semantics but is only for specs stuck on OpenAPI < 3.1 (plural
+  `examples` requires 3.1).
 - [ ] Exception: case-sensitive values sourced outside the spec (e.g. ISO
   language codes) keep their native casing.
 
@@ -153,7 +164,8 @@ directory at the plugin root, e.g. `${CLAUDE_PLUGIN_ROOT}/reference/<file>`):
 
 - `reference/json-guidelines.md` — #118, #120, #122–#124, #167, #172,
   #173 (Money), #174, #235, #240, #252
-- `reference/compatibility.md` — #110 (top-level objects), #112 (x-extensible-enum)
+- `reference/compatibility.md` — #110 (top-level objects), #112 (extensible
+  enums via `examples`; legacy `x-extensible-enum`)
 - `reference/data-formats.md` — #238 (format table), #171, #169/#126, #127,
   #170/#128, #144, #239
 - `reference/models/money-1.0.0.yaml` — the shared Money schema to `$ref`

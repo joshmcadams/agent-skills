@@ -61,8 +61,9 @@ what kind of change.
 - Make a **mandatory input field optional** (never the reverse).
 - Make an **optional output field mandatory** (never the reverse).
 - Extend an **input-only** `enum`'s accepted range.
-- Add values to an `x-extensible-enum` / `examples`-marked extensible enum
-  (any direction, #112).
+- Add values to an extensible enum — one marked `[Extensible enum]` in its
+  `description` with an `examples` value list, or using the legacy
+  `x-extensible-enum` keyword (any direction, #112).
 - Reduce an enum range, but only if the server still accepts and handles the
   old values too.
 
@@ -107,8 +108,9 @@ Obey payload conventions while writing the field:
   (#123).
 - Date/time fields named `*_at`/`*_date`/`*_time`, RFC 3339 `format: date-time`
   or `date` (#169/#235).
-- Enums as `UPPER_SNAKE_CASE` strings (#240); prefer `examples`/
-  `x-extensible-enum` for growth-prone sets (#112).
+- Enums as `UPPER_SNAKE_CASE` strings (#240); for growth-prone sets prefer an
+  extensible enum — `examples` list + `[Extensible enum]` description prefix
+  (`x-extensible-enum` only on OpenAPI < 3.1) (#112).
 - Money via the shared `{amount, currency}` object, `amount` as
   `format: decimal` (#173) — copy from
   `${CLAUDE_PLUGIN_ROOT}/reference/models/money-1.0.0.yaml#/Money` if not

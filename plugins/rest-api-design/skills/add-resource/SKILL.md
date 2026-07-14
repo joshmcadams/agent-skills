@@ -103,7 +103,9 @@ Pick methods appropriate to what the resource is:
   - Do **not** add list/create semantics to a singleton.
 - **Collection item** (`/{id}` under an existing collection): same `GET` /
   `PUT` / `PATCH` / `DELETE` set. If the caller also needs list + create on the
-  parent collection, that belongs in **add-collection**.
+  parent collection, that belongs in **add-collection**. If the parent
+  collection path already exists and merely lacks a `POST` (create) operation,
+  add it with **add-endpoint** on the collection path — not with this skill.
 
 Respect method properties (#149): `GET` safe & idempotent; `PUT`/`DELETE`
 idempotent; `POST`/`PATCH` not idempotent by default. Use only official status
