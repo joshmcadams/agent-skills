@@ -9,7 +9,7 @@
     {
       "name": "rest-api-design",
       "source": "./plugins/rest-api-design",
-      "description": "Design, audit, and extend RESTful APIs: named operations (/audit, /add-collection, /add-resource, /new-version) plus builders for schema changes, deprecation, and compliance fixes, and knowledge skills covering naming, URLs, JSON, HTTP methods, pagination, errors, compatibility, security, headers, async operations, performance, and event design."
+      "description": "Design, audit, and extend RESTful APIs: named operations (/audit, /add-collection, /add-resource, /new-version) plus builders for schema changes, deprecation, and compliance fixes, and knowledge skills covering API-first/OpenAPI, naming, URLs, JSON, HTTP methods, pagination, errors, compatibility, security, headers, async operations, performance, and event design."
     }
   ]
 }

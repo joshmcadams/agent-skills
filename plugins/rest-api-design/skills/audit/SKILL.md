@@ -27,14 +27,34 @@ or `services/orders`). If empty, audit the whole repository.
    `api/`, `spec/`, `docs/`).
 2. If none exist, fall back to **code-first** route definitions (Spring
    `@RequestMapping`/`@GetMapping`, FastAPI/Flask decorators, Express/Koa routers,
-   ASP.NET controllers, etc.).
+   ASP.NET controllers, etc.) so you still have something to audit — **but the
+   absence of an OpenAPI spec is itself a high-severity finding** against #100
+   and #101 (see the API-First & specification category below). Do not treat a
+   code-first-only repo as compliant just because you could audit the routes.
 3. State clearly which artifact(s) you found and are auditing. If both exist,
-   audit the OpenAPI document and note drift from the code.
+   audit the OpenAPI document and note drift from the code (a #100 API-First
+   finding: the spec should be the source of truth, not lag the implementation).
 
 ## Step 2 — Check each category
 
 Report a finding for every deviation. Tag severity by obligation level:
 **MUST** = high, **SHOULD** = medium, **MAY**/style = low.
+
+**API-First & specification (foundational — a missing spec undercuts every other check):**
+- [ ] The API is defined by an **OpenAPI specification** at all (#101). A
+  code-first API with no spec, or only auto-generated docs treated as an
+  afterthought, is a **MUST** finding against #100/#101.
+- [ ] The spec is a **single, self-contained** document (#101, #234) — prefer
+  one YAML file. Flag `$ref`s to arbitrary local/remote content that is not
+  durable and immutable (e.g. `../fragment.yaml#/...` or a `$ref` to a mutable
+  GitHub blob URL) — copy such fragments in and reference them locally instead.
+- [ ] **OpenAPI version**: encourage **3.1** for new APIs (#101); Swagger/
+  OpenAPI 2.0 on a new API is a low/medium finding, not a hard fail.
+- [ ] **API-First discipline** (#100): the spec is the source of truth (not
+  lagging behind code — see Step 1), and component-external APIs
+  (`x-audience` ≠ `component-internal`) should show evidence of review.
+- [ ] Spec text is **U.S. English** (#103).
+- [ ] *(SHOULD)* An API user manual is linked via `#/externalDocs/url` (#102).
 
 **Base path & versioning (the deviations — check first):**
 - [ ] Resource paths are served under an **`/api`** base path (#135). Root-served
@@ -112,6 +132,8 @@ For full detail, consult the guidelines bundled with this plugin (the
 `reference/` directory at the plugin root, e.g.
 `${CLAUDE_PLUGIN_ROOT}/reference/<file>.md`):
 
+- `reference/general-guidelines.md` — #100 (API First), #101 (provide OpenAPI),
+  #102 (user manual), #103 (U.S. English), #234 (self-contained refs)
 - `reference/urls.md` — #135 (`/api` base path), naming, structure
 - `reference/compatibility.md` — #114/#115 (URL versioning), #106–#108, #113
 - `reference/http-requests.md`, `reference/http-status-codes-and-errors.md`

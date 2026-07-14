@@ -20,7 +20,7 @@ One plugin, **`rest-api-design`**, containing:
 | Builder | `modify-schema` | Add/remove/rename/retype a field, enforcing compatible-extension rules. |
 | Builder | `deprecate` | Mark an operation/path/field/version deprecated and wire `Deprecation`/`Sunset` headers. |
 | Builder | `fix-compliance` | Apply audit findings, separating safe spec-internal fixes from breaking ones. |
-| Fundamentals | `naming-conventions`, `url-design`, `json-conventions`, `http-methods-and-status` | Core design rules. |
+| Fundamentals | `api-first`, `naming-conventions`, `url-design`, `json-conventions`, `http-methods-and-status` | Core design rules (incl. spec-first / OpenAPI requirement). |
 | Cross-cutting | `pagination`, `error-responses`, `api-compatibility`, `api-security`, `http-headers`, `async-operations`, `performance`, `event-design` | Concerns that span endpoints. |
 
 *"Kind" above is descriptive, not a strict taxonomy: e.g. `/audit` is listed as
