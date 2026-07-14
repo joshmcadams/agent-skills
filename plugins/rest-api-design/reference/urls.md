@@ -326,7 +326,9 @@ than 2000 characters.)
 
 ## MUST use snake_case (never camelCase) for query parameters {#rule-130}
 
-See also [#118](#rule-118).
+Query parameter names must use snake_case (e.g. `sort_order`, `created_at`)
+and never camelCase (e.g. `sortOrder`, `createdAt`). This keeps query parameter
+naming consistent with JSON property naming conventions (see [#118](#rule-118)).
 
 ## MUST stick to conventional query parameters {#rule-137}
 
