@@ -1,0 +1,74 @@
+# This document is DEPRECATED and only maintained for backward compatibility.
+# Separation of request vs. response header definition is partially redundant and not needed. 
+# Instead, please use the HEADER DEFINITIONS provided in headers-<version>.yaml
+
+# Standard Headers
+
+Cache-Control:
+  in: header
+  name: Cache-Control
+  description: |
+    The `Cache-Control` header field is providing directives to control how
+    proxies and clients are allowed to cache responses results for performance.
+    Clients and proxies are free to not support caching of results, however if
+    they do, they must obey all directives mentioned in [RFC-9111 Section
+    5.2.2](https://datatracker.ietf.org/doc/html/rfc9111#name-response-directives) to the word.
+
+    In case of caching, the directive provides the scope of the cache entry,
+    i.e. only for the original user (private) or shared between all users
+    (public), the lifetime of the cache entry in seconds (max-age), and the
+    strategy how to handle a stale cache entry (must-revalidate). Please note,
+    that the lifetime and validation directives for shared caches are different
+    (s-maxage, proxy-revalidate).
+  schema:
+    type: string
+    example: "private,must-revalidate,max-age=3600"
+
+Vary:
+  in: header
+  name: Vary
+  description: |
+    The `Vary` header field in the response describes which parts of the
+    request message, aside from the method, the `Host` header field, and the
+    request target path, might have influence the server in selecting the
+    presented response. A client or proxy that caches the response must respect
+    this information to ensure that it delivers the correct cache entry (see
+    [RFC 9110 Section 12.5.5. Vary](https://datatracker.ietf.org/doc/html/rfc9110#name-vary)
+    and [RFC 9111 Section 4.1 Calculating Cache Keys with the Vary Header Field](https://datatracker.ietf.org/doc/html/rfc9111#name-calculating-cache-keys-with)).
+
+    The value consists of either a single asterisk (`*`) or a list of
+    case-insensitive header field names.
+  schema:
+    type: string
+    example: "accept-encoding,accept-language"
+
+ETag:
+  in: header
+  name: ETag
+  description: >
+    The `ETag` header field in a response provides an opaque quoted string
+    identifying the distinct delivered resource. The same selected resource
+    depending on version and representation may be identified by multiple
+    identifiers. The `ETag` value is guaranteed to change whenever the
+    resource changes, and thereby enabling optimistic updates.
+
+    An identifier consists of an opaque quoted string, possibly prefixed by
+    a weakness indicator. For further details see [RFC 9110 Section
+    8.8.3. ETag](https://datatracker.ietf.org/doc/html/rfc9110#name-etag) and
+    [RFC 9111 Section 4.3.1 Sending a Validation Request](https://datatracker.ietf.org/doc/html/rfc9111#name-sending-a-validation-reques)
+  schema:
+    type: string
+    example: 'W/"xy", "5", "5db68c06-1a68-11e9-8341-68f728c1ba70"''
+
+# Custom Headers
+
+X-Flow-ID:
+  name: X-Flow-ID
+  description: |
+    The `X-Flow-ID` is a custom header containing a unique flow identifier that
+    was be passed to any further request. It can be used to investigate request
+    related log entries end events.
+  in: header
+  schema:
+    type: string
+    example: GKY7oDhpSiKY_gAAAABZ_A

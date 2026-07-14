@@ -1,0 +1,19 @@
+{
+  "name": "rest-api-design",
+  "displayName": "REST API Design",
+  "description": "Design, audit, and extend RESTful APIs following an adapted version of the Zalando REST API Guidelines. Uses URL-based versioning (/v1/) and an /api base path.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Josh McAdams",
+    "email": "61422+joshmcadams@users.noreply.github.com"
+  },
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "rest",
+    "api",
+    "openapi",
+    "api-design",
+    "guidelines",
+    "zalando"
+  ]
+}

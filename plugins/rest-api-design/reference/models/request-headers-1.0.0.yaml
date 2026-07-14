@@ -1,0 +1,152 @@
+# This document is DEPRECATED and only maintained for backward compatibility.
+# Separation of request vs. response header definition is partially redundant and not needed. 
+# Instead, please use the HEADER DEFINITIONS provided in headers-<version>.yaml
+
+# Standard Headers
+
+If-Match:
+  name: If-Match
+  in: header
+  required: false
+  description: |-
+    The `If-Match` header field is used to declare a list of identifiers that
+    are required to match the current resource version identifier in at least
+    one position as a pre-condition for executing the request on the server
+    side. This behavior is used to validate and reject optimistic updates, by
+    checking if the resource version a consumer has based his changes on is
+    outdated on arrival of the change request to prevent lost updates.
+
+    If the pre-condition fails the server will respond with status code `412`
+    (Precondition Failed). For further details see [RFC 9110 Section
+    13.1.1. If-Match](https://datatracker.ietf.org/doc/html/rfc9110#name-if-match)
+    and [RFC 9111 Section 4.3.1 Sending a Validation Request](https://datatracker.ietf.org/doc/html/rfc9111#name-sending-a-validation-reques).
+  schema:
+    type: array
+    items:
+      type: string
+  style: simple
+  explode: false
+  example: [ "5db68c06-1a68-11e9-8341-68f728c1ba70", 'W/"xy", "5"' ]
+
+If-None-Match:
+  name: If-None-Match
+  in: header
+  required: false
+  description: |-
+    The `If-None-Match header` field is used to declare a list of identifiers
+    that are required to fail matching all the current resource version
+    identifiers as a pre-condition for executing the request on the server
+    side. This is especially used in conjunction with an `*` (asterix) that is
+    matching all possible resource identifiers to ensure the initial creation
+    of a resource. Other use cases are possible but rare.
+
+    If the pre-condition fails the server will respond with status code `412`
+    (Precondition Failed). For further details see [RFC 9110 Section
+    13.1.2](https://datatracker.ietf.org/doc/html/rfc9110#name-if-none-match)
+    and [RFC 9111 Section 4.3.1 Sending a Validation Request](https://datatracker.ietf.org/doc/html/rfc9111#name-sending-a-validation-reques).
+  schema:
+    type: array
+    items:
+      type: string
+  style: simple
+  explode: false
+  example: [ "5db68c06-1a68-11e9-8341-68f728c1ba70", 'W/"xy", "5"' ]
+
+# Custom Headers
+
+X-Flow-ID:
+  name: X-Flow-ID
+  description: |-
+    The `X-Flow-ID` is a custom header containing a unique flow identifier that
+    that must be passed to any further request. It can be used to investigate
+    request related log entries end events.
+  in: header
+  schema:
+    type: string
+    example: GKY7oDhpSiKY_gAAAABZ_A
+
+X-Mobile-Advertising-ID:
+  in: header
+  name: X-Mobile-Advertising-ID
+  description: |-
+    A unique, customer-resettable identifier provided by the operating system of
+    a mobile device to facilitate personalized advertising, and usually passed
+    by mobile apps via header when calling backend services.
+
+    It is either the [IDFA](https://developer.apple.com/documentation/adsupport/asidentifiermanager)
+    (Apple Identifier for mobile Advertising) for iOS, or the
+    [GAID](https://support.google.com/googleplay/android-developer/answer/6048248)
+    (Google mobile Advertising Identifier) for Android.
+  schema:
+    type: string
+    example: cdda802e-fb9c-47ad-0794d394c912
+
+X-Tenant-ID:
+  name: X-Tenant-ID
+  description: |-
+    The unique identifier of the tenant that initiated the request to the
+    multi-tenant Zalando Platform. The X-Tenant-ID is set to the ID of the
+    business partner extracted from the `OAuth`-token of the request. The
+    `X-Tenant-ID` should be passed-through as generic aspect.
+  in: header
+  schema:
+    type: string
+    example: 9f8b3ca3-4be5-436c-a847-9cd55460c495
+
+X-Sales-Channel:
+  name: X-Sales-Channel
+  description: |-
+    Unique identifier of the sales channel related to the request. Sales
+    channels are owned by retailers and represent a specific consumer segment
+    being addressed with a specific product assortment that is offered via the
+    CFA retailer catalogs to consumers (see fashion platform glossary). The
+    `X-Sales-Channel` should be passed-through as generic aspect.
+  in: header
+  schema:
+    type: string
+    example: 52b96501-0f8d-43e7-82aa-8a96fab134d7
+
+X-Frontend-Type:
+  name: X-Frontend-Type
+  description: |-
+    The type of the consumer facing application (CFA) used to initiate the
+    request. CFAs provide business experience to their customers via different
+    frontend application types, `mobile-app`, `browser`, `facebook-app`,
+    `chat-app`, and `email`. The `X-Frontend-Type` should be passed-through as
+    generic aspect - there are diverse concerns, e.g. pushing mobiles with
+    specific coupons, that make use of it.
+  in: header
+  schema:
+    type: string
+    example: mobile-app
+
+X-device-Type:
+  $ref: 'https://opensource.zalando.com/restful-api-guidelines/models/request-headers-1.0.0.yaml#/X-Device-Type'
+
+X-Device-Type:
+  name: X-Device-Type
+  description: |-
+    The device type used to initiate the request. There are also use cases
+    for steering customer experience (incl. features and content) depending on
+    device types, e.g. `smartphone`, `tablet`, `desktop`, and `other`. The
+    `X-Device-Type` should be passed-through as generic aspect.
+  in: header
+  schema:
+    type: string
+    example: tablet
+
+X-device-OS:
+  $ref: 'https://opensource.zalando.com/restful-api-guidelines/models/request-headers-1.0.0.yaml#/X-Device-OS'
+
+X-Device-OS:
+  name: X-Device-OS
+  description: |-
+    The operating system used by the device initiating the request. On top of
+    device type, we want to differ between device platforms, e.g. between
+    computers, smartphone and tablets with `iOS`, `Android`, `Windows`,
+    `Linux`, and `MacOS`. The `X-Device-OS` should be passed-through as generic
+    aspect.
+  in: header
+  schema:
+    type: string
+    example: Android

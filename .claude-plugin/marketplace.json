@@ -1,0 +1,15 @@
+{
+  "name": "rest-apis",
+  "description": "Skills for designing, auditing, and evolving RESTful APIs following an adapted version of the Zalando REST API Guidelines (URL-based versioning, /api base path).",
+  "owner": {
+    "name": "Josh McAdams",
+    "email": "61422+joshmcadams@users.noreply.github.com"
+  },
+  "plugins": [
+    {
+      "name": "rest-api-design",
+      "source": "./plugins/rest-api-design",
+      "description": "Design, audit, and extend RESTful APIs: named operations (/audit, /add-collection, /add-resource, /new-version) plus knowledge skills covering naming, URLs, JSON, HTTP methods, pagination, errors, compatibility, security, and headers."
+    }
+  ]
+}
