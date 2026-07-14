@@ -9,10 +9,9 @@ Apply these rules when designing a collection / list endpoint that returns
 multiple items. Each rule is distilled inline so this skill is usable on its
 own; cite the bundled chapter only for full detail.
 
-> **Adaptation (authoritative):** Resources live under an **`/api` base path**
-> with the major version in the **URL path** — the canonical collection path is
-> **`/api/v1/{resources}`** (e.g. `/api/v1/orders`), never a root-served path
-> and never media-type/`Accept`-header versioning.
+> **Adaptation:** URL versioning and `/api` base path apply — see the
+> [shared adaptation notice](../../ADAPTATION.md) for the two deviations
+> from upstream Zalando that are authoritative for all skills in this plugin.
 
 ## Rules
 

@@ -11,13 +11,9 @@ new **URL** major version and deprecate the old one. This is a knowledge skill:
 it produces a compatibility decision and a migration/deprecation plan, not edits
 to an artifact.
 
-> **Adaptation (authoritative, CRITICAL):** This guideline set versions APIs in
-> the **URL**: the major version is a path segment `v<major>` immediately after
-> the **`/api` base path**, so the canonical resource path is
-> **`/api/v1/{resources}`** and a breaking change moves to **`/api/v2/...`**
-> (#114). Media-type / `Accept`-header versioning
-> (`application/vnd...;version=2`, `application/x...+json;version=2`) is a
-> **VIOLATION** here (#115). Never reproduce the upstream media-type stance.
+> **Adaptation:** URL versioning and `/api` base path apply — see the
+> [shared adaptation notice](../../ADAPTATION.md) for the two deviations
+> from upstream Zalando that are authoritative for all skills in this plugin.
 
 ## Core principle: don't break backward compatibility (#106)
 APIs are contracts; consumers have independent release cycles. Keep all

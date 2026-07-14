@@ -9,11 +9,9 @@ Apply these rules when designing JSON request/response payloads and their
 schemas. Each rule is distilled inline so this skill is usable on its own; cite
 the bundled chapters only for full detail.
 
-> **Adaptation (authoritative):** This guideline set versions APIs in the
-> **URL path** (`/api/v1/...`) under an **`/api` base path** — never via
-> media-type/`Accept`-header versioning. Keep the plain `application/json`
-> media type (#172); do **not** use `application/x....+json;version=2` or any
-> custom versioned media type.
+> **Adaptation:** URL versioning and `/api` base path apply — see the
+> [shared adaptation notice](../../ADAPTATION.md) for the two deviations
+> from upstream Zalando that are authoritative for all skills in this plugin.
 
 ## Payload structure
 

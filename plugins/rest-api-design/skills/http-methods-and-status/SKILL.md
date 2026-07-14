@@ -11,10 +11,9 @@ it while designing an operation to decide semantics, safe/idempotent properties,
 request/response shape, and which codes to return. This skill does not modify any
 API artifact — it informs the decision.
 
-> **Adaptation (authoritative):** Versioning is done in the **URL** (`/v1/`) under
-> an **`/api` base path** — canonical resource path `/api/v1/{resources}`. There is
-> **no media-type / `Accept`-header versioning**; the media type stays plain
-> `application/json` and errors use `application/problem+json`.
+> **Adaptation:** URL versioning and `/api` base path apply — see the
+> [shared adaptation notice](../../ADAPTATION.md) for the two deviations
+> from upstream Zalando that are authoritative for all skills in this plugin.
 
 ## Method selection
 

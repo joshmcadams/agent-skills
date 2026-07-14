@@ -10,13 +10,9 @@ the base path, the version segment, resource and sub-resource paths, nesting,
 compound keys, and query parameters. The rules below are self-contained; the
 `reference/` chapters are cited only for full detail.
 
-> **Adaptation (authoritative — central to this skill):** This guideline set
-> deviates from upstream Zalando in two ways that shape every URL. The major
-> version is a **path segment** placed right after the base path (`/api/v1/...`),
-> and resources are served under an **`/api` base path**. The canonical resource
-> path is **`/api/v1/{resources}`**. Media-type/`Accept`-header versioning
-> (`application/vnd...;version=2`) and root-served (no `/api`) paths are
-> VIOLATIONS here; `/api/v1/...` is correct.
+> **Adaptation:** URL versioning and `/api` base path apply — see the
+> [shared adaptation notice](../../ADAPTATION.md) for the two deviations
+> from upstream Zalando that are authoritative for all skills in this plugin.
 
 ## Base path & versioning (the deviations — design these first)
 

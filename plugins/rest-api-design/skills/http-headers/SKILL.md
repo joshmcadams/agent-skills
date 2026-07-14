@@ -11,10 +11,9 @@ processing preferences, idempotency, the sanctioned proprietary headers, and
 deprecation signaling. Any header a service supports is part of its contract, so
 declare it explicitly in the OpenAPI `parameters`/`headers` of the operation.
 
-> **Adaptation (authoritative):** This guideline set versions APIs in the
-> **URL** (major version `v<major>` right after the base path) and serves
-> resources under an **`/api`** base path — canonical path `/api/v1/{resources}`.
-> Versions are **NOT** negotiated via media type. See rule 3 below.
+> **Adaptation:** URL versioning and `/api` base path apply — see the
+> [shared adaptation notice](../../ADAPTATION.md) for the two deviations
+> from upstream Zalando that are authoritative for all skills in this plugin.
 
 ## Rules
 

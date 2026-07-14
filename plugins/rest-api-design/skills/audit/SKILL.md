@@ -9,12 +9,9 @@ argument-hint: "[path-or-spec-glob]"
 Audit the REST API(s) in this repository against the adapted Zalando REST API
 Guidelines bundled with this plugin, and produce a prioritized findings report.
 
-> **Adaptation (authoritative for this audit):** This guideline set deviates from
-> upstream Zalando in two ways. Versioning is done in the **URL** (`/v1/`), and a
-> **`/api` base path** is used. The canonical resource path is
-> **`/api/v1/{resources}`**. When auditing, treat media-type/`Accept`-header
-> versioning and root-served (no `/api`) paths as **violations** — do NOT flag
-> `/api/v1/...` paths.
+> **Adaptation:** URL versioning and `/api` base path apply — see the
+> [shared adaptation notice](../../ADAPTATION.md) for the two deviations
+> from upstream Zalando that are authoritative for all skills in this plugin.
 
 ## Arguments
 

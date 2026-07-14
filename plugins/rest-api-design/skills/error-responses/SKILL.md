@@ -10,11 +10,9 @@ using the RFC 9457 **Problem JSON** object (media type
 `application/problem+json`). This is a knowledge skill: it produces error-schema
 guidance and a designed problem schema, not edits to an artifact.
 
-> **Adaptation (authoritative):** This guideline set versions APIs in the **URL**
-> and serves resources under an **`/api` base path**, so the canonical resource
-> path is **`/api/v1/{resources}`**. Error responses are returned from those same
-> versioned endpoints (e.g. an error from `/api/v1/orders` is still part of the
-> `v1` API) — there is no separate error path or error versioning scheme.
+> **Adaptation:** URL versioning and `/api` base path apply — see the
+> [shared adaptation notice](../../ADAPTATION.md) for the two deviations
+> from upstream Zalando that are authoritative for all skills in this plugin.
 
 ## Rules
 

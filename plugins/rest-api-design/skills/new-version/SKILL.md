@@ -13,13 +13,9 @@ version through the `Deprecation`/`Sunset` headers and the deprecation process.
 A new major version is a **last resort** — first confirm the change genuinely
 cannot be made compatibly.
 
-> **Adaptation (authoritative for this plugin):** Versioning is done in the
-> **URL** (a `v<major>` path segment), NOT via media types. The canonical
-> resource path is **`/api/v1/{resources}`**. Concretely: `/api` lives in the
-> `servers` URL and the version segment lives in the path keys (`/v2/{resources}`),
-> so the effective path is `/api/v2/{resources}`. Media-type / `Accept`-header
-> versioning (`application/vnd...+json;version=2`) is a **violation** — the media
-> type stays plain `application/json`.
+> **Adaptation:** URL versioning and `/api` base path apply — see the
+> [shared adaptation notice](../../ADAPTATION.md) for the two deviations
+> from upstream Zalando that are authoritative for all skills in this plugin.
 
 ## Arguments
 

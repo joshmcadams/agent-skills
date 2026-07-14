@@ -10,13 +10,9 @@ resource/collection names, path segments, resource identifiers, query
 parameters, and JSON property names. The rules below are self-contained; the
 `reference/` chapters are cited only for full detail.
 
-> **Adaptation (authoritative):** This guideline set deviates from upstream
-> Zalando in two ways. The major version is a **path segment** (`/v1/`, never a
-> media-type/`Accept`-header version), and resources are served under an
-> **`/api` base path**. The canonical resource path is **`/api/v1/{resources}`**.
-> Place every name you choose inside this shape — e.g. the collection `orders`
-> lives at `/api/v1/orders`. When reviewing, treat media-type versioning and
-> root-served (no `/api`) paths as violations; do NOT flag `/api/v1/...`.
+> **Adaptation:** URL versioning and `/api` base path apply — see the
+> [shared adaptation notice](../../ADAPTATION.md) for the two deviations
+> from upstream Zalando that are authoritative for all skills in this plugin.
 
 ## Path & resource names
 

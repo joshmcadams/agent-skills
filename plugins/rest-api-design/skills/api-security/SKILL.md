@@ -10,12 +10,9 @@ authorization: OAuth 2.0 / bearer access tokens, functional scopes
 (permissions), scope naming, and safe handling of credentials. Apply these
 rules when designing or reviewing how an API is secured.
 
-> **Adaptation (authoritative):** This guideline set versions APIs in the
-> **URL** (major version `v<major>` right after the base path) and serves
-> resources under an **`/api`** base path. The canonical resource path is
-> **`/api/v1/{resources}`** (e.g. `/api/v1/business-partners/{partner-id}`).
-> Secure these path-versioned endpoints; do **not** rely on media-type /
-> `Accept`-header versioning.
+> **Adaptation:** URL versioning and `/api` base path apply — see the
+> [shared adaptation notice](../../ADAPTATION.md) for the two deviations
+> from upstream Zalando that are authoritative for all skills in this plugin.
 
 ## Rules
 

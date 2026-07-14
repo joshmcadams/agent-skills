@@ -12,14 +12,9 @@ adapted Zalando REST API Guidelines bundled with this plugin. Prefer **OpenAPI
 document with correct meta-information, `/api` base path, `v1` URL versioning, a
 first resource collection, problem+json errors, and OAuth2/bearer security.
 
-> **Adaptation (authoritative for this plugin):** This guideline set deviates
-> from upstream Zalando in two ways. Versioning is done in the **URL** (a
-> `v<major>` path segment), and a **`/api` base path** is used. The canonical
-> resource path is **`/api/v1/{resources}`**. Concretely: put `/api` in the
-> `servers` URL and the version segment in the path keys (`/v1/{resources}`),
-> so the effective path is `/api/v1/{resources}`. Media-type / `Accept`-header
-> versioning (`application/vnd...+json;version=2`) is a **violation** here — the
-> media type stays plain `application/json`.
+> **Adaptation:** URL versioning and `/api` base path apply — see the
+> [shared adaptation notice](../../ADAPTATION.md) for the two deviations
+> from upstream Zalando that are authoritative for all skills in this plugin.
 
 ## Arguments
 

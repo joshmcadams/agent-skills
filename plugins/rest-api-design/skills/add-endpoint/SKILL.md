@@ -12,13 +12,9 @@ API Guidelines bundled with this plugin. Detect the API artifact, verify the
 path and method, define request/response bodies, status codes, and headers, then
 edit the artifact and summarize the change.
 
-> **Adaptation (authoritative for this skill):** This guideline set deviates from
-> upstream Zalando in two ways. Versioning is done in the **URL** (`/v1/`), and a
-> **`/api` base path** is used. The canonical resource path is
-> **`/api/v1/{resources}`**. The new operation MUST live under `/api/v{major}/…`.
-> Never introduce media-type/`Accept`-header versioning
-> (`application/vnd…;version=2`) or root-served (no `/api`) paths — those are
-> violations here. Keep the media type plain `application/json`.
+> **Adaptation:** URL versioning and `/api` base path apply — see the
+> [shared adaptation notice](../../ADAPTATION.md) for the two deviations
+> from upstream Zalando that are authoritative for all skills in this plugin.
 
 ## Arguments
 

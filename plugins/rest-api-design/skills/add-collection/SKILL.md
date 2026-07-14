@@ -11,12 +11,9 @@ creates members, plus the member item sub-path with read/update/delete
 operations. Wire the paths, operations, status codes, and JSON schemas so they
 comply with the adapted Zalando REST API Guidelines bundled with this plugin.
 
-> **Adaptation (authoritative for this skill):** This guideline set deviates from
-> upstream Zalando in two ways. The API is versioned in the **URL** (a `v<major>`
-> path segment), and resources are served under an **`/api` base path**. The
-> canonical resource path is therefore **`/api/v1/{resources}`**. Do NOT use
-> media-type / `Accept`-header versioning (`application/...;version=2`) — that is
-> a violation here. Keep the media type plain `application/json`.
+> **Adaptation:** URL versioning and `/api` base path apply — see the
+> [shared adaptation notice](../../ADAPTATION.md) for the two deviations
+> from upstream Zalando that are authoritative for all skills in this plugin.
 
 ## Arguments
 
