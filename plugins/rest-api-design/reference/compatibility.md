@@ -381,7 +381,6 @@ The completeness semantic would in theory allow some validation by
 intermediaries (but that was rarely implemented).
 It was visible in a few tools (e.g. Swagger UI), but ignored by most others.
 
-After the team responsible for Nakadi (our Zalando-internal event bus) decided
-to not validate x-extensible-enum, but instead even reject it in event type
-definitions, we (the API guideline maintainers) revisited this rule to
+After event messaging systems started rejecting `x-extensible-enum` in event
+type definitions, we (the API guideline maintainers) revisited this rule to
 recommend `examples` instead.

@@ -1,9 +1,8 @@
 # EVENT Basics - Event Types
 
-Zalando’s architecture centers around decoupled microservices and in
-that context we favour asynchronous event driven approaches. The
-guidelines focus on how to design and publish events
-intended to be shared for others to consume.
+A microservice architecture centered around decoupled services benefits from
+asynchronous event-driven approaches. The guidelines focus on how to design and
+publish events intended to be shared for others to consume.
 
 Events are defined using an item called an *Event Type*. The Event Type
 allows events to have their structure declared with a schema by
@@ -24,11 +23,10 @@ teams to use, typically in an *Event Type Registry*. Each event
 published can then be validated against the overall structure of its
 event type and the schema for its custom data.
 
-The basic model described above was originally developed in the
-[Nakadi project](https://github.com/zalando/nakadi), which acts as a
-reference implementation (see also Nakadi API (internal_link))
-of the event type registry, and as a validating
-publish/subscribe broker for event producers and consumers.
+The basic model described above was originally developed in open-source
+event messaging projects, such as the [Nakadi project](https://github.com/zalando/nakadi),
+which act as a reference implementation of the event type registry and as a
+validating publish/subscribe broker for event producers and consumers.
 
 
 ## MUST define events compliant with overall API guidelines {#rule-208}
@@ -74,7 +72,7 @@ schema as well as the event type definition available for review.
 
 ## MUST specify and register events as event types {#rule-197}
 
-In Zalando's architecture, events are registered using a structure
+In an event-driven architecture, events are registered using a structure
 called an *Event Type*. The Event Type declares standard information as
 follows:
 
@@ -478,9 +476,6 @@ category's structure gets used for other kinds of events, hence the name
 has been generalized to reflect how teams are using it.
 - The General Event is still useful and recommended for the purpose of
 defining events that drive a business process.
-- The Nakadi broker still refers to the General Category as the Business
-Category and uses the keyword `business` for event type registration.
-Other than that, the JSON structures are identical.
 
 See [#201](#rule-201) for more guidance on how to use the category.
 
@@ -546,9 +541,9 @@ The following guidelines specifically apply to Data Change Events:
 ## MUST provide mandatory event metadata {#rule-247}
 
 The General and Data Change event categories share a common structure for *metadata*
-representing generic event information. Parts of the metadata is provided by the
-Nakadi event messaging platform, but event identifier (eid) and event creation
-timestamp (occurred_at) have to be provided by the event producers.
+representing generic event information. Parts of the metadata may be provided by the event messaging platform, but event
+identifier (eid) and event creation timestamp (occurred_at) must be provided by
+the event producers.
 The metadata structure is defined below as an OpenAPI Schema Object:
 
 ```yaml
@@ -789,7 +784,7 @@ reason".
 
 ## SHOULD avoid writing sensitive data to events {#rule-200}
 
-Event data security is supported by Nakadi Event Bus mechanisms for access
+Event data security is supported by event bus mechanisms for access
 control and authorization of publishing or consuming events.  However, we avoid
 writing sensitive data (e.g. personal data like e-mail or address) to events unless
 it is needed for the business. Sensitive data create additional obligations for
@@ -823,8 +818,8 @@ transactional data copy or curated data products, for instance
 
 **Context:** One *source of duplicate events* are the event producers, for instance,
 due to publish call retries or publisher client failovers. Another source is
-Nakadi's 'at-least-once' delivery promise (like provided by most message broker
-distributed systems). It also currently applies to the Data Lake event materialization
+the 'at-least-once' delivery promise provided by most distributed message broker
+systems. It also currently applies to data lake event materialization
 as raw event datasets (in Delta or JSON format) for Data Analytics.
 From an event consumer point of view, duplicate events may also be created when
 consumers reprocess parts of the event stream, for instance, due to inaccurate

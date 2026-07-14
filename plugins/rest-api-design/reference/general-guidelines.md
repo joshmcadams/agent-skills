@@ -9,12 +9,10 @@ You must follow the *API First Principle*, more specifically:
 
 - You must define APIs first, before coding its implementation, using
   OpenAPI as specification language ([#101](#rule-101))
-- You must design your APIs consistently with these guidelines; use our
-  [API Linter Service (internal_link)](https://zally.zalando.net/)
-  for automated rule checks.
+- You must design your APIs consistently with these guidelines; consider using
+  an API linter or automated rule checking for continuous validation.
 - You must call for early review feedback from peers and client developers, and apply
-  [our lightweight API review process (internal_link)](https://api.docs.zalando.net/howto/request-review/)
-  for all component external APIs, i.e. all apis
+  a lightweight API review process for all component-external APIs, i.e. all APIs
   with `x-api-audience =/= component-internal` (see [#219](#rule-219)).
 
 
@@ -46,15 +44,15 @@ a helpful tool supporting UI navigation for the OpenAPI 3.0 specification.
 **Hint:** We do not yet provide guidelines for [GraphQL](https://graphql.org/)
 and focus on resource oriented HTTP/REST API style (and related tooling
 and infrastructure support).
-Following our [Zalando Tech Radar (internal_link)](https://techradar.zalando.net/languages/graphql.html), we think
-that GraphQL has no major benefits, but a couple of downsides compared to REST
-as API technology for general purpose peer-to-peer microservice communication.
-However, GraphQL can provide a lot of value for specific target domain problems,
-especially backends for frontends (BFF) and mobile clients, where typically
-many (domain object) resources from different services are queried and
-multiple roundtrip overhead should be avoided due to (mobile or public)
-network constraints. Therefore we list both technologies on ADOPT, though
-GraphQL only supplements REST for the BFF-specific problem domain.
+We think that GraphQL has no major benefits, but a couple of downsides
+compared to REST as API technology for general purpose peer-to-peer
+microservice communication. However, GraphQL can provide a lot of value
+for specific target domain problems, especially backends for frontends
+(BFF) and mobile clients, where typically many (domain object) resources
+from different services are queried and multiple roundtrip overhead
+should be avoided due to (mobile or public) network constraints.
+Therefore both technologies have their place, though GraphQL only
+supplements REST for the BFF-specific problem domain.
 
 
 ## SHOULD provide API user manual {#rule-102}
@@ -92,9 +90,6 @@ unexpected ways. (For example, the second link is already outdated due to code r
 However, you may use remote references to resources accessible by the following
 service URLs:
 
-- `https://infrastructure-api-repository.zalandoapis.com/ (internal_link)` – used
-  to refer to user-defined, immutable API specification revisions published via the
-  internal API repository.
 - `https://opensource.zalando.com/restful-api-guidelines/{model.yaml}` – used
   to refer to guideline-defined re-usable API fragments (see `{model.yaml}` files in
   [restful-api-guidelines/models](https://github.com/zalando/restful-api-guidelines/tree/main/models)

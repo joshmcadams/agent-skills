@@ -487,9 +487,9 @@ individual parts *fail* or each part is executed *asynchronously*!
 
 The rules are intended to allow clients to act on batch and bulk responses in
 a consistent way by inspecting the individual results. We explicitly reject
-the option to apply `200` for a completely successful batch as proposed in
-Nakadi's [`POST /event-types/{name}/events`](https://nakadi.io/manual.html#/event-types/name/events_post) as short cut without inspecting the result, as we
-want to avoid  risks and expect clients to handle partial
+the option to apply `200` for a completely successful batch as a short cut
+without inspecting the result, as we
+want to avoid risks and expect clients to handle partial
 batch failures anyway.
 
 The bulk or batch response may look as follows:

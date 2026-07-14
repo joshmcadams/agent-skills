@@ -121,8 +121,8 @@ groups with clear organisational and legal boundaries:
   specific product portfolio owned by the same business unit.
 - **company-internal**:
   The API consumers with this audience are restricted to applications owned
-  by the business units of the same the company (e.g. Zalando company with
-  Zalando SE, Zalando Payments SE & Co. KG. etc.)
+  by the business units of the same the company (e.g. a corporate group with
+  multiple legal entities).
 - **external-partner**:
   The API consumers with this audience are restricted to applications of
   business partners of the company owning the API and the company itself.
@@ -179,12 +179,13 @@ Functional naming is a powerful, yet easy way to align global resources as
 *host*, *permission*, and *event names* within an application landscape. It
 helps to preserve uniqueness of names while giving readers meaningful context
 information about the addressed component. Besides, the most important aspect
-is, that it allows to keep APIs stable in the case of technical and
-organizational changes (Zalando for example maintains an internal naming convention).
+is that it allows APIs to stay stable in the case of technical and
+organizational changes (for example, when a component is renamed or ownership
+transfers).
 
 A unique `functional-name` is assigned to each functional component serving an API.
-It is built of the domain name of the functional group the component is belonging
-to and a unique a short identifier for the functional component itself:
+It is built of the domain name of the functional group the component belongs to
+and a unique short identifier for the functional component itself:
 
 ```bnf
 <functional-name>      ::= <functional-domain>-<functional-component>
@@ -194,7 +195,7 @@ to and a unique a short identifier for the functional component itself:
 
 Depending on the API audience ([#219](#rule-219)), you **must/should/may** follow the functional
 naming schema for hostnames ([#224](#rule-224)) and event names ([#213](#rule-213))
-(and also permission names ([#225](#rule-225)), in future) as follows:
+(and also permission names ([#225](#rule-225), in future) as follows:
 
 | **Functional Naming** | **Audience** |
 |---|---|
@@ -207,15 +208,10 @@ Please see the following rules for detailed functional naming patterns:
 - [#213](#rule-213)
 
 
-**Internal Guideance**:  You *must* use the simple
-[functional name registry (internal_link)](https://github.bus.zalan.do/team-architecture/functional-component-registry)
-to register your functional name before using
-it. The registry is a centralized infrastructure service to ensure uniqueness
-of your functional names (and available domains -- including subdomains) and
-to support hostname DNS resolution.
-*Hint:* Due to lexicalic restrictions of DNS names there is no specific separator
-to split a functional name into (sub) domain and component; this knowledge is only
-managed in the registry.
+**Guidance:** You should use a functional name registry to register your
+functional name before using it. This ensures global uniqueness of your
+functional names (and available domains -- including subdomains) and supports
+hostname DNS resolution.
 
 
 ## MUST follow naming convention for hostnames {#rule-224}
@@ -227,19 +223,8 @@ depending on the audience ([#219](#rule-219)) as follows (see [#223](#rule-223) 
 ```bnf
 <hostname>             ::= <functional-hostname> | <application-hostname>
 
-<functional-hostname>  ::= <functional-name>.zalandoapis.com
+<functional-hostname>  ::= <functional-name>.<api-domain>
 ```
 
-**Hint:** The following convention (e.g. used by legacy STUPS infrastructure) is deprecated
-and **only** allowed for hostnames of component-internal ([#219](#rule-219)) APIs:
-
-```bnf
-<application-hostname> ::= <application-id>.<organization-unit>.zalan.do
-<application-id>       ::= [a-z][a-z0-9-]*  -- application identifier
-<organization-id>      ::= [a-z][a-z0-9-]*  -- organization unit identifier, e.g. team identifier
-```
-
-**Exception:** There are legacy hostnames used for APIs with `external-partner` audience
-which may not follow this rule due to backward compatibility constraints.
-The API Linter maintains an allow-list for these exceptions (including e.g.
-`api.merchants.zalando.com` and `api-sandbox.merchants.zalando.com`).
+Where `<api-domain>` is the base domain under which your organization's APIs
+are served (e.g. `apis.example.com`).

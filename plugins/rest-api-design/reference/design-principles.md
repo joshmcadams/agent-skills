@@ -56,11 +56,10 @@ Styles and the Design of Network-Based Software Architectures](http://www.ics.uc
 
 ## API as a product
 
-As mentioned above, Zalando is transforming from an online shop into an
-expansive fashion platform comprising a rich set of products following a
-Software as a Platform (SaaP) model for our business partners. As a
-company we want to deliver products to our (internal and external)
-customers which can be consumed like a service.
+As mentioned above, a modern platform strategy involves providing a rich set of
+products following a Software as a Platform (SaaP) model for business partners.
+The goal is to deliver products to (internal and external) customers which can be
+consumed like a service.
 
 Platform products provide their functionality via (public) APIs; hence,
 the design of our APIs should be based on the API as a Product
@@ -88,16 +87,14 @@ implementation optimizations at the expense of unnecessary client side
 obligations, and have a high attention on API quality and client
 developer experience.
 
-API as a Product is closely related to our API First principle ([#100](#rule-100))
+API as a Product is closely related to the API First principle ([#100](#rule-100))
 (see next chapter) which is more focused on how we engineer high quality APIs.
 
 
 ## API first
 
-API First is one of our
-[engineering
-and architecture principles](https://github.com/zalando/engineering-principles). In a nutshell API First requires two
-aspects:
+API First is a key engineering and architecture principle. In a nutshell API First
+requires two aspects:
 
 - define APIs first, before coding its implementation, using a standard specification
 language

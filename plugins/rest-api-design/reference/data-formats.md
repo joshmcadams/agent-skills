@@ -54,7 +54,7 @@ You **must** use these formats, whenever applicable:
 |---|---|---|---|
 | `string` | `iso-639-1`| two letter language code -- see [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes). Hint: In the past we used `iso-639` as format. | `"en"` |
 | `string` | `bcp47` | multi letter language tag -- see [BCP 47](https://tools.ietf.org/html/bcp47). It is a compatible extension of [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) optionally with additional information for language usage, like region, variant, script. | `"en-DE"` |
-| `string` | `iso-3166-alpha-2` | two letter country code -- see [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Hint: In the past we used `iso-3166` as format. | `"GB"`  **Hint:** It is `"GB"`, not `"UK"`, even though `"UK"` has seen some use at Zalando. |
+| `string` | `iso-3166-alpha-2` | two letter country code -- see [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Hint: In the past we used `iso-3166` as format. | `"GB"`  **Hint:** It is `"GB"`, not `"UK"`, even though `"UK"` has seen some use. |
 | `string` | `iso-4217` | three letter currency code -- see [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) | `"EUR"` |
 | `string` | `gtin-13` | Global Trade Item Number -- see [GTIN](https://en.wikipedia.org/wiki/Global_Trade_Item_Number) | `"5710798389878"` |
 

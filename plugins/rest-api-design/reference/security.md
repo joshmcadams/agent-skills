@@ -8,8 +8,8 @@ As part of the API specification you must define how you protect your API using
 either the `http` typed `bearer` or `oauth2` typed security schemes defined in the
 [OpenAPI Authentication Specification](https://swagger.io/docs/specification/authentication/).
 
-The majority of our APIs (especially the company internal APIs) are protected
-using JWT tokens provided by the platform IAM token service. In these situations
+For most APIs (especially internal service-to-service APIs) we recommend
+protecting endpoints using JWT tokens. In these situations
 you should use the `http` typed
 [Bearer Authentication](https://swagger.io/docs/specification/authentication/bearer-authentication/)
 security scheme -- it is based on OAuth2.0 [RFC 6750](https://tools.ietf.org/html/rfc6750) defining the standard header
@@ -48,17 +48,14 @@ because it exposes authentication server address details and may make use of red
 
 ## MUST define and assign permissions (scopes) {#rule-105}
 
-Endpoints must be equipped with permissions, if they require client authorization for protection
-since e.g. data is exposed that is classified as `orange` or `red` according to Zalando's
-[Data Classification Group Policy (internal link)](https://drive.google.com/file/d/1UPB0UbZP7IvcB52DVWQX41pmB7ugJdAX/view).
-Please refer to [#225](#rule-225) for designing permission names.
-Some API endpoints may not require specific permissions for authorization e.g.
-in case of (i) authorization is *not* needed for the endpoint since all
-exposed data is classified as `green` or `yellow`,
-or in case of (ii) the specific authorization is provided differently on
-the individual object level. In these situations, however, you must make
-it explicit by assigning the `uid` pseudo permission, which is always
-available as OAuth2 default scope for all clients in Zalando.
+Endpoints must be equipped with permissions, if they require client authorization
+for protection because, for example, data is exposed that is classified as
+sensitive or restricted by your organization's data policy. Some API endpoints
+may not require specific permissions for authorization: for instance, if the
+exposed data is non-sensitive or authorization is provided at the individual
+object level. In these situations, make the intent explicit by assigning a
+pseudo-permission (e.g. `uid`) that is always available to clients, rather than
+omitting the security requirement.
 
 The defined permissions are assigned to each API endpoint based on the
 security schema (see example in previous section ([#104](#rule-104))) by specifying the
@@ -81,8 +78,7 @@ it is required and so to say implicitly defined via the security section.
 
 ## MUST follow the naming convention for permissions (scopes) {#rule-225}
 
-As long as the functional naming ([#223](#rule-223)) is not yet supported by our permission registry,
-permission names in APIs must conform to the following naming pattern:
+Permission names in APIs must conform to the following naming pattern:
 
 ```bnf
 <permission> ::= <standard-permission> |  -- should be sufficient for majority of use cases
@@ -98,10 +94,9 @@ permission names in APIs must conform to the following naming pattern:
 <access-mode>         ::= read | write    -- might be extended in future
 ```
 
-**Note:** This naming convention only applies to scopes for service-to-service
-communication using the Platform IAM tokens. For IAM systems with other naming
-rules (e.g. Zalando Partner IAM), the naming should be consistent with the
-existing conventions of those systems.
+**Note:** This naming convention applies to scopes for service-to-service
+communication. For IAM systems with other naming rules, the naming should be
+consistent with the existing conventions of those systems.
 
 <!--
 //Prepared change for functional permission names:
