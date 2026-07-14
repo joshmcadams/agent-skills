@@ -50,6 +50,6 @@ In case guidelines are changing, following rules apply:
 outdated rules
 - new APIs have to respect the current guidelines
 
-Furthermore, keep in mind that once an API becomes publicly available, it should
-be reviewed and aligned with current guidelines — for the sake of overall
-consistency.
+Furthermore, keep in mind that once an API becomes publicly available, it has to
+be re-reviewed and changed according to current guidelines — for the sake of
+overall consistency.

@@ -8,8 +8,8 @@ As part of the API specification you must define how you protect your API using
 either the `http` typed `bearer` or `oauth2` typed security schemes defined in the
 [OpenAPI Authentication Specification](https://swagger.io/docs/specification/authentication/).
 
-For most APIs (especially internal service-to-service APIs) we recommend
-protecting endpoints using JWT tokens. In these situations
+Most APIs (especially company-internal APIs) are protected using JWT tokens
+provided by an IAM token service. In these situations
 you should use the `http` typed
 [Bearer Authentication](https://swagger.io/docs/specification/authentication/bearer-authentication/)
 security scheme -- it is based on OAuth2.0 [RFC 6750](https://tools.ietf.org/html/rfc6750) defining the standard header
@@ -50,7 +50,8 @@ because it exposes authentication server address details and may make use of red
 
 Endpoints must be equipped with permissions, if they require client authorization
 for protection because, for example, data is exposed that is classified as
-sensitive or restricted by your organization's data policy. Some API endpoints
+sensitive or restricted by your organization's data policy. Please refer to
+[#225](#rule-225) for designing permission names. Some API endpoints
 may not require specific permissions for authorization: for instance, if the
 exposed data is non-sensitive or authorization is provided at the individual
 object level. In these situations, make the intent explicit by assigning a
@@ -78,7 +79,9 @@ it is required and so to say implicitly defined via the security section.
 
 ## MUST follow the naming convention for permissions (scopes) {#rule-225}
 
-Permission names in APIs must conform to the following naming pattern:
+As long as functional naming ([#223](meta-information.md#rule-223)) is not yet
+supported by your permission registry, permission names in APIs must conform to
+the following naming pattern:
 
 ```bnf
 <permission> ::= <standard-permission> |  -- should be sufficient for majority of use cases
@@ -94,7 +97,7 @@ Permission names in APIs must conform to the following naming pattern:
 <access-mode>         ::= read | write    -- might be extended in future
 ```
 
-**Note:** This naming convention applies to scopes for service-to-service
+**Note:** This naming convention only applies to scopes for service-to-service
 communication. For IAM systems with other naming rules, the naming should be
 consistent with the existing conventions of those systems.
 

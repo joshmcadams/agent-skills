@@ -476,6 +476,9 @@ category's structure gets used for other kinds of events, hence the name
 has been generalized to reflect how teams are using it.
 - The General Event is still useful and recommended for the purpose of
 defining events that drive a business process.
+- Some event brokers still refer to the General Category as the Business
+Category and use the keyword `business` for event type registration.
+Other than that, the JSON structures are identical.
 
 See [#201](#rule-201) for more guidance on how to use the category.
 
@@ -541,7 +544,7 @@ The following guidelines specifically apply to Data Change Events:
 ## MUST provide mandatory event metadata {#rule-247}
 
 The General and Data Change event categories share a common structure for *metadata*
-representing generic event information. Parts of the metadata may be provided by the event messaging platform, but event
+representing generic event information. Parts of the metadata is provided by the event messaging platform, but event
 identifier (eid) and event creation timestamp (occurred_at) must be provided by
 the event producers.
 The metadata structure is defined below as an OpenAPI Schema Object:

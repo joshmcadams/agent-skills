@@ -143,7 +143,7 @@ URI uses an absolute or relative path) introduces avoidable client side
 complexity. It also requires clarity on the base URI, which might not be given
 when using features like embedding subresources. The primary advantage of
 non-absolute URI is reduction of the payload size, which is better achievable
-by following the recommendation to use [gzip compression]([#156](performance.md#rule-156))
+by following the recommendation to use [gzip compression](performance.md#rule-156)
 
 If the linked resource belongs to the same [API](https://opensource.zalando.com/restful-api-guidelines/#terminology) i.e. running service, the link should use the same scheme + host + port combination as the original request URI. (This only comes into play when the API is available at e.g. multiple host names.)
 

@@ -180,8 +180,8 @@ Functional naming is a powerful, yet easy way to align global resources as
 helps to preserve uniqueness of names while giving readers meaningful context
 information about the addressed component. Besides, the most important aspect
 is that it allows APIs to stay stable in the case of technical and
-organizational changes (for example, when a component is renamed or ownership
-transfers).
+organizational changes (for example, an organization may maintain an internal
+naming convention for this).
 
 A unique `functional-name` is assigned to each functional component serving an API.
 It is built of the domain name of the functional group the component belongs to
@@ -208,10 +208,14 @@ Please see the following rules for detailed functional naming patterns:
 - [#213](events.md#rule-213)
 
 
-**Guidance:** You should use a functional name registry to register your
-functional name before using it. This ensures global uniqueness of your
-functional names (and available domains -- including subdomains) and supports
-hostname DNS resolution.
+**Guidance:** You must use a functional name registry to register your
+functional name before using it. The registry is a centralized infrastructure
+service that ensures uniqueness of your functional names (and available domains
+-- including subdomains) and supports hostname DNS resolution.
+
+*Hint:* Due to lexical restrictions of DNS names there is no specific separator
+to split a functional name into (sub) domain and component; this knowledge is
+only managed in the registry.
 
 
 ## MUST follow naming convention for hostnames {#rule-224}
@@ -228,3 +232,18 @@ depending on the audience ([#219](#rule-219)) as follows (see [#223](#rule-223) 
 
 Where `<api-domain>` is the base domain under which your organization's APIs
 are served (e.g. `apis.example.com`).
+
+*Hint:* The following convention (e.g. used by some legacy infrastructure) is
+deprecated and *only* allowed for hostnames of component-internal
+([#219](#rule-219)) APIs:
+
+```bnf
+<application-hostname> ::= <application-id>.<organization-unit>.<organization-domain>
+<application-id>       ::= [a-z][a-z0-9-]*  -- application identifier
+<organization-id>      ::= [a-z][a-z0-9-]*  -- organization unit identifier, e.g. team identifier
+```
+
+*Exception:* There are legacy hostnames used for APIs with `external-partner`
+audience which may not follow this rule due to backward compatibility
+constraints. Such exceptions should be tracked explicitly (e.g. via an
+allow-list in your API linter).

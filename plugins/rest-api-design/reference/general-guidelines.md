@@ -9,8 +9,8 @@ You must follow the *API First Principle*, more specifically:
 
 - You must define APIs first, before coding its implementation, using
   OpenAPI as specification language ([#101](#rule-101))
-- You must design your APIs consistently with these guidelines; consider using
-  an API linter or automated rule checking for continuous validation.
+- You must design your APIs consistently with these guidelines; use an API
+  linter for automated rule checks.
 - You must call for early review feedback from peers and client developers, and apply
   a lightweight API review process for all component-external APIs, i.e. all APIs
   with `x-api-audience =/= component-internal` (see [#219](meta-information.md#rule-219)).
