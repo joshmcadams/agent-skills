@@ -209,13 +209,16 @@ components:
           examples: [ CREATED, PAID, SHIPPED, CANCELLED ]
         created_at:  { type: string, format: date-time, readOnly: true }
       required: [ customer_id ]
-    SalesOrderPage:                    # list wrapped in an object (#110)
+    SalesOrderPage:                    # pagination page object (#248, #161)
       type: object
       properties:
+        self:     { type: string, format: uri }
+        next:     { type: string, format: uri }
+        prev:     { type: string, format: uri }
         items:
           type: array
           items: { $ref: '#/components/schemas/SalesOrder' }
-        next_cursor: { type: string }
+      required: [ items ]
     Problem:                           # RFC 9457 (#176); mirrors problem-1.0.1.yaml
       type: object
       properties:
