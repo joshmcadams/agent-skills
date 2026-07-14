@@ -12,7 +12,7 @@ There are two techniques to change APIs without breaking them:
 
 - follow rules for compatible extensions
 - introduce new API versions and still support older versions with
-  [deprecation](https://opensource.zalando.com/restful-api-guidelines/#deprecation)
+  [deprecation](deprecation.md)
 
 We strongly encourage using compatible API extensions and discourage versioning
 (see [#113](#rule-113) and [#114](#rule-114) below). The following guidelines for service providers
@@ -315,7 +315,7 @@ To avoid these issues, we recommend to use `enum` only if
 In all other cases, where additional values are imaginable our recommendation is this:
 
 - Use `examples` with the list of (currently known) values
-- Add `[Extensible enum](https://opensource.zalando.com/restful-api-guidelines/#112).` as a standard prefix to the description.
+- Add `[Extensible enum](#rule-112).` as a standard prefix to the description.
 
 This indicates that only the listed values are currently possible, but
 consumers need to be aware that this list can be extended without notice
@@ -328,7 +328,7 @@ delivery_method:
     - PARCEL
     - LETTER
     - EMAIL
-  description: [Extensible enum](https://opensource.zalando.com/restful-api-guidelines/#112). The chosen delivery method of the invoice.
+  description: Extensible enum — the chosen delivery method of the invoice.
 ```
 
 See [#240](json-guidelines.md#rule-240) about enum value naming conventions – these apply here too.

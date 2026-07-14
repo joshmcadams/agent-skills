@@ -15,7 +15,7 @@ endpoint and response to clarify what is supported in a certain context.
 
 ## Using Standard Header definitions
 
-Usually, you can the standard HTTP request and response header definition
+Usually, you can use the standard HTTP request and response header definition
 provided by the guideline to simplify API by using well recognized patterns.
 The best practice importing headers providing the highest readability is as
 follows:
@@ -25,7 +25,7 @@ path:
   '/resource'
     get:
       parameters:
-        - $ref: '#/components/parameters/ETag
+        - $ref: '#/components/parameters/ETag'
 
 components:
   parameters|headers:
@@ -85,8 +85,8 @@ limited to:
 - `Content-Length` indicates the length of the content (in bytes).
 - `Content-Language` indicates that the body is meant for people literate in
   some human language(s).
-- `Content-Location` indicates where the body can be found otherwise ([#179](#rule-179)
-  for more details]).
+- `Content-Location` indicates where the body can be found otherwise (see [#179](#rule-179)
+  for more details).
 - `Content-Range` is used in responses to range requests to indicate which part
   of the requested resource representation is delivered with the body.
 - `Content-Type` indicates the media type of the body content.
@@ -378,7 +378,7 @@ components:
           Keys expire after 24 hours. Clients are responsible to stay within this
           limit, if they require idempotent behavior.
 
-          See [API Guideline Rule #181][api-230] for further details.
+          See [API Guideline Rule #230][api-230] for further details.
 
           [api-230]: <https://opensource.zalando.com/restful-api-guidelines/#230>
         schema:

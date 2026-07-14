@@ -15,6 +15,7 @@ API artifact — it informs the decision.
 > **Adaptation:** URL versioning and `/api` base path apply — see the
 > [shared adaptation notice](${CLAUDE_PLUGIN_ROOT}/ADAPTATION.md) for the two deviations
 > from upstream Zalando that are authoritative for all skills in this plugin.
+> (If `${CLAUDE_PLUGIN_ROOT}` is not defined in your environment, the plugin root is the directory two levels above this SKILL.md.)
 
 ## Method selection
 
@@ -131,6 +132,7 @@ For full detail, consult the guidelines bundled with this plugin (the
   #229/#231 idempotent design, #253 async
 - `reference/http-status-codes-and-errors.md` — #150/#151/#243/#220 codes,
   #152 (`207`), #153 (`429`), #176 problem+json, #177, #251 redirects
-- `reference/urls.md` — #138/#141 actions-as-resources, #135/#114 base path & versioning
+- `reference/urls.md` — #138/#141 actions-as-resources, #135 base path
+- `reference/compatibility.md` — #114 (URL versioning)
 - `reference/http-headers.md` — #182 `ETag`/`If-Match`, #133 `Location`
 - `reference/index.md` — chapter map and adaptation summary

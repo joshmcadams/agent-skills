@@ -84,37 +84,24 @@ X-Mobile-Advertising-ID:
 X-Tenant-ID:
   name: X-Tenant-ID
   description: |-
-    The unique identifier of the tenant that initiated the request to the
-    multi-tenant platform. The X-Tenant-ID is set to the ID of the
-    business partner extracted from the `OAuth`-token of the request. The
-    `X-Tenant-ID` should be passed-through as generic aspect.
+    The unique identifier of the tenant that initiated the request in a
+    multi-tenant system. The `X-Tenant-ID` is typically extracted from the
+    caller's `OAuth` token and should be passed through as a generic aspect
+    of the request.
   in: header
   schema:
     type: string
     example: 9f8b3ca3-4be5-436c-a847-9cd55460c495
 
-X-Sales-Channel:
-  name: X-Sales-Channel
-  description: |-
-    Unique identifier of the sales channel related to the request. Sales
-    channels are owned by retailers and represent a specific consumer segment
-    being addressed with a specific product assortment that is offered via the
-    CFA retailer catalogs to consumers (see fashion platform glossary). The
-    `X-Sales-Channel` should be passed-through as generic aspect.
-  in: header
-  schema:
-    type: string
-    example: 52b96501-0f8d-43e7-82aa-8a96fab134d7
-
 X-Frontend-Type:
   name: X-Frontend-Type
   description: |-
-    The type of the consumer facing application (CFA) used to initiate the
-    request. CFAs provide business experience to their customers via different
-    frontend application types, `mobile-app`, `browser`, `facebook-app`,
-    `chat-app`, and `email`. The `X-Frontend-Type` should be passed-through as
-    generic aspect - there are diverse concerns, e.g. pushing mobiles with
-    specific coupons, that make use of it.
+    The type of the client-facing application used to initiate the request.
+    Client applications provide the experience to end users via different
+    frontend application types, e.g. `mobile-app`, `browser`, `chat-app`, and
+    `email`. The `X-Frontend-Type` should be passed-through as a generic
+    aspect - there are diverse concerns, e.g. pushing mobile notifications,
+    that make use of it.
   in: header
   schema:
     type: string

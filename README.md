@@ -20,6 +20,11 @@ One plugin, **`rest-api-design`**, containing:
 | Fundamentals | `naming-conventions`, `url-design`, `json-conventions`, `http-methods-and-status` | Core design rules. |
 | Cross-cutting | `pagination`, `error-responses`, `api-compatibility`, `api-security`, `http-headers` | Concerns that span endpoints. |
 
+*"Kind" above is descriptive, not a strict taxonomy: e.g. `/audit` is listed as
+a Named op but is implemented with `type: knowledge` (it produces a report and
+never modifies an artifact), unlike the other three named ops which use
+`type: builder`.*
+
 The full, adapted guidelines are bundled as Markdown under
 [`plugins/rest-api-design/reference/`](plugins/rest-api-design/reference/) and are
 cited by the skills.
@@ -50,7 +55,7 @@ attribution required by the upstream license.
 ```
 
 Then invoke named operations like `/rest-api-design:audit` or
-`/rest-api-design:add-resource orders/line-items`, or just let the knowledge
+`/rest-api-design:add-collection orders/line-items`, or just let the knowledge
 skills activate automatically while you design an API.
 
 ## License & attribution

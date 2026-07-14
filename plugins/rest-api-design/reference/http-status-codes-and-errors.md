@@ -34,8 +34,8 @@ service client and provider performance.
 
 **Exception:** Standard client and server errors, e.g. `401` (unauthenticated),
 `403` (unauthorized), `404` (not found), `500` (internal server error), or
-`503` (service unavailable), where the semantic can be easily derived from the
-end endpoint specification need no individual definition. Instead these can be
+`503` (service unavailable), where the semantic can be easily derived from
+the endpoint specification need no individual definition. Instead these can be
 included by applying the `default` shown pattern below. However, error codes
 that provide endpoint specific indications for clients on how to avoid calling
 the endpoint in the wrong way, or be prepared to react on specific error
@@ -572,7 +572,7 @@ number of requests made within a given window for each named entity.
 [RFC 9457](https://tools.ietf.org/html/rfc9457) defines a Problem JSON object using the media type
 `application/problem+json` to provide an extensible human and machine readable
 failure information beyond the HTTP response status code to transports the
-failure kind (`type` / `title`) and the failure cause and location (`instant` /
+failure kind (`type` / `title`) and the failure cause and location (`instance` /
 `detail`). To make best use of this additional failure information, every
 endpoints must be capable of returning a Problem JSON on client usage errors
 (`4xx` status codes) as well as server side processing errors (`5xx` status

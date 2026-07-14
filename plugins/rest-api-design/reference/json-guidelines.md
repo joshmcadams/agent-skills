@@ -2,7 +2,7 @@
 
 These guidelines provide recommendations for defining JSON data.
 JSON here refers to [RFC 7159](https://tools.ietf.org/html/rfc7159) (which updates [RFC 4627](https://tools.ietf.org/html/rfc4627)),
-the "application/json" media type and custom JSON media types defined for APIs.
+the "application/json" media type.
 The guidelines clarify some specific cases to allow JSON data to have
 an idiomatic form across teams and services.
 

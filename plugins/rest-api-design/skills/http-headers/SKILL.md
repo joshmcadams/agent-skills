@@ -15,8 +15,10 @@ declare it explicitly in the OpenAPI `parameters`/`headers` of the operation.
 > **Adaptation:** URL versioning and `/api` base path apply — see the
 > [shared adaptation notice](${CLAUDE_PLUGIN_ROOT}/ADAPTATION.md) for the two deviations
 > from upstream Zalando that are authoritative for all skills in this plugin.
+> (If `${CLAUDE_PLUGIN_ROOT}` is not defined in your environment, the plugin root is the directory two levels above this SKILL.md.)
 
 This is a **knowledge** skill — it produces guidance and reference material, not edits to an artifact. Advise; do not modify files unless asked.
+
 ## Rules
 
 1. **Prefer standardized headers with correct casing (#133, #132).** Use headers

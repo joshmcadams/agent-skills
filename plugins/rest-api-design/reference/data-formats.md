@@ -24,8 +24,8 @@ You **must** use these formats, whenever applicable:
 | `string` | `time-local` | non-UTC wall time syntactically defined as `partial-time` without `time-offset` in [RFC 3339](https://tools.ietf.org/html/rfc3339). It is typically complemented with a separate time-zone field. | `"06:43:40"` |
 | `string` | `date-time-local` | Format `date` and `time-local` separated by `"T"`. It is typically complemented with a separate time-zone field.  |`"2019-07-30T06:43:40"` |
 | `string` | `tz-id` | Time-zone id as defined by the [IANA time zone database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) standard (including daylight saving time definitions). |`"Europe/Berlin"` |
-| `string` | `duration` | defined in [RFC 3339](https://tools.ietf.org/html/rfc3339) according to [ISO 8601](https://tools.ietf.org/html/rfc3339#ref-ISO8601), see also rule [#127](#rule-127) ([#127](#rule-127)) for details. | `"P1DT3H4S"` |
-| `string` | `period` | defined in [RFC 3339](https://tools.ietf.org/html/rfc3339) according to [ISO 8601](https://tools.ietf.org/html/rfc3339#ref-ISO8601), see also rule [#127](#rule-127) ([#127](#rule-127)) for details. | `"2022-06-30T14:52:44/PT48H" "PT24H/2023-07-30T18:22:16.315Z" "2024-05-15T09:48:56/.."` |
+| `string` | `duration` | defined in [RFC 3339](https://tools.ietf.org/html/rfc3339) according to [ISO 8601](https://tools.ietf.org/html/rfc3339#ref-ISO8601), see also rule [#127](#rule-127) for details. | `"P1DT3H4S"` |
+| `string` | `period` | defined in [RFC 3339](https://tools.ietf.org/html/rfc3339) according to [ISO 8601](https://tools.ietf.org/html/rfc3339#ref-ISO8601), see also rule [#127](#rule-127) for details. | `"2022-06-30T14:52:44/PT48H" "PT24H/2023-07-30T18:22:16.315Z" "2024-05-15T09:48:56/.."` |
 | `string` | `password` |  | `"secret"` |
 | `string` | `email` | [RFC 5322](https://tools.ietf.org/html/rfc5322) | `"example@example.com"` |
 | `string` | `idn-email` | [RFC 6531](https://tools.ietf.org/html/rfc6531) | `"hello@bücher.example"` |
@@ -196,7 +196,7 @@ representations for an invoice resource. You should use
 support clients specifying via the standard HTTP headers `Accept`,
 `Accept-Language`, `Accept-Encoding` which representation is best suited for
 their use case, for example, which language of a document, representation /
-content format, or content encoding. You [#172](json-guidelines.md#rule-172) like `application/json` or
+content format, or content encoding. You [should use standard media types (#172)](json-guidelines.md#rule-172) like `application/json` or
 `application/pdf` for defining the content format in the `Accept` header.
 
 

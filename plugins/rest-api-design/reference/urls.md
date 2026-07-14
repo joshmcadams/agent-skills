@@ -3,7 +3,7 @@
 Guidelines for naming and designing resource paths and query parameters.
 
 
-## SHOULD use /api as base path {#rule-135}
+## MUST use /api as base path {#rule-135}
 
 > **Adaptation:** This rule reverses the original Zalando guideline, which
 > recommended *against* an `/api` base path (serving resources from the root
@@ -11,7 +11,7 @@ Guidelines for naming and designing resource paths and query parameters.
 > practice, where API traffic shares a domain with a frontend and is routed by
 > an `/api` prefix (e.g. `example.com/api/v1/users`). See the `NOTICE` file.
 
-Resources provided by a service should be made available under an `/api` base
+Resources provided by a service must be made available under an `/api` base
 path, followed by the major version segment (see [#114](compatibility.md#rule-114)). The canonical shape of
 a resource path is therefore:
 

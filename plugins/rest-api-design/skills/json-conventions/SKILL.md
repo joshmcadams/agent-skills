@@ -13,8 +13,10 @@ the bundled chapters only for full detail.
 > **Adaptation:** URL versioning and `/api` base path apply — see the
 > [shared adaptation notice](${CLAUDE_PLUGIN_ROOT}/ADAPTATION.md) for the two deviations
 > from upstream Zalando that are authoritative for all skills in this plugin.
+> (If `${CLAUDE_PLUGIN_ROOT}` is not defined in your environment, the plugin root is the directory two levels above this SKILL.md.)
 
 This is a **knowledge** skill — it produces guidance and reference material, not edits to an artifact. Advise; do not modify files unless asked.
+
 ## Payload structure
 
 - [ ] **Top-level response bodies MUST be a JSON object**, never a bare array or
@@ -32,7 +34,7 @@ This is a **knowledge** skill — it produces guidance and reference material, n
   `^[a-z_][a-z_0-9]*$` (#118). E.g. `customer_number`, `billing_address`.
 - [ ] Be **consistent**: same name + same semantics across the whole API; use
   common field names — `id` (opaque **string**, never a number), `xyz_id` for
-  references (`parent_node_id`), `etag` (#116/#117/#174).
+  references (`parent_node_id`), `etag` (#174).
 - [ ] **Pluralize array property names**, keep object names singular (#120):
   `items`, `addresses` (array) vs `address` (object).
 - [ ] Date/time property names contain `date`/`time`/`timestamp` or end with
@@ -105,11 +107,24 @@ Money is a **closed** type — do not extend it via inheritance (no
 }
 ```
 
-Reference the bundled model instead of re-declaring it:
+The **source of truth** for this schema is the bundled model at
+`${CLAUDE_PLUGIN_ROOT}/reference/models/money-1.0.0.yaml#/Money`. Since the
+plugin root is not reachable from the user's own repo, **copy** the `Money`
+schema (shown above) into the spec's own `components/schemas`, then `$ref` it
+**locally** so the artifact stays self-contained:
 
 ```yaml
+components:
+  schemas:
+    Money:   # copied from the bundled money-1.0.0.yaml — keep in sync with that file
+      type: object
+      properties:
+        amount:   { type: number, format: decimal, example: 99.95 }
+        currency: { type: string, format: iso-4217, example: EUR }
+      required: [amount, currency]
+
 grand_total:
-  $ref: '${CLAUDE_PLUGIN_ROOT}/reference/models/money-1.0.0.yaml#/Money'
+  $ref: '#/components/schemas/Money'   # reference within your own document
 ```
 
 ## Worked example
@@ -136,8 +151,9 @@ Money object (#173), pluralized empty array `line_items: []` (#120/#124).
 For full detail, see the guidelines bundled with this plugin (the `reference/`
 directory at the plugin root, e.g. `${CLAUDE_PLUGIN_ROOT}/reference/<file>`):
 
-- `reference/json-guidelines.md` — #110, #118, #120, #122–#124, #167, #172,
+- `reference/json-guidelines.md` — #118, #120, #122–#124, #167, #172,
   #173 (Money), #174, #235, #240, #252
+- `reference/compatibility.md` — #110 (top-level objects), #112 (x-extensible-enum)
 - `reference/data-formats.md` — #238 (format table), #171, #169/#126, #127,
   #170/#128, #144, #239
 - `reference/models/money-1.0.0.yaml` — the shared Money schema to `$ref`

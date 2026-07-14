@@ -13,6 +13,7 @@ Guidelines bundled with this plugin, and produce a prioritized findings report.
 > **Adaptation:** URL versioning and `/api` base path apply — see the
 > [shared adaptation notice](${CLAUDE_PLUGIN_ROOT}/ADAPTATION.md) for the two deviations
 > from upstream Zalando that are authoritative for all skills in this plugin.
+> (If `${CLAUDE_PLUGIN_ROOT}` is not defined in your environment, the plugin root is the directory two levels above this SKILL.md.)
 
 ## Arguments
 
@@ -45,7 +46,7 @@ Report a finding for every deviation. Tag severity by obligation level:
   any `Accept`/`Content-Type`-based version negotiation (#115). Media type is
   plain `application/json` (#172).
 - [ ] Only the **major** version appears in the path; minor changes do not change
-  the URL (#113).
+  the URL (#114).
 
 **URLs & naming:**
 - [ ] Collection names are **plural** (#134) and **domain-specific** (#142).

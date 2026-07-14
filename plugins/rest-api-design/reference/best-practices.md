@@ -114,18 +114,19 @@ complexity but also to avoid scalability and performance issues.
 
 ### Example
 
-A real-world example can be found in an internal API repository.
+Consider an API that lists items filterable by `states`, `teams`, and
+`applications`, ordered by `modified_at`:
 
 - The actual `cursor` implementation can vary from the above pattern by using a
   cursor-`type` instead of `element` to simplify cursor representation following
   the above figure.
-- The `cursor` is passed down to the data access object implementation to create
-  the SQL request.
+- The `cursor` is passed down to the data access layer to construct the
+  underlying query (e.g. the `WHERE`/`ORDER BY` clauses of a SQL request).
 
-The API repository, in this case does not need any combined index, since the
-primary ordering based on `modified_at` allows to efficiently access the data
-in combination with the additional filter criteria such as `states`, `teams`,
-and `applications`.
+In this example, no combined index is needed, since the primary ordering
+index on `modified_at` already allows efficient access to the data even when
+combined with the additional filter criteria (`states`, `teams`, and
+`applications`).
 
 ### Further reading
 
@@ -160,7 +161,7 @@ additional request is necessary.
 
 Example:
 ```http
-< GET /orders
+< GET /api/v1/orders
 
 > HTTP/1.1 200 OK
 > {
@@ -170,11 +171,11 @@ Example:
 >   ]
 > }
 
-< GET /orders/BO0000042
+< GET /api/v1/orders/O0000042
 
 > HTTP/1.1 200 OK
 > ETag: osjnfkjbnkq3jlnksjnvkjlsbf
-> { "id": "BO0000042", ... }
+> { "id": "O0000042", ... }
 
 < PUT /orders/O0000042
 < If-Match: osjnfkjbnkq3jlnksjnvkjlsbf
@@ -310,7 +311,7 @@ Example:
 >   ]
 > }
 
-< PUT /block/O0000042
+< PUT /orders/O0000042
 < If-Unmodified-Since: Wed, 22 Jul 2009 19:15:56 GMT
 < { "id": "O0000042", ... }
 

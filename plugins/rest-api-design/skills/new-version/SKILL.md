@@ -17,8 +17,10 @@ cannot be made compatibly.
 > **Adaptation:** URL versioning and `/api` base path apply — see the
 > [shared adaptation notice](${CLAUDE_PLUGIN_ROOT}/ADAPTATION.md) for the two deviations
 > from upstream Zalando that are authoritative for all skills in this plugin.
+> (If `${CLAUDE_PLUGIN_ROOT}` is not defined in your environment, the plugin root is the directory two levels above this SKILL.md.)
 
 This skill **modifies the API artifact**. Produce the edited file(s) and a short summary of every change made.
+
 ## Arguments
 
 `$ARGUMENTS` is the target major version, e.g. `2` or `v2`. **Normalize both to
@@ -138,7 +140,7 @@ For full detail, consult the guidelines bundled with this plugin (the
 `${CLAUDE_PLUGIN_ROOT}/reference/<file>.md`):
 
 - `reference/compatibility.md` — #113 (avoid versioning), #106–#108 (compatible
-  changes), #114 (URL versioning), #115 (no media-type versioning), #116 usage
+  changes), #114 (URL versioning), #115 (no media-type versioning)
 - `reference/deprecation.md` — #187 (spec), #189 (`Deprecation`/`Sunset` headers),
   #185/#186/#188/#191 (consent, monitoring, process)
 - `reference/urls.md` — #135 (`/api` base path), #134/#129/#142 (naming)

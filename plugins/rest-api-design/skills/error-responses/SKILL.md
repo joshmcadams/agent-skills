@@ -14,6 +14,7 @@ guidance and a designed problem schema, not edits to an artifact.
 > **Adaptation:** URL versioning and `/api` base path apply — see the
 > [shared adaptation notice](${CLAUDE_PLUGIN_ROOT}/ADAPTATION.md) for the two deviations
 > from upstream Zalando that are authoritative for all skills in this plugin.
+> (If `${CLAUDE_PLUGIN_ROOT}` is not defined in your environment, the plugin root is the directory two levels above this SKILL.md.)
 
 ## Rules
 
@@ -23,19 +24,31 @@ guidance and a designed problem schema, not edits to an artifact.
   **`application/problem+json`** (#176), per RFC 9457.
 - Use **one consistent** error schema across the whole API — do not invent a
   different error shape per endpoint.
-- Reference the bundled schema instead of redefining it:
+- The **source of truth** for the schema is the bundled model at
   `${CLAUDE_PLUGIN_ROOT}/reference/models/problem-1.0.1.yaml#/Problem` (the
-  `reference/models/` directory at the plugin root). In an OpenAPI spec, wire it
-  in via the `default` response so standard errors need no per-operation
-  duplication:
+  `reference/models/` directory at the plugin root). Since the plugin root is
+  not reachable from the user's own repo, **copy** the `Problem` schema into
+  the spec's own `components/schemas`, then `$ref` it **locally** so the
+  artifact stays self-contained. In an OpenAPI spec, wire it in via the
+  `default` response so standard errors need no per-operation duplication:
   ```yaml
+  components:
+    schemas:
+      Problem:   # copied from the bundled problem-1.0.1.yaml — keep in sync with that file
+        type: object
+        properties:
+          type: { type: string, format: uri-reference }
+          title: { type: string }
+          status: { type: integer }
+          detail: { type: string }
+          instance: { type: string, format: uri-reference }
   responses:
     default:
       description: error occurred - see status code and problem object.
       content:
         application/problem+json:
           schema:
-            $ref: '${CLAUDE_PLUGIN_ROOT}/reference/models/problem-1.0.1.yaml#/Problem'
+            $ref: '#/components/schemas/Problem'   # reference within your own document
   ```
 - **Hint:** `application/problem+json` is often NOT treated as a subset of
   `application/json` by libraries. Clients that want the extended failure info

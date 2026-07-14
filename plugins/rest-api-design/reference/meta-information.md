@@ -154,8 +154,7 @@ the OpenAPI specification and must conform to the following specification:
 reason a smaller audience group is intentionally included in the wider group
 and thus does not need to be declared additionally. If parts of your API have
 a different target audience, we recommend to split API specifications along
-the target audience — even if this creates redundancies
-(rationale).
+the target audience — even if this creates redundancies.
 
 Example:
 
@@ -168,10 +167,6 @@ info:
   version: 1.2.4
   <...>
 ```
-
-For details and more information on audience groups see the
-API Audience narrative.
-
 
 ## MUST/SHOULD/MAY use functional naming schema {#rule-223}
 
@@ -208,10 +203,14 @@ Please see the following rules for detailed functional naming patterns:
 - [#213](events.md#rule-213)
 
 
-**Guidance:** You must use a functional name registry to register your
-functional name before using it. The registry is a centralized infrastructure
-service that ensures uniqueness of your functional names (and available domains
--- including subdomains) and supports hostname DNS resolution.
+> **Adaptation:** The original guideline required registering functional
+> names with a centralized infrastructure registry service; this adaptation
+> does not assume such a service exists and instead recommends a
+> lighter-weight, team-maintained registry.
+
+**Guidance:** Teams should maintain a registry of functional names to
+guarantee their uniqueness (and that of available domains -- including
+subdomains) before using a new functional name.
 
 *Hint:* Due to lexical restrictions of DNS names there is no specific separator
 to split a functional name into (sub) domain and component; this knowledge is

@@ -42,7 +42,7 @@ paths:
   /products:
     post:
       description: >
-        [GET with body payload](https://opensource.zalando.com/restful-api-guidelines/#get-with-body)
+        [GET with body payload](#get-with-body-payload)
         - no resources created: Returns all products matching the query passed
         as request input payload.
       requestBody:
@@ -559,7 +559,7 @@ Aspects that set those APIs apart from the rest include but are not limited to:
 - Free choice of operators, e.g. `and`, `or` and `not`
 
 APIs that qualify for a specific, complex query language are encouraged to use
-nested JSON data structures and define them using OpenAPI directly. The
+nested JSON data structures and define them using OpenAPI directly. This
 provides the following benefits:
 
 - Data structures are easy to use for clients
@@ -573,7 +573,7 @@ provides the following benefits:
   - No external documents or grammars needed
   - Existing means are familiar to everyone
 
-JSON-specific rules and most certainly needs to make use of the `GET`-with-body pattern.
+The query is then obviously subject to all JSON-specific rules and most certainly needs to make use of the `GET`-with-body pattern.
 
 
 ### Example

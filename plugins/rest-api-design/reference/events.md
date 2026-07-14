@@ -202,11 +202,6 @@ EventType:
       items:
         type: string
         description: |
-          Indicates a single ordering field. This is a JsonPointer, which is applied
-          onto the whole event object, including the contained metadata and data (in
-          case of a data change event) objects. It must point to a field of type
-          string or number/integer (as for those the ordering is obvious).
-
           Indicates a single ordering field. It is a simple path (dot separated) to
           the JSON leaf element of the whole event object, including the contained metadata and data (in
           case of a data change event) objects. It must point to a field of type
@@ -233,7 +228,7 @@ EventType:
           leaf element of the whole event object, including the contained metadata and
           data (in case of a data change event) objects, and it must be present in the
           schema.
-       example: "data.order_number"
+        example: "data.order_number"
     created_at:
       description: When this event type was created.
       type: string
@@ -904,11 +899,12 @@ Changes to events must be based around making additive and backward
 compatible changes. This follows the [#106](compatibility.md#rule-106) guideline.
 
 In the context of events, compatibility issues are complicated by the
-fact that producers and consumers of events are highly asynchronous and
-can’t use content-negotiation techniques that are available to REST
-style clients and servers. This places a higher bar on producers to
-maintain compatibility as they will not be in a position to serve
-versioned media types on demand.
+fact that producers and consumers of events are highly asynchronous,
+often with multiple consumers deployed independently of the producer and
+of each other. This places a higher bar on producers to maintain
+compatibility, since there is no synchronous request/response exchange
+during which a schema mismatch could be caught and negotiated — once an
+event is published, every consumer must be able to handle it as-is.
 
 For event schema, these are considered backward compatible changes, as
 seen by consumers:

@@ -1,6 +1,6 @@
 ---
 name: add-endpoint
-description: Add a single new operation (an HTTP method on a resource path) to an existing REST API, following the adapted Zalando guidelines (URL versioning, /api base path). Use when the user asks to add a new endpoint or operation to an existing REST API resource.
+description: Add a single new operation (an HTTP method on a resource path) to an existing REST API, following the adapted Zalando guidelines (URL versioning, /api base path). Use when the user asks to add a new endpoint or operation to an existing REST API resource. This skill is for an operation on a resource path that ALREADY EXISTS in the spec; for a new path use add-collection or add-resource.
 type: builder
 argument-hint: "<METHOD path>"
 ---
@@ -16,8 +16,10 @@ edit the artifact and summarize the change.
 > **Adaptation:** URL versioning and `/api` base path apply — see the
 > [shared adaptation notice](${CLAUDE_PLUGIN_ROOT}/ADAPTATION.md) for the two deviations
 > from upstream Zalando that are authoritative for all skills in this plugin.
+> (If `${CLAUDE_PLUGIN_ROOT}` is not defined in your environment, the plugin root is the directory two levels above this SKILL.md.)
 
 This skill **modifies the API artifact**. Produce the edited file(s) and a short summary of every change made.
+
 ## Arguments
 
 `$ARGUMENTS` (optional) names the operation to add as a `METHOD path` pair, e.g.
@@ -41,6 +43,10 @@ add, or infer it from their request.
 
 ## Step 2 — Verify the path fits the existing structure
 
+- [ ] **Confirm the resource path already exists** in the artifact (find its
+  exact path and identifier(s)); if it does not, say so and stop — use
+  **add-collection** or **add-resource** to create the path first, then
+  add-endpoint for further operations on it.
 - [ ] Path sits under the **`/api` base path** and a **major version segment**
   `v<n>`, i.e. `/api/v1/…` (#135, #114). If the surrounding API deviates (root-
   served, media-type versioned), FLAG it and follow the canonical scheme for the
@@ -125,7 +131,7 @@ success and service-specific error responses per operation. By method:
 ## Step 7 — Add the relevant headers
 
 - [ ] On successful create, return the new resource URL in the **`Location`**
-  header (#133); prefer `Location` over `Content-Location` (#180).
+  header (#180); prefer `Location` over `Content-Location` (#180).
 - [ ] For optimistic locking on `PUT`/`PATCH`/`DELETE`, support **`ETag`** with
   **`If-Match`**; a failed precondition returns `412` (#182). Use `If-None-Match:
   *` to guard creation.
@@ -149,11 +155,12 @@ For full detail, consult the guidelines bundled with this plugin (the
 `reference/` directory at the plugin root, e.g.
 `${CLAUDE_PLUGIN_ROOT}/reference/<file>.md`):
 
-- `reference/urls.md` — #135 (`/api` base), #114 (URL versioning), #129/#134/#142
+- `reference/urls.md` — #135 (`/api` base), #129/#134/#142
   naming, #141/#138 verb-free, #143/#146/#147 sub-resources, #130/#137 query params
+- `reference/compatibility.md` — #110 (top-level objects), #114 (URL versioning)
 - `reference/http-requests.md` — #148/#149 methods, #154, #229/#231, #253 async
 - `reference/http-status-codes-and-errors.md` — #150/#151/#243 codes, #152, #153, #176
-- `reference/json-guidelines.md` — #110/#167/#118/#120/#122/#123/#172/#173 payloads
+- `reference/json-guidelines.md` — #167/#118/#120/#122/#123/#172/#173 payloads
 - `reference/pagination.md` — #159/#160/#161/#248 pagination
-- `reference/http-headers.md` — #133 `Location`, #182 `ETag`/`If-Match`, #132/#183
+- `reference/http-headers.md` — #133 `Location`, #180 `Location` vs `Content-Location`, #182 `ETag`/`If-Match`, #132/#183
 - `reference/index.md` — chapter map and adaptation summary

@@ -145,7 +145,7 @@ when using features like embedding subresources. The primary advantage of
 non-absolute URI is reduction of the payload size, which is better achievable
 by following the recommendation to use [gzip compression](performance.md#rule-156)
 
-If the linked resource belongs to the same [API](https://opensource.zalando.com/restful-api-guidelines/#terminology) i.e. running service, the link should use the same scheme + host + port combination as the original request URI. (This only comes into play when the API is available at e.g. multiple host names.)
+If the linked resource belongs to the same [API](terms.md) i.e. running service, the link should use the same scheme + host + port combination as the original request URI. (This only comes into play when the API is available at e.g. multiple host names.)
 
 **Motivation:** This avoids inconsistent client experience situations, for instance, where authorization is configured for one host
 name and not the other, or the second one might not even be accessible from the

@@ -222,7 +222,7 @@ OpenAPI doesn't support you in formally specifying different return object
 schemes depending on a parameter. When you define the field parameter, we
 recommend to provide the following description: `Endpoint supports filtering
 of return object fields as described in
-[Rule #157](https://opensource.zalando.com/restful-api-guidelines/#157)`
+[Rule #157](#rule-157)`
 
 The syntax of the query `fields` value is defined by the following
 [BNF](https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form) grammar.

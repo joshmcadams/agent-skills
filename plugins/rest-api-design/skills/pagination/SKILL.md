@@ -13,8 +13,10 @@ own; cite the bundled chapter only for full detail.
 > **Adaptation:** URL versioning and `/api` base path apply — see the
 > [shared adaptation notice](${CLAUDE_PLUGIN_ROOT}/ADAPTATION.md) for the two deviations
 > from upstream Zalando that are authoritative for all skills in this plugin.
+> (If `${CLAUDE_PLUGIN_ROOT}` is not defined in your environment, the plugin root is the directory two levels above this SKILL.md.)
 
 This is a **knowledge** skill — it produces guidance and reference material, not edits to an artifact. Advise; do not modify files unless asked.
+
 ## Rules
 
 - [ ] **Paginate every collection** that can grow beyond a few hundred entries
@@ -101,4 +103,4 @@ directory at the plugin root, e.g. `${CLAUDE_PLUGIN_ROOT}/reference/<file>`):
 
 - `reference/pagination.md` — #159, #160 (cursor vs offset), #161 (page links),
   #248 (page object), #254 (avoid total count)
-- `reference/json-guidelines.md` — #110 (top-level object, never a bare array)
+- `reference/compatibility.md` — #110 (top-level object, never a bare array)

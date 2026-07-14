@@ -101,40 +101,6 @@ the following naming pattern:
 communication. For IAM systems with other naming rules, the naming should be
 consistent with the existing conventions of those systems.
 
-<!--
-//Prepared change for functional permission names:
-Permission names in APIs must, respectively should conform to the functional
-naming depending on the <<219, audience>> as follows (see <<223>> for details
-and `<functional-name>` definition):
-
-[source,bnf]
------
-<permission> ::= <functional-permission> |
-                 <standard-permission> |  -- standard permission without functional naming
-                 <resource-permission> |  -- resource permission without functional naming
-                 <pseudo-permission>      -- used to indicate unrestricted access
-
-<functional-permission> ::= z::<functional-name>[.<resource-name>].<access-mode>
-<pseudo-permission>     ::= uid
-
-<resource-name>       ::= [a-z][a-z0-9-]*  -- free resource identifier
-<access-mode>         ::= read || write    -- might be extended in future
------
-
-The following application specific legacy convention is *only* allowed for
-permissions names of <<223, internal>> APIs:
-
-[source,bnf]
------
-<standard-permission> ::= <application-id>.<access-mode>
-<resource-permission> ::= <application-id>.<resource-name>.<access-mode>
-
-<application-id>      ::= [a-z][a-z0-9-]*  -- application identifier
-
------
-
--->
-
 The permission naming schema corresponds to the naming schema for hostnames ([#224](meta-information.md#rule-224)) and event type names ([#213](events.md#rule-213)), and typical examples are:
 
 | Application ID | Resource ID | Access Type | Example |
@@ -143,25 +109,6 @@ The permission naming schema corresponds to the naming schema for hostnames ([#2
 | `order-management` | `shipment-order` | `read` | `order-management.shipment-order.read` |
 | `fulfillment-order` |  | `write` | `fulfillment-order.write` |
 | `business-partner-service` | | `read` | `business-partner-service.read` |
-
-<!--
-//Prepared change for functional permission names:
-
-[cols="15%,15%,15%,15%,40%",options="header",]
-|=======================================================================
-| Domain | Component | Resource | Access Type | Example
-| finance | exchange-rate | - | write | z::finance.exchange-rate.write
-| transactions | order | - | read | z::transactions.order.read
-| customer | address | shipment-address | read  | z::customer.address.shipment-address.read
-|=======================================================================
-[cols="30%,15%,15%,40%",options="header",]
-|=======================================================================
-| Application | Resource | Access Type | Example
-| business-partner-service | | - | read | z::business-partner-service.read
-| order-management | sales-order | write | z::order-management.sales-order.write
-|=======================================================================
-
--->
 
 **Note:** APIs should stick to component specific permissions without resource
 extension to avoid the complexity of too many fine grained permissions. For the

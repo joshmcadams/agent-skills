@@ -16,8 +16,10 @@ first resource collection, problem+json errors, and OAuth2/bearer security.
 > **Adaptation:** URL versioning and `/api` base path apply — see the
 > [shared adaptation notice](${CLAUDE_PLUGIN_ROOT}/ADAPTATION.md) for the two deviations
 > from upstream Zalando that are authoritative for all skills in this plugin.
+> (If `${CLAUDE_PLUGIN_ROOT}` is not defined in your environment, the plugin root is the directory two levels above this SKILL.md.)
 
 This skill **modifies the API artifact**. Produce the edited file(s) and a short summary of every change made.
+
 ## Arguments
 
 `$ARGUMENTS` (optional) is a human name/slug for the new API, e.g. `orders` or

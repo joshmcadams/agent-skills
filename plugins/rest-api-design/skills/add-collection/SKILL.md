@@ -15,8 +15,10 @@ comply with the adapted Zalando REST API Guidelines bundled with this plugin.
 > **Adaptation:** URL versioning and `/api` base path apply — see the
 > [shared adaptation notice](${CLAUDE_PLUGIN_ROOT}/ADAPTATION.md) for the two deviations
 > from upstream Zalando that are authoritative for all skills in this plugin.
+> (If `${CLAUDE_PLUGIN_ROOT}` is not defined in your environment, the plugin root is the directory two levels above this SKILL.md.)
 
 This skill **modifies the API artifact**. Produce the edited file(s) and a short summary of every change made.
+
 ## Arguments
 
 `$ARGUMENTS` is a single path-like token — **never split it on spaces**; the `/`
@@ -82,8 +84,8 @@ On the collection path (`/api/v1/{collection}`):
 
   ```json
   {
-    "self":  "/api/v1/orders?cursor=abc",
-    "next":  "/api/v1/orders?cursor=def",
+    "self":  "https://api.example.com/api/v1/orders?cursor=abc",
+    "next":  "https://api.example.com/api/v1/orders?cursor=def",
     "items": [ { "id": "..." } ]
   }
   ```
@@ -118,7 +120,7 @@ Only use official status codes with their standard semantics (#243, #150).
   properties are pluralized (#120); object names singular.
 - Use standard field conventions: opaque string `id` (#174), date/times as
   `format: date-time` with an `_at`/`date`/`time` name (#235), money as the
-  common Money object with a decimal-string amount (#173), enums as
+  common Money object with a decimal-number amount (#173), enums as
   `UPPER_SNAKE_CASE` strings (#240).
 - Every operation returns errors as **`application/problem+json`** (RFC 9457,
   #176). Reference a shared Problem schema; never leak stack traces (#177).
