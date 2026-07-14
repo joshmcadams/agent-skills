@@ -231,12 +231,13 @@ normally not document this.
 
 #### 403 Forbidden
 
-[RFC](https://tools.ietf.org/html/rfc9110#name-403-forbidden) · **do not document** · `<all>`
+[RFC](https://tools.ietf.org/html/rfc9110#name-403-forbidden) · **document** · `<all>`
 
 The user is not authorized to use this resource. For an API, this can mean that
 the request's token was valid, but was missing a scope for this endpoint. Or
-that some object-specific authorization failed. We recommend only documenting
-the second case.
+that some object-specific authorization failed. The first case (missing scopes)
+does not need to be documented, but the second (object-specific authorization)
+should be documented with context explaining what conditions cause it.
 
 #### 404 Not found
 
