@@ -13,7 +13,7 @@ request/response shape, and which codes to return. This skill does not modify an
 API artifact — it informs the decision.
 
 > **Adaptation:** URL versioning and `/api` base path apply — see the
-> [shared adaptation notice](../../ADAPTATION.md) for the two deviations
+> [shared adaptation notice](${CLAUDE_PLUGIN_ROOT}/ADAPTATION.md) for the two deviations
 > from upstream Zalando that are authoritative for all skills in this plugin.
 
 ## Method selection
@@ -125,7 +125,7 @@ identifiers like `/problems/out-of-stock`.
 
 For full detail, consult the guidelines bundled with this plugin (the
 `reference/` directory at the plugin root, e.g.
-`../../reference/<file>.md`):
+`${CLAUDE_PLUGIN_ROOT}/reference/<file>.md`):
 
 - `reference/http-requests.md` — #148 method semantics, #149 properties,
   #229/#231 idempotent design, #253 async

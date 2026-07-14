@@ -12,7 +12,7 @@ using the RFC 9457 **Problem JSON** object (media type
 guidance and a designed problem schema, not edits to an artifact.
 
 > **Adaptation:** URL versioning and `/api` base path apply — see the
-> [shared adaptation notice](../../ADAPTATION.md) for the two deviations
+> [shared adaptation notice](${CLAUDE_PLUGIN_ROOT}/ADAPTATION.md) for the two deviations
 > from upstream Zalando that are authoritative for all skills in this plugin.
 
 ## Rules
@@ -24,7 +24,7 @@ guidance and a designed problem schema, not edits to an artifact.
 - Use **one consistent** error schema across the whole API — do not invent a
   different error shape per endpoint.
 - Reference the bundled schema instead of redefining it:
-  `../../reference/models/problem-1.0.1.yaml#/Problem` (the
+  `${CLAUDE_PLUGIN_ROOT}/reference/models/problem-1.0.1.yaml#/Problem` (the
   `reference/models/` directory at the plugin root). In an OpenAPI spec, wire it
   in via the `default` response so standard errors need no per-operation
   duplication:
@@ -35,7 +35,7 @@ guidance and a designed problem schema, not edits to an artifact.
       content:
         application/problem+json:
           schema:
-            $ref: '../../reference/models/problem-1.0.1.yaml#/Problem'
+            $ref: '${CLAUDE_PLUGIN_ROOT}/reference/models/problem-1.0.1.yaml#/Problem'
   ```
 - **Hint:** `application/problem+json` is often NOT treated as a subset of
   `application/json` by libraries. Clients that want the extended failure info
@@ -121,7 +121,7 @@ spec unless they ask for the edit.
 ## Reference
 For full detail, see the guidelines bundled with this plugin (the `reference/`
 directory at the plugin root, e.g.
-`../../reference/<file>.md`):
+`${CLAUDE_PLUGIN_ROOT}/reference/<file>.md`):
 
 - `reference/http-status-codes-and-errors.md` — #176 (problem JSON), #177 (no
   stack traces), #150/#220/#243 (status code selection), #153 (429/rate limits)

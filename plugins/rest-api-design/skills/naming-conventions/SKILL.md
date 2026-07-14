@@ -12,7 +12,7 @@ parameters, and JSON property names. The rules below are self-contained; the
 `reference/` chapters are cited only for full detail.
 
 > **Adaptation:** URL versioning and `/api` base path apply — see the
-> [shared adaptation notice](../../ADAPTATION.md) for the two deviations
+> [shared adaptation notice](${CLAUDE_PLUGIN_ROOT}/ADAPTATION.md) for the two deviations
 > from upstream Zalando that are authoritative for all skills in this plugin.
 
 This is a **knowledge** skill — it produces guidance and reference material, not edits to an artifact. Advise; do not modify files unless asked.
@@ -81,7 +81,7 @@ This is a **knowledge** skill — it produces guidance and reference material, n
 
 For full detail, consult the guidelines bundled with this plugin (the
 `reference/` directory at the plugin root, e.g.
-`../../reference/<file>.md`):
+`${CLAUDE_PLUGIN_ROOT}/reference/<file>.md`):
 
 - `reference/urls.md` — path/query naming: #129 (kebab-case), #134 (pluralize),
   #142 (domain-specific), #228 (URL-friendly IDs), #141 (verb-free), #130 & #137

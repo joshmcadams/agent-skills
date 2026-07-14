@@ -15,7 +15,7 @@ A new major version is a **last resort** — first confirm the change genuinely
 cannot be made compatibly.
 
 > **Adaptation:** URL versioning and `/api` base path apply — see the
-> [shared adaptation notice](../../ADAPTATION.md) for the two deviations
+> [shared adaptation notice](${CLAUDE_PLUGIN_ROOT}/ADAPTATION.md) for the two deviations
 > from upstream Zalando that are authoritative for all skills in this plugin.
 
 This skill **modifies the API artifact**. Produce the edited file(s) and a short summary of every change made.
@@ -135,7 +135,7 @@ artifact, not a second file):
 
 For full detail, consult the guidelines bundled with this plugin (the
 `reference/` directory at the plugin root, e.g.
-`../../reference/<file>.md`):
+`${CLAUDE_PLUGIN_ROOT}/reference/<file>.md`):
 
 - `reference/compatibility.md` — #113 (avoid versioning), #106–#108 (compatible
   changes), #114 (URL versioning), #115 (no media-type versioning), #116 usage

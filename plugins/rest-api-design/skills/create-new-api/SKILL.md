@@ -14,7 +14,7 @@ document with correct meta-information, `/api` base path, `v1` URL versioning, a
 first resource collection, problem+json errors, and OAuth2/bearer security.
 
 > **Adaptation:** URL versioning and `/api` base path apply — see the
-> [shared adaptation notice](../../ADAPTATION.md) for the two deviations
+> [shared adaptation notice](${CLAUDE_PLUGIN_ROOT}/ADAPTATION.md) for the two deviations
 > from upstream Zalando that are authoritative for all skills in this plugin.
 
 This skill **modifies the API artifact**. Produce the edited file(s) and a short summary of every change made.
@@ -96,7 +96,7 @@ Include **all** required meta-information — the starter must pass an audit:
 - [ ] Define a reusable **`Problem`** schema and return it as
   `application/problem+json` (#176, RFC 9457). You may inline the schema (fields
   `type`, `title`, `status`, `detail`, `instance`) or reference the bundled model
-  at `../../reference/models/problem-1.0.1.yaml` (copy it into the
+  at `${CLAUDE_PLUGIN_ROOT}/reference/models/problem-1.0.1.yaml` (copy it into the
   spec's `components/schemas` for a self-contained artifact).
 - [ ] Add a `default` error response (using problem+json) to every operation, and
   specify operation-specific `4xx`/`5xx` responses where they carry meaning
@@ -245,7 +245,7 @@ Produce the new OpenAPI file at the chosen location, plus a short summary:
 
 For full detail, consult the guidelines bundled with this plugin (the
 `reference/` directory at the plugin root, e.g.
-`../../reference/<file>.md`):
+`${CLAUDE_PLUGIN_ROOT}/reference/<file>.md`):
 
 - `reference/meta-information.md` — #218/#116/#215/#219 (`info`, version, `x-api-id`, audience)
 - `reference/urls.md` — #135 (`/api` base path), #134/#129/#142/#143 (naming, structure)

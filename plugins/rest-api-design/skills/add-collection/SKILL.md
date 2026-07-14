@@ -13,7 +13,7 @@ operations. Wire the paths, operations, status codes, and JSON schemas so they
 comply with the adapted Zalando REST API Guidelines bundled with this plugin.
 
 > **Adaptation:** URL versioning and `/api` base path apply — see the
-> [shared adaptation notice](../../ADAPTATION.md) for the two deviations
+> [shared adaptation notice](${CLAUDE_PLUGIN_ROOT}/ADAPTATION.md) for the two deviations
 > from upstream Zalando that are authoritative for all skills in this plugin.
 
 This skill **modifies the API artifact**. Produce the edited file(s) and a short summary of every change made.
@@ -137,7 +137,7 @@ Produce:
 
 For full detail, consult the guidelines bundled with this plugin (the
 `reference/` directory at the plugin root, e.g.
-`../../reference/<file>.md`):
+`${CLAUDE_PLUGIN_ROOT}/reference/<file>.md`):
 
 - `reference/urls.md` — #135 (`/api` base path), #134/#129/#142 (naming),
   #143/#147 (sub-resources & nesting), #137/#130 (query params)

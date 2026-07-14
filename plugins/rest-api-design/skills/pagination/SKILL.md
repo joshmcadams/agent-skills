@@ -11,7 +11,7 @@ multiple items. Each rule is distilled inline so this skill is usable on its
 own; cite the bundled chapter only for full detail.
 
 > **Adaptation:** URL versioning and `/api` base path apply — see the
-> [shared adaptation notice](../../ADAPTATION.md) for the two deviations
+> [shared adaptation notice](${CLAUDE_PLUGIN_ROOT}/ADAPTATION.md) for the two deviations
 > from upstream Zalando that are authoritative for all skills in this plugin.
 
 This is a **knowledge** skill — it produces guidance and reference material, not edits to an artifact. Advise; do not modify files unless asked.
@@ -97,7 +97,7 @@ numeric `offset` with `limit` (#137/#160), no `total_count` (#254), pluralized
 ## Reference
 
 For full detail, see the guidelines bundled with this plugin (the `reference/`
-directory at the plugin root, e.g. `../../reference/<file>`):
+directory at the plugin root, e.g. `${CLAUDE_PLUGIN_ROOT}/reference/<file>`):
 
 - `reference/pagination.md` — #159, #160 (cursor vs offset), #161 (page links),
   #248 (page object), #254 (avoid total count)

@@ -12,7 +12,7 @@ authorization: OAuth 2.0 / bearer access tokens, functional scopes
 rules when designing or reviewing how an API is secured.
 
 > **Adaptation:** URL versioning and `/api` base path apply — see the
-> [shared adaptation notice](../../ADAPTATION.md) for the two deviations
+> [shared adaptation notice](${CLAUDE_PLUGIN_ROOT}/ADAPTATION.md) for the two deviations
 > from upstream Zalando that are authoritative for all skills in this plugin.
 
 This is a **knowledge** skill — it produces guidance and reference material, not edits to an artifact. Advise; do not modify files unless asked.
@@ -106,7 +106,7 @@ that violates the naming pattern.
 
 For full detail, consult the guidelines bundled with this plugin (the
 `reference/` directory at the plugin root, e.g.
-`../../reference/security.md`):
+`${CLAUDE_PLUGIN_ROOT}/reference/security.md`):
 
 - `reference/security.md` — #104 (secure endpoints), #105 (define/assign
   scopes), #225 (scope naming convention)

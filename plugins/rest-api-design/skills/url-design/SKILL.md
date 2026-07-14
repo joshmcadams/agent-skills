@@ -12,7 +12,7 @@ compound keys, and query parameters. The rules below are self-contained; the
 `reference/` chapters are cited only for full detail.
 
 > **Adaptation:** URL versioning and `/api` base path apply — see the
-> [shared adaptation notice](../../ADAPTATION.md) for the two deviations
+> [shared adaptation notice](${CLAUDE_PLUGIN_ROOT}/ADAPTATION.md) for the two deviations
 > from upstream Zalando that are authoritative for all skills in this plugin.
 
 This is a **knowledge** skill — it produces guidance and reference material, not edits to an artifact. Advise; do not modify files unless asked.
@@ -99,7 +99,7 @@ This is a **knowledge** skill — it produces guidance and reference material, n
 
 For full detail, consult the guidelines bundled with this plugin (the
 `reference/` directory at the plugin root, e.g.
-`../../reference/<file>.md`):
+`${CLAUDE_PLUGIN_ROOT}/reference/<file>.md`):
 
 - `reference/urls.md` — #135 (`/api` base path), #143 (sub-resources), #134
   (pluralize), #129 (kebab-case), #136 (normalized paths), #145 (nested URLs),

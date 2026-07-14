@@ -11,7 +11,7 @@ Audit the REST API(s) in this repository against the adapted Zalando REST API
 Guidelines bundled with this plugin, and produce a prioritized findings report.
 
 > **Adaptation:** URL versioning and `/api` base path apply — see the
-> [shared adaptation notice](../../ADAPTATION.md) for the two deviations
+> [shared adaptation notice](${CLAUDE_PLUGIN_ROOT}/ADAPTATION.md) for the two deviations
 > from upstream Zalando that are authoritative for all skills in this plugin.
 
 ## Arguments
@@ -106,7 +106,7 @@ Do not modify files during an audit unless the user explicitly asks for fixes.
 
 For full detail, consult the guidelines bundled with this plugin (the
 `reference/` directory at the plugin root, e.g.
-`../../reference/<file>.md`):
+`${CLAUDE_PLUGIN_ROOT}/reference/<file>.md`):
 
 - `reference/urls.md` — #135 (`/api` base path), naming, structure
 - `reference/compatibility.md` — #114/#115 (URL versioning), #106–#108, #113

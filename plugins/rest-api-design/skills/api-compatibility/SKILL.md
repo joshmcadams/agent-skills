@@ -13,7 +13,7 @@ it produces a compatibility decision and a migration/deprecation plan, not edits
 to an artifact.
 
 > **Adaptation:** URL versioning and `/api` base path apply — see the
-> [shared adaptation notice](../../ADAPTATION.md) for the two deviations
+> [shared adaptation notice](${CLAUDE_PLUGIN_ROOT}/ADAPTATION.md) for the two deviations
 > from upstream Zalando that are authoritative for all skills in this plugin.
 
 ## Core principle: don't break backward compatibility (#106)
@@ -90,7 +90,7 @@ When — and only when — a change cannot be made compatibly (#113):
   - `Sunset: <http-date>` (RFC 8594) — e.g. `Wed, 31 Dec 2025 23:59:59 GMT`.
   - If multiple elements are deprecated, use the **earliest** timestamp.
   - Reference the bundled header definitions:
-    `../../reference/models/headers-1.0.0.yaml#/Deprecation` and
+    `${CLAUDE_PLUGIN_ROOT}/reference/models/headers-1.0.0.yaml#/Deprecation` and
     `.../#/Sunset`.
 - Headers alone are **not** sufficient: obtain client consent on the sunset date,
   monitor usage of the deprecated version, and only shut down once consumers have
@@ -117,7 +117,7 @@ consent, monitoring). Advise; don't rewrite the spec unless asked.
 ## Reference
 For full detail, see the guidelines bundled with this plugin (the `reference/`
 directory at the plugin root, e.g.
-`../../reference/<file>.md`):
+`${CLAUDE_PLUGIN_ROOT}/reference/<file>.md`):
 
 - `reference/compatibility.md` — #106–#113 (compatible extension, tolerant
   reader), #114 (URL versioning), #115 (no media-type versioning)

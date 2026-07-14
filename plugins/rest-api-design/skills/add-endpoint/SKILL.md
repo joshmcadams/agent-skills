@@ -14,7 +14,7 @@ path and method, define request/response bodies, status codes, and headers, then
 edit the artifact and summarize the change.
 
 > **Adaptation:** URL versioning and `/api` base path apply — see the
-> [shared adaptation notice](../../ADAPTATION.md) for the two deviations
+> [shared adaptation notice](${CLAUDE_PLUGIN_ROOT}/ADAPTATION.md) for the two deviations
 > from upstream Zalando that are authoritative for all skills in this plugin.
 
 This skill **modifies the API artifact**. Produce the edited file(s) and a short summary of every change made.
@@ -147,7 +147,7 @@ success and service-specific error responses per operation. By method:
 
 For full detail, consult the guidelines bundled with this plugin (the
 `reference/` directory at the plugin root, e.g.
-`../../reference/<file>.md`):
+`${CLAUDE_PLUGIN_ROOT}/reference/<file>.md`):
 
 - `reference/urls.md` — #135 (`/api` base), #114 (URL versioning), #129/#134/#142
   naming, #141/#138 verb-free, #143/#146/#147 sub-resources, #130/#137 query params

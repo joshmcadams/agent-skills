@@ -13,7 +13,7 @@ deprecation signaling. Any header a service supports is part of its contract, so
 declare it explicitly in the OpenAPI `parameters`/`headers` of the operation.
 
 > **Adaptation:** URL versioning and `/api` base path apply — see the
-> [shared adaptation notice](../../ADAPTATION.md) for the two deviations
+> [shared adaptation notice](${CLAUDE_PLUGIN_ROOT}/ADAPTATION.md) for the two deviations
 > from upstream Zalando that are authoritative for all skills in this plugin.
 
 This is a **knowledge** skill — it produces guidance and reference material, not edits to an artifact. Advise; do not modify files unless asked.
@@ -116,7 +116,7 @@ Sunset: Wed, 31 Dec 2025 23:59:59 GMT
 
 Reuse standard definitions rather than redefining each header. The plugin
 bundles the header schemas at
-`../../reference/models/headers-1.0.0.yaml` (mirroring the
+`${CLAUDE_PLUGIN_ROOT}/reference/models/headers-1.0.0.yaml` (mirroring the
 guideline's `headers-1.0.0.yaml`) — copy the entries you need into your spec's
 `components`, then `$ref` them locally, e.g.:
 
@@ -146,7 +146,7 @@ used only per the rules above; and deprecated elements carry `Deprecation`/
 
 For full detail, consult the guidelines bundled with this plugin (the
 `reference/` directory at the plugin root, e.g.
-`../../reference/http-headers.md`):
+`${CLAUDE_PLUGIN_ROOT}/reference/http-headers.md`):
 
 - `reference/http-headers.md` — #132/#133 (casing, standard headers), #178
   (`Content-*`), #181 (`Prefer`), #182 (`ETag`/`If-Match`), #183/#184
