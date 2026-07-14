@@ -10,7 +10,7 @@ You **must** use these formats, whenever applicable:
 
 | `OpenAPI type` | `OpenAPI format` | Specification | Example |
 |---|---|---|---|
-| `integer` | `int32` | 4 byte signed integer between -2<sup>31</sup> and 2<sup>31</sup>-1 | `7721071004` |
+| `integer` | `int32` | 4 byte signed integer between -2<sup>31</sup> and 2<sup>31</sup>-1 | `77210710` |
 | `integer` | `int64` | 8 byte signed integer between -2<sup>63</sup> and 2<sup>63</sup>-1 | `772107100456824` |
 | `integer` | `bigint` | arbitrarily large signed integer number | `77210710045682438959` |
 | `number` | `float` | `binary32` single precision decimal number -- see [IEEE 754-2008/ISO 60559:2011](https://en.wikipedia.org/wiki/IEEE_754) | `3.1415927` |
