@@ -125,7 +125,7 @@ identifiers like `/problems/out-of-stock`.
 
 For full detail, consult the guidelines bundled with this plugin (the
 `reference/` directory at the plugin root, e.g.
-`${CLAUDE_PLUGIN_ROOT}/reference/<file>.md`):
+`../../reference/<file>.md`):
 
 - `reference/http-requests.md` — #148 method semantics, #149 properties,
   #229/#231 idempotent design, #253 async

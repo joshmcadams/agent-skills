@@ -138,7 +138,7 @@ Produce:
 
 For full detail, consult the guidelines bundled with this plugin (the
 `reference/` directory at the plugin root, e.g.
-`${CLAUDE_PLUGIN_ROOT}/reference/<file>.md`):
+`../../reference/<file>.md`):
 
 - `reference/urls.md` — #135 (`/api` base path), #134/#129/#142 (naming),
   #143/#147 (sub-resources & nesting), #137/#130 (query params)

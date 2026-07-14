@@ -109,7 +109,7 @@ Reference the bundled model instead of re-declaring it:
 
 ```yaml
 grand_total:
-  $ref: '${CLAUDE_PLUGIN_ROOT}/reference/models/money-1.0.0.yaml#/Money'
+  $ref: '../../reference/models/money-1.0.0.yaml#/Money'
 ```
 
 ## Worked example
@@ -134,7 +134,7 @@ Money object (#173), pluralized empty array `line_items: []` (#120/#124).
 ## Reference
 
 For full detail, see the guidelines bundled with this plugin (the `reference/`
-directory at the plugin root, e.g. `${CLAUDE_PLUGIN_ROOT}/reference/<file>`):
+directory at the plugin root, e.g. `../../reference/<file>`):
 
 - `reference/json-guidelines.md` — #110, #118, #120, #122–#124, #167, #172,
   #173 (Money), #174, #235, #240, #252

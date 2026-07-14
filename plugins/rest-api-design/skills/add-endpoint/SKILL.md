@@ -149,7 +149,7 @@ success and service-specific error responses per operation. By method:
 
 For full detail, consult the guidelines bundled with this plugin (the
 `reference/` directory at the plugin root, e.g.
-`${CLAUDE_PLUGIN_ROOT}/reference/<file>.md`):
+`../../reference/<file>.md`):
 
 - `reference/urls.md` — #135 (`/api` base), #114 (URL versioning), #129/#134/#142
   naming, #141/#138 verb-free, #143/#146/#147 sub-resources, #130/#137 query params

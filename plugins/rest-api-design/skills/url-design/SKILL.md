@@ -101,7 +101,7 @@ compound keys, and query parameters. The rules below are self-contained; the
 
 For full detail, consult the guidelines bundled with this plugin (the
 `reference/` directory at the plugin root, e.g.
-`${CLAUDE_PLUGIN_ROOT}/reference/<file>.md`):
+`../../reference/<file>.md`):
 
 - `reference/urls.md` — #135 (`/api` base path), #143 (sub-resources), #134
   (pluralize), #129 (kebab-case), #136 (normalized paths), #145 (nested URLs),

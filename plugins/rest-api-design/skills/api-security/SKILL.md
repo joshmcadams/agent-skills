@@ -107,7 +107,7 @@ that violates the naming pattern.
 
 For full detail, consult the guidelines bundled with this plugin (the
 `reference/` directory at the plugin root, e.g.
-`${CLAUDE_PLUGIN_ROOT}/reference/security.md`):
+`../../reference/security.md`):
 
 - `reference/security.md` — #104 (secure endpoints), #105 (define/assign
   scopes), #225 (scope naming convention)

@@ -96,7 +96,7 @@ numeric `offset` with `limit` (#137/#160), no `total_count` (#254), pluralized
 ## Reference
 
 For full detail, see the guidelines bundled with this plugin (the `reference/`
-directory at the plugin root, e.g. `${CLAUDE_PLUGIN_ROOT}/reference/<file>`):
+directory at the plugin root, e.g. `../../reference/<file>`):
 
 - `reference/pagination.md` — #159, #160 (cursor vs offset), #161 (page links),
   #248 (page object), #254 (avoid total count)

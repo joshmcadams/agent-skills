@@ -115,7 +115,7 @@ Sunset: Wed, 31 Dec 2025 23:59:59 GMT
 
 Reuse standard definitions rather than redefining each header. The plugin
 bundles the header schemas at
-`${CLAUDE_PLUGIN_ROOT}/reference/models/headers-1.0.0.yaml` (mirroring the
+`../../reference/models/headers-1.0.0.yaml` (mirroring the
 guideline's `headers-1.0.0.yaml`) — copy the entries you need into your spec's
 `components`, then `$ref` them locally, e.g.:
 
@@ -145,7 +145,7 @@ used only per the rules above; and deprecated elements carry `Deprecation`/
 
 For full detail, consult the guidelines bundled with this plugin (the
 `reference/` directory at the plugin root, e.g.
-`${CLAUDE_PLUGIN_ROOT}/reference/http-headers.md`):
+`../../reference/http-headers.md`):
 
 - `reference/http-headers.md` — #132/#133 (casing, standard headers), #178
   (`Content-*`), #181 (`Prefer`), #182 (`ETag`/`If-Match`), #183/#184

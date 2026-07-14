@@ -137,7 +137,7 @@ artifact, not a second file):
 
 For full detail, consult the guidelines bundled with this plugin (the
 `reference/` directory at the plugin root, e.g.
-`${CLAUDE_PLUGIN_ROOT}/reference/<file>.md`):
+`../../reference/<file>.md`):
 
 - `reference/compatibility.md` — #113 (avoid versioning), #106–#108 (compatible
   changes), #114 (URL versioning), #115 (no media-type versioning), #116 usage

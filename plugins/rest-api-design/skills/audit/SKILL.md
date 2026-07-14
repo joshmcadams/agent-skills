@@ -108,7 +108,7 @@ Do not modify files during an audit unless the user explicitly asks for fixes.
 
 For full detail, consult the guidelines bundled with this plugin (the
 `reference/` directory at the plugin root, e.g.
-`${CLAUDE_PLUGIN_ROOT}/reference/<file>.md`):
+`../../reference/<file>.md`):
 
 - `reference/urls.md` — #135 (`/api` base path), naming, structure
 - `reference/compatibility.md` — #114/#115 (URL versioning), #106–#108, #113

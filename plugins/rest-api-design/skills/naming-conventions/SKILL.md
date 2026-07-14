@@ -83,7 +83,7 @@ parameters, and JSON property names. The rules below are self-contained; the
 
 For full detail, consult the guidelines bundled with this plugin (the
 `reference/` directory at the plugin root, e.g.
-`${CLAUDE_PLUGIN_ROOT}/reference/<file>.md`):
+`../../reference/<file>.md`):
 
 - `reference/urls.md` — path/query naming: #129 (kebab-case), #134 (pluralize),
   #142 (domain-specific), #228 (URL-friendly IDs), #141 (verb-free), #130 & #137

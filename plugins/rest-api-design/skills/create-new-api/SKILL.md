@@ -99,7 +99,7 @@ Include **all** required meta-information — the starter must pass an audit:
 - [ ] Define a reusable **`Problem`** schema and return it as
   `application/problem+json` (#176, RFC 9457). You may inline the schema (fields
   `type`, `title`, `status`, `detail`, `instance`) or reference the bundled model
-  at `${CLAUDE_PLUGIN_ROOT}/reference/models/problem-1.0.1.yaml` (copy it into the
+  at `../../reference/models/problem-1.0.1.yaml` (copy it into the
   spec's `components/schemas` for a self-contained artifact).
 - [ ] Add a `default` error response (using problem+json) to every operation, and
   specify operation-specific `4xx`/`5xx` responses where they carry meaning
@@ -245,7 +245,7 @@ Produce the new OpenAPI file at the chosen location, plus a short summary:
 
 For full detail, consult the guidelines bundled with this plugin (the
 `reference/` directory at the plugin root, e.g.
-`${CLAUDE_PLUGIN_ROOT}/reference/<file>.md`):
+`../../reference/<file>.md`):
 
 - `reference/meta-information.md` — #218/#116/#215/#219 (`info`, version, `x-api-id`, audience)
 - `reference/urls.md` — #135 (`/api` base path), #134/#129/#142/#143 (naming, structure)
