@@ -81,10 +81,11 @@ to include a link to the API user manual into the API specification using the
 
 ## MUST only use durable and immutable remote references {#rule-234}
 
-Normally, API specification files must be **self-contained**, i.e. files
-should not contain references to local or remote content, e.g. `../fragment.yaml#/element` or
+API specification files should be **self-contained** by default: they should
+not contain references to arbitrary local or remote content, e.g.
+`../fragment.yaml#/element` or
 `$ref: 'https://github.com/zalando/zally/blob/master/server/src/main/resources/api/zally-api.yaml#/schemas/LintingRequest'`.
-The reason is, that the content referred to is *in general* **not durable** and
+The reason is that the content referred to is *in general* **not durable** and
 **not immutable**. As a consequence, the semantic of an API may change in
 unexpected ways. (For example, the second link is already outdated due to code restructuring.)
 
