@@ -92,7 +92,7 @@ API specification.
 
 The status code has a well-understood standard meaning to it, so only document
 it if there are operation specific details you want to add. See exception in
-rule 151 (#151).
+rule 151 ([#151](#rule-151)).
 
 
 ### Success codes
@@ -113,7 +113,7 @@ returned resource exists before.
 Returned on successful resource creation.
 `201` is returned with or without response payload (unlike `200` / `204`).
 We recommend additionally to return the created resource URL via the `Location`
-response header (see #133).
+response header (see [#133](#rule-133)).
 
 #### 202 Accepted
 
@@ -122,7 +122,7 @@ response header (see #133).
 The request was successful and will be processed asynchronously.
 Only applicable to methods which change something, with the exception of
 `GET` methods indicating that a resources is still created asynchronously
-as described in #253.
+as described in [#253](#rule-253).
 
 #### 204 No content
 
@@ -152,7 +152,7 @@ downloading large files), but most APIs don't need this.
 [RFC](https://tools.ietf.org/html/rfc4918#section-11.1) · **use** · **document** · `POST` (`DELETE`)
 
 The response body contains status information for multiple different parts of a
-batch/bulk request (see #152 for details). Normally used for `POST`, in some
+batch/bulk request (see [#152](#rule-152) for details). Normally used for `POST`, in some
 cases also for `DELETE`.
 
 
@@ -163,7 +163,7 @@ cases also for `DELETE`.
 [RFC](https://tools.ietf.org/html/rfc9110#name-301-moved-permanently) · **do not use** · `<all>`
 
 This and all future requests should be directed to the given URI. See also
-#251.
+[#251](#rule-251).
 
 #### 302 Found
 
@@ -171,7 +171,7 @@ This and all future requests should be directed to the given URI. See also
 
 This is a temporary redirect where some clients **MAY** change the request method
 from `POST` to `GET`. Mainly used for dismissing and redirecting form
-submissions in browsers. See also #251.
+submissions in browsers. See also [#251](#rule-251).
 
 #### 303 See Other
 
@@ -179,7 +179,7 @@ submissions in browsers. See also #251.
 
 The response to the request can be found under another URI using a `GET`
 method. A disambiguated version of `302` for the case where the client **MUST**
-change the method to `GET`. See also #251.
+change the method to `GET`. See also [#251](#rule-251).
 
 #### 304 Not Modified
 
@@ -197,7 +197,7 @@ request headers `If-Modified-Since` or `If-None-Match`. For
 
 The response to the request can be found under another URI. A disambiguated
 version of `302` where the client **MUST** keep the same method as the original
-request. See also #251.
+request. See also [#251](#rule-251).
 
 #### 308 Permanent Redirect
 
@@ -206,7 +206,7 @@ request. See also #251.
 Similar to `307`, but the client should persist the new URI. Applicable more to
 browsers. For APIs, the URI should be explicitly fixed at the source instead of
 being implicitly kept in some state based on a previous redirect. See also
-#251.
+[#251](#rule-251).
 
 
 ### Client side error codes
@@ -367,7 +367,7 @@ to restful APIs.
 [RFC](https://tools.ietf.org/html/rfc6585#section-7.1) · **use** · **do not document** · `<all>`
 
 Server requires the request to be conditional, e.g. to make sure that the "lost
-update problem" is avoided (see #182). Instead of documenting this response
+update problem" is avoided (see [#182](#rule-182)). Instead of documenting this response
 status, the required headers should be documented (and marked as required).
 
 #### 429 Too many requests
@@ -375,7 +375,7 @@ status, the required headers should be documented (and marked as required).
 [RFC](https://tools.ietf.org/html/rfc6585#section-7.2) · **use** · **do not document** · `<all>`
 
 The client is not abiding by the rate limits in place and has sent too many
-requests (see #153).
+requests (see [#153](#rule-153)).
 
 #### 431 Request Header Fields Too Large
 
@@ -608,7 +608,7 @@ information.
 to be resolved. [RFC 9457](https://tools.ietf.org/html/rfc9457) encourages that problem types are URI
 references that point to human-readable documentation, **but** we deliberately
 decided against that, as all important parts of the API must be documented
-using OpenAPI (#101) anyway. In addition, URLs tend to be fragile and not
+using OpenAPI ([#101](#rule-101)) anyway. In addition, URLs tend to be fragile and not
 very stable over longer periods because of organizational and documentation
 changes and descriptions might easily get out of sync.
 
@@ -651,7 +651,7 @@ better accomplished by one of the following.
 For idempotent `POST` cases, where you want to inform the client that a resource
 already exists at a certain location, you should instead use `200` with the
 `Location` header set. This is along the same lines as the creation case where
-`201` is used instead. See also #229.
+`201` is used instead. See also [#229](#rule-229).
 
 For non-idempotent `POST` cases, where you want to inform the client that the
 resource has already been created and cannot be created again (e.g. payment),

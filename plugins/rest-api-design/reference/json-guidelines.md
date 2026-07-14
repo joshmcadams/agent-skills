@@ -13,7 +13,7 @@ Use JSON ([RFC 7159](https://tools.ietf.org/html/rfc7159)) to represent structur
 with HTTP requests and responses as body payload. The JSON payload must use a
 JSON object as top-level data structure (if possible) to allow for future
 extension. This also applies to collection resources, where you ad-hoc would
-use an array -- see also #110.
+use an array -- see also [#110](#rule-110).
 
 Additionally, the JSON payload must comply to the more restrictive Internet
 JSON ([RFC 7493](https://tools.ietf.org/html/rfc7493)), particularly
@@ -44,7 +44,7 @@ addressed by
 
 **Note:** A resource with property marked `readOnly` in the API according to
 the [JSON schema validation](https://json-schema.org/draft/2020-12/draft-bhutton-json-schema-validation-00#rfc.section.9.4) may be
-ignored or rejected by a server. Both are in line with the idea behind the compatibility guidance (#109),
+ignored or rejected by a server. Both are in line with the idea behind the compatibility guidance ([#109](#rule-109)),
 however, we suggest to document when rejecting
 to prevent client side surprises.
 
@@ -52,7 +52,7 @@ to prevent client side surprises.
 ## SHOULD be aware of services not fully supporting JSON/unicode {#rule-250}
 
 JSON payloads passed via API requests consist of valid unicode characters
-(see #167). While `\uxxxx` are valid characters in a JSON strings, they can
+(see [#167](#rule-167)). While `\uxxxx` are valid characters in a JSON strings, they can
 create failures when leaving the API request processing context, e.g. by
 writing the data into a database or piping it through command line tools that
 are not 100% compatible with the JSON or unicode standard.
@@ -77,7 +77,7 @@ format for the payload data, for instance, image data format (JPG, PNG, GIF), do
 format (PDF, DOC, ODF, PPT), or archive format (TAR, ZIP).
 
 Generic structured data interchange formats other than JSON (e.g. XML, CSV)
-may be provided, but only additionally to JSON as default format using content negotiation (#244),
+may be provided, but only additionally to JSON as default format using content negotiation ([#244](#rule-244)),
 for specific use cases where clients may not interpret the payload structure.
 
 
@@ -86,7 +86,7 @@ for specific use cases where clients may not interpret the payload structure.
 You should use standard media types (defined in [media type registry](https://www.iana.org/assignments/media-types/media-types.xhtml)
 of Internet Assigned Numbers Authority (IANA)) as `content-type` (or `accept`) header
 information. More specifically, for JSON payload you should use the standard media type
-`application/json` (or `application/problem+json` for #176).
+`application/json` (or `application/problem+json` for [#176](#rule-176)).
 
 You should avoid using custom media types like `application/x.zalando.article+json`.
 Custom media types beginning with `x` bring no advantage compared to the
@@ -94,8 +94,8 @@ standard media type for JSON, and make automated processing more difficult.
 
 > **Adaptation:** The original guideline made an exception here, allowing custom
 > media types for API endpoint versioning via content negotiation. Because this
-> adaptation versions APIs through the URL path (see #114) and does **not** use
-> media type versioning (see #115), that exception no longer applies: keep the
+> adaptation versions APIs through the URL path (see [#114](#rule-114)) and does **not** use
+> media type versioning (see [#115](#rule-115)), that exception no longer applies: keep the
 > standard `application/json` media type and put the major version in the path
 > (`/api/v1/...`) instead.
 
@@ -138,7 +138,7 @@ other elements.
 
 **Exception:** This rule does not apply for case sensitive values sourced from outside
 of the API specification scope, e.g. for language codes from [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes), or when
-declaring possible values for a rule 137 (#137) [`sort` parameter].
+declaring possible values for a rule 137 ([#137](#rule-137)) [`sort` parameter].
 
 
 ## SHOULD use naming convention for date/time properties {#rule-235}
@@ -152,7 +152,7 @@ Examples of valid date/time property names:
 - `created_at`, `modified_at`, `occurred_at`, `returned_at`  -- instead of `created`, `modified`, ...
 - `campaign_start_time`, `arrival_date`, `checkout_time`  -- instead of `campaign_start`, `arrival`, ...
 
-**Hint:** Use `format: date-time` or `format: date` as required in #238.
+**Hint:** Use `format: date-time` or `format: date` as required in [#238](#rule-238).
 
 
 ## SHOULD define maps using `additionalProperties` {#rule-216}
@@ -163,7 +163,7 @@ names and property values. In OpenAPI schema (as well as in JSON schema) they
 should be represented using additionalProperties with a schema defining the
 value type. Such an object should normally have no other defined properties.
 
-The map keys don't count as property names in the sense of rule 118 (#118),
+The map keys don't count as property names in the sense of rule 118 ([#118](#rule-118)),
 and can follow whatever format is natural for their domain. Please document
 this in the description of the map object's schema.
 
@@ -288,16 +288,16 @@ We define the following common field names:
   identification of customers due to legacy reasons. (Hint: `customer_id` used to be defined
   as internal only, technical integer key, see
   [Naming Decision: `customer_number` vs `customer_id` \[internal_link\]](https://apis.zalando.net/redirect/5675b6ec-8934-11ea-929e-68f728c1ba70)).
-- `etag`: the `etag` of an embedded sub-resource (#158). It
+- `etag`: the `etag` of an embedded sub-resource ([#158](#rule-158)). It
   typically is used to carry the `ETag` for subsequent `PUT`/`PATCH` calls
-  (see `ETag` (#182) and the *ETags in result entities* section).
+  (see `ETag` ([#182](#rule-182)) and the *ETags in result entities* section).
 
-Further common fields are defined in #235.
+Further common fields are defined in [#235](#rule-235).
 The following guidelines define standard objects and fields:
 
-- #248
-- #249
-- #173
+- [#248](#rule-248)
+- [#249](#rule-249)
+- [#173](#rule-173)
 
 
 Example JSON schema:

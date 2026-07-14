@@ -85,7 +85,7 @@ limited to:
 - `Content-Length` indicates the length of the content (in bytes).
 - `Content-Language` indicates that the body is meant for people literate in
   some human language(s).
-- `Content-Location` indicates where the body can be found otherwise (#179
+- `Content-Location` indicates where the body can be found otherwise ([#179](#rule-179)
   for more details]).
 - `Content-Range` is used in responses to range requests to indicate which part
   of the requested resource representation is delivered with the body.
@@ -94,7 +94,7 @@ limited to:
 
 ## SHOULD use `Location` header instead of `Content-Location` header {#rule-180}
 
-As a correct usage of the `Content-Location` response header (see #179)
+As a correct usage of the `Content-Location` response header (see [#179](#rule-179))
 with respect to caching and its method specific semantics is difficult, we
 **discourage** the use of `Content-Location`. In most cases it is sufficient to
 inform clients about the resource location in create or re-direct responses by
@@ -117,7 +117,7 @@ The `Content-Location` header can be used to support the following use cases:
 
 - For reading operations `GET` and `HEAD`, a different location than the
   requested URL can be used to indicate that the returned resource is subject
-  to content negotiations (#244), and that the value provides a more specific
+  to content negotiations ([#244](#rule-244)), and that the value provides a more specific
   identifier of the resource.
 - For writing operations `PUT` and `PATCH`, an identical location to the
   requested URL can be used to explicitly indicate that the returned resource
@@ -137,7 +137,7 @@ Content-Type: image/png
 Content-Location: /products/123/images?format=raw
 ```
 
-See also #227.
+See also [#227](#rule-227).
 
 
 ## MAY consider to support `Prefer` header to handle processing preferences {#rule-181}
@@ -443,7 +443,7 @@ Remember that HTTP header field names are not case-sensitive:
 
 | Header field name | Type | Description | Header field value example |
 |---|---|---|---|
-| `X-Flow-ID` | String | For more information see #233. | GKY7oDhpSiKY_gAAAABZ_A |
+| `X-Flow-ID` | String | For more information see [#233](#rule-233). | GKY7oDhpSiKY_gAAAABZ_A |
 | `X-Tenant-ID` | String | Identifies the tenant initiated the request to the multi tenant Zalando Platform. The `X-Tenant-ID` must be set according to the Business Partner ID extracted from the OAuth token when a request from a Business Partner hits the Zalando Platform. | 9f8b3ca3-4be5-436c-a847-9cd55460c495 |
 | `X-Sales-Channel` | String | Sales channels are owned by retailers and represent a specific consumer segment being addressed with a specific product assortment that is offered via CFA retailer catalogs to consumers (see [fashion platform glossary (internal link)](https://digital-experience.docs.zalando.net/glossary/glossary.html)). | 52b96501-0f8d-43e7-82aa-8a96fab134d7 |
 | `X-Frontend-Type` | String | Consumer facing applications (CFAs) provide business experience to their customers via different frontend application types, for instance, mobile app or browser. Info should be passed-through as generic aspect -- there are diverse concerns, e.g. pushing mobiles with specific coupons, that make use of it. Current range is mobile-app, browser, facebook-app, chat-app, email. | mobile-app |
@@ -452,7 +452,7 @@ Remember that HTTP header field names are not case-sensitive:
 | `X-Mobile-Advertising-ID` | String | It is either the [IDFA](https://developer.apple.com/documentation/adsupport/asidentifiermanager) (Apple Identifier for mobile Advertising) for iOS, or the [GAID](https://support.google.com/googleplay/android-developer/answer/6048248) (Google mobile Advertising Identifier) for Android. It is a unique, customer-resettable identifier provided by mobile device’s operating system to facilitate personalized advertising, and usually passed by mobile apps via HTTP header when calling backend services. Called services should be ready to pass this parameter through when calling other services. It is not sent if the customer disables it in the settings for respective mobile platform. | b89fadce-1f42-46aa-9c83-b7bc49e76e1f |
 
 **Exception:** The only exception to this guideline are the conventional
-hop-by-hop `X-RateLimit-` headers which can be used as defined in #153.
+hop-by-hop `X-RateLimit-` headers which can be used as defined in [#153](#rule-153).
 
 As part of the guidelines we provide the default definition of all proprietary
 headers, so you can simply reference them when defining the API endpoint. For
@@ -470,7 +470,7 @@ headers are allow-listed in the API Linter (Zally) checking this rule.
 
 ## MUST propagate proprietary headers {#rule-184}
 
-All Zalando's proprietary headers defined in #183 are end-to-end headers[^header-types] and must be propagated to the services down the call
+All Zalando's proprietary headers defined in [#183](#rule-183) are end-to-end headers[^header-types] and must be propagated to the services down the call
 chain. The header names and values must remain unchanged.
 
 The values of custom headers can influence query results (e.g. `X-Device-Type` can
@@ -500,7 +500,7 @@ APIs or asynchronously via published events).
 
 The `Flow-ID` must be passed through:
 
-- RESTful API requests via `X-Flow-ID` proprietary header (see #184)
+- RESTful API requests via `X-Flow-ID` proprietary header (see [#184](#rule-184))
 - Published events via `flow_id` event field (see the *metadata* section)
 
 The following formats are allowed:

@@ -17,7 +17,7 @@ Be compliant with the standardized HTTP semantics (see [RFC-9110 "HTTP semantics
 - `GET` requests must NOT have a request body payload (see `GET with body`).
 
 **Note:** `GET` requests on collection resources should provide sufficient
-filter (#137) and pagination (see the *Pagination* section) mechanisms.
+filter ([#137](#rule-137)) and pagination (see the *Pagination* section) mechanisms.
 
 
 ### GET with body payload
@@ -56,20 +56,20 @@ using header parameters. From a conceptual point of view, the semantic of an
 operation should always be expressed by the resource names, as well as the
 involved path and query parameters. In other words by everything that goes into
 the URL. Request headers are reserved for general context information (see
-#183). In addition, size limits on query parameters and headers are not
+[#183](#rule-183)). In addition, size limits on query parameters and headers are not
 reliable and depend on clients, gateways, server, and actual settings. Thus,
 switching to headers does not solve the original problem.
 
 **Hint:** As `GET with body` is used to transport extensive query parameters,
 the `cursor` cannot any longer be used to encode the query filters in case of
-cursor-based pagination (#160). As a consequence, it is best practice to
+cursor-based pagination ([#160](#rule-160)). As a consequence, it is best practice to
 transport the query filters in the body payload, while keeping the
 pagination parameters (`cursor`, `limit`) in query parameters.
-This allows using pagination links (#161) containing the `cursor` that
+This allows using pagination links ([#161](#rule-161)) containing the `cursor` that
 is only encoding the page position and direction.
 To protect the pagination sequence, the `cursor` may also contain a hash
 over all applied query filters, which is then validated against the request
-body. (See also #161.)
+body. (See also [#161](#rule-161).)
 
 
 ### PUT
@@ -95,7 +95,7 @@ the URL, replacing any existing resource."*.
 The updated/created resource may be returned as response payload. We recommend,
 to not use it per default, but if the resource is enriched with
 server-generated fields like `version_number`. You may also support client side
-steering (see #181).
+steering (see [#181](#rule-181)).
 
 **Important:** It is good practice to keep the resource identifier management
 under control of the service provider and not the client, and, hence, to prefer
@@ -104,11 +104,11 @@ usage for updates. However, in situations where the identifier and all resource
 attributes are under control of the client as input for the resource creation
 you should use `PUT` and pass the resource identifier as URL path parameter.
 Putting the same resource twice is required to be *idempotent* and to result
-in the same single resource instance (see #149) without data duplication in
+in the same single resource instance (see [#149](#rule-149)) without data duplication in
 case of repetition.
 
 **Hint:** To prevent unnoticed concurrent updates and duplicate creations when
-using `PUT`, you should use #182 to allow the server to react on stricter demands that
+using `PUT`, you should use [#182](#rule-182) to allow the server to react on stricter demands that
 expose conflicts and prevent lost updates. See also the *Optimistic Locking* section for
 details and options.
 
@@ -128,7 +128,7 @@ the URL"*.
 - For single resources, you **SHOULD** return `201` and the new resource object
   (including the resource identifier) in the response payload.
   - The client **SHOULD** be able to use this resource identifier to `GET` the
-    resource if supported by the API (see #143).
+    resource if supported by the API (see [#143](#rule-143)).
   - The URL to `GET` the resource **SHOULD** be provided in the `Location` header.
   - If the response does not contain the created resource or a resource monitor,
     the status code **SHOULD** be `201` and the URL to `GET` the resource **MUST** be
@@ -141,13 +141,13 @@ the URL"*.
 - For multiple resources you **SHOULD** return `201` in the response, as long as
   they are created atomically, meaning that either all the resources are created
   or none of them are.
-  - You should use #152 if the request can partially fail, that is some of the resources
+  - You should use [#152](#rule-152) if the request can partially fail, that is some of the resources
     can fail to be created.
 
 
-> **Note:** Posting the same resource twice is **not** required to be *idempotent* (check #149) and may result in multiple resources. However, you should use #229 to prevent this.
+> **Note:** Posting the same resource twice is **not** required to be *idempotent* (check [#149](#rule-149)) and may result in multiple resources. However, you should use [#229](#rule-229) to prevent this.
 
-- You may use #253, where the resource creation would not finish by the time the
+- You may use [#253](#rule-253), where the resource creation would not finish by the time the
   request is delivered, so the response status code **SHOULD** be `202`.
 
 
@@ -180,7 +180,7 @@ be described in the API specification by using specific media types.
 
 **Note:** since implementing `PATCH` correctly is a bit tricky, we strongly
 suggest to choose one and only one of the following patterns per endpoint
-(unless forced by a backwards compatible change (#106)). In preference order:
+(unless forced by a backwards compatible change ([#106](#rule-106))). In preference order:
 
 1. Use `PATCH` with [JSON Merge Patch](https://tools.ietf.org/html/rfc7396) standard, a
    specialized media type `application/merge-patch+json` for partial
@@ -195,7 +195,7 @@ suggest to choose one and only one of the following patterns per endpoint
 **Note:** In earlier versions we proposed to avoid `PATCH` and use `PUT` with
 complete objects to update a (sub)-resource as long as feasible, however, due
 to the complexity this imposes on clients to prepare for compatible
-extensions (#108), we reconsidered this approach in favor of solutions that
+extensions ([#108](#rule-108)), we reconsidered this approach in favor of solutions that
 simplify clients while having a lower failure risk.
 
 In practice [JSON Merge Patch](https://tools.ietf.org/html/rfc7396) quickly turns out to be too limited,
@@ -207,12 +207,12 @@ JSON Patch supports changing of array elements identified via its index, but
 not via (key) fields of the elements as typically needed for collections.
 
 **Note:** Patching the same resource twice is **not** required to be *idempotent*
-(check #149) and may result in a changing result. However, you should use #229 to
+(check [#149](#rule-149)) and may result in a changing result. However, you should use [#229](#rule-229) to
 prevent this.
 
-**Hint:** To prevent unnoticed concurrent updates when using `PATCH` you should use #182
+**Hint:** To prevent unnoticed concurrent updates when using `PATCH` you should use [#182](#rule-182)
 to allow the server to react on stricter demands that expose conflicts and
-prevent lost updates. See the *Optimistic Locking* section and #229 for details and
+prevent lost updates. See the *Optimistic Locking* section and [#229](#rule-229) for details and
 options.
 
 
@@ -254,7 +254,7 @@ expectations properly.
 
 The response status code of `DELETE` with query parameters requests should be
 similar to usual `DELETE` requests. In addition, it may return the status code
-`207` using a payload describing the operation results (see #152 for
+`207` using a payload describing the operation results (see [#152](#rule-152) for
 details).
 
 
@@ -322,14 +322,14 @@ to [RFC 9110 Section 9.2](https://tools.ietf.org/html/rfc9110#section-9.2):
 | --- | --- | --- | --- |
 | `GET` | Yes | Yes | Yes |
 | `HEAD` | Yes | Yes | Yes |
-| `POST` | No | ⚠️ No, but #229 | ⚠️ May, but only if specific `POST` endpoint is *safe*. **Hint:** not supported by most caches. |
+| `POST` | No | ⚠️ No, but [#229](#rule-229) | ⚠️ May, but only if specific `POST` endpoint is *safe*. **Hint:** not supported by most caches. |
 | `PUT` | No | Yes | No |
-| `PATCH` | No | ⚠️ No, but #229 | No |
+| `PATCH` | No | ⚠️ No, but [#229](#rule-229) | No |
 | `DELETE` | No | Yes | No |
 | `OPTIONS` | Yes | Yes | No |
 | `TRACE` | Yes | Yes | No |
 
-**Note:** See #227 regarding cacheability of response information.
+**Note:** See [#227](#rule-227) regarding cacheability of response information.
 
 
 ## SHOULD consider to design `POST` and `PATCH` idempotent {#rule-229}
@@ -341,20 +341,20 @@ created or changed in parallel or multiple times. To design an *idempotent*
 API endpoint owners should consider to apply one of the following three
 patterns.
 
-- A resource specific **conditional key** provided via `If-Match` header (#182)
+- A resource specific **conditional key** provided via `If-Match` header ([#182](#rule-182))
   in the request. The key is in general a meta information of the resource,
   e.g. a *hash* or *version number*, often stored with it. It allows to detect
   concurrent creations and updates to ensure *idempotent* behavior (see
-  #182).
+  [#182](#rule-182)).
 - A resource specific **secondary key** provided as resource property in the
   request body. The *secondary key* is stored permanently in the resource. It
   allows to ensure *idempotent* behavior by looking up the unique secondary
   key in case of multiple independent resource creations from different
-  clients (see #231).
+  clients (see [#231](#rule-231)).
 - A client specific **idempotency key** provided via `Idempotency-Key` header
   in the request. The key is not part of the resource but stored temporarily
   pointing to the original response to ensure *idempotent* behavior when
-  retrying a request (see #230).
+  retrying a request (see [#230](#rule-230)).
 
 **Note:** While **conditional key** and **secondary key** are focused on handling
 concurrent requests, the **idempotency key** is focused on providing the exact
@@ -377,7 +377,7 @@ following table showing the major properties of each pattern:
 **Note:** The patterns applicable to `PATCH` can be applied in the same way to
 `PUT` and `DELETE` providing the same properties.
 
-If you mainly aim to support safe retries, we suggest to apply conditional key (#182) and secondary key (#231) pattern before the idempotency key (#230) pattern.
+If you mainly aim to support safe retries, we suggest to apply conditional key ([#182](#rule-182)) and secondary key ([#231](#rule-231)) pattern before the idempotency key ([#230](#rule-230)) pattern.
 
 **Note:** like for `PUT`, successful `POST` or `PATCH` returns `200` or `204` (if
 the resource was updated -- with or without returning the resource), or `201`
@@ -495,7 +495,7 @@ query language:
 
 2. For internal usage or specific use case a more complex query language can be
    used (such as `price gt 10` or `price[gt]=10` or `price>10` etc.). Also
-   please consider following our guidance (#237) for designing complex query
+   please consider following our guidance ([#237](#rule-237)) for designing complex query
    languages with JSON.
 
 The following examples should serve as ideas for simple query language:
@@ -508,7 +508,7 @@ The following examples should serve as ideas for simple query language:
   based on logical properties)
 - `color=red,green,blue,multicolored` (query elements based on multiple
   choice possibility)
-  - for these type of filters, consider to use guidance (#237) to have
+  - for these type of filters, consider to use guidance ([#237](#rule-237)) to have
     smth like `filters={"color":["red","green","blue"]}`.
 
 ### Less than
@@ -535,7 +535,7 @@ The following examples should serve as ideas for simple query language:
   - when sorting is in place and new elements are inserted, it prevents showing
     repeated/missing results due to offset shift.
 
-Please check conventional query parameters for pagination and sorting (#137)
+Please check conventional query parameters for pagination and sorting ([#137](#rule-137))
 and you can also find additional info in the *Pagination* section below.
 
 We don't advocate for or against certain names because in the end APIs should
@@ -544,7 +544,7 @@ be free to choose the terminology that fits their domain the best.
 
 ## SHOULD design complex query languages using JSON {#rule-237}
 
-Minimalistic query languages based on query parameters (#236) are suitable
+Minimalistic query languages based on query parameters ([#236](#rule-236)) are suitable
 for simple use cases with a small set of available filters that are combined
 in one way and one way only (e.g. *and* semantics). Simple query languages are
 generally preferred over complex ones.
@@ -618,7 +618,7 @@ Implicit filtering could be done on:
 - the fields returned for the detail information of the resource
 
 In such cases, the fact that implicit filtering is applied must be documented
-in the API specification's endpoint description. Consider caching aspects (#227) when implicit filtering is provided. Example:
+in the API specification's endpoint description. Consider caching aspects ([#227](#rule-227)) when implicit filtering is provided. Example:
 
 If an employee of the company *Foo* accesses one of our business-to-business
 service and performs a `GET /business-partners`, it must, for legal reasons,

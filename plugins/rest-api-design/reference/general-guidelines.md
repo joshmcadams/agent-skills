@@ -8,14 +8,14 @@ The titles are marked with the corresponding labels: **MUST**, **SHOULD**, **MAY
 You must follow the *API First Principle*, more specifically:
 
 - You must define APIs first, before coding its implementation, using
-  OpenAPI as specification language (#101)
+  OpenAPI as specification language ([#101](#rule-101))
 - You must design your APIs consistently with these guidelines; use our
   [API Linter Service (internal_link)](https://zally.zalando.net/)
   for automated rule checks.
 - You must call for early review feedback from peers and client developers, and apply
   [our lightweight API review process (internal_link)](https://api.docs.zalando.net/howto/request-review/)
   for all component external APIs, i.e. all apis
-  with `x-api-audience =/= component-internal` (see #219).
+  with `x-api-audience =/= component-internal` (see [#219](#rule-219)).
 
 
 ## MUST provide API Specifications using OpenAPI {#rule-101}
@@ -25,7 +25,7 @@ to define API specifications. API designers are required to provide the API
 specification using a single self-contained YAML file for better readability.
 We encourage using [OpenAPI 3.1 version](https://swagger.io/specification/),
 especially for new APIs. The API specification documents should be subject to version
-control using a source code management system, and you must publish them following #192.
+control using a source code management system, and you must publish them following [#192](#rule-192).
 
 **Hint:** Our API infrastructure does not break, but might not yet fully support
 all OpenAPI 3.1 changes (e.g. displaying `examples` in Sunrise), and continues
@@ -102,8 +102,8 @@ service URLs:
 **Hint:** The formerly used remote references to the `Problem` API fragment
 (aliases `https://opensource.zalando.com/problem/` and
 `https://zalando.github.io/problem/`) are deprecated, but still supported for
-compatibility (#176 on how to replace).
+compatibility ([#176](#rule-176) on how to replace).
 
 As we control these URLs, we ensure that their content is **durable** and
 **immutable**. This allows to define API specifications by using fragments
-published via these sources, as suggested in #151.
+published via these sources, as suggested in [#151](#rule-151).

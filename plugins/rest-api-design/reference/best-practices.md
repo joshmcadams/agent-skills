@@ -8,7 +8,7 @@ implementing RESTful APIs.
 ## Cursor-based pagination in RESTful APIs
 
 Cursor-based pagination is a very powerful and valuable technique (see also
-#160) that allows to efficiently provide a stable view on changing data.
+[#160](#rule-160)) that allows to efficiently provide a stable view on changing data.
 This is obtained by using an anchor element that allows to retrieve all page
 elements directly via an ordering index, usually based on `created_at` or
 `modified_at` in combination with a tie breaker, mostly the resource `id` or a
@@ -351,7 +351,7 @@ We suggest to either use the *`ETag` in result entities* or *`Last-Modified`
 
 Client must not eliminate unknown optional fields from the
 fetched resource payload, and to serialize them later when submitting the
-complete resource payload back to the API server via `PUT` (#108).
+complete resource payload back to the API server via `PUT` ([#108](#rule-108)).
 
 When using Java with Jackson serialization, for example, that can be achieved
 by including a field in the Java class representing the API resource, like the

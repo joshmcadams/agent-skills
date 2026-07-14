@@ -29,7 +29,7 @@ Before shutting down an API, version of an API, or API feature the producer
 must make sure, that all clients have given their consent on a sunset date.
 Producers should help consumers to migrate to a potential new API or API
 feature by providing a migration manual and clearly state the time line for
-replacement availability and sunset (see also #189). Once all clients of
+replacement availability and sunset (see also [#189](#rule-189)). Once all clients of
 a sunset API feature are migrated, the producer may shut down the deprecated
 API feature.
 
@@ -49,7 +49,7 @@ API.
 Owners of an API, API version, or API feature used in production that is
 scheduled for sunset must monitor the usage of the sunset API, API version, or
 API feature in order to observe migration progress and avoid uncontrolled
-breaking effects on ongoing consumers. See also #193.
+breaking effects on ongoing consumers. See also [#193](#rule-193).
 
 
 ## SHOULD add `Deprecation` and `Sunset` header to responses {#rule-189}
@@ -57,7 +57,7 @@ breaking effects on ongoing consumers. See also #193.
 During the deprecation phase, the producer should add a
 `Deprecation: <timestamp>` (see [RFC 9745 section 2](https://tools.ietf.org/html/rfc9745#section-2))
 and - if also planned - a `Sunset: <date-time>` (see [RFC 8594 section 3](https://tools.ietf.org/html/rfc8594#section-3)) header on each response affected by a deprecated element (see
-#187).
+[#187](#rule-187)).
 
 **Note:** We explicitly discourage the use of `Link` relation headers using
 `rel="sunset|deprecation"` as defined in [RFC 9745 section 3](https://tools.ietf.org/html/rfc9745#section-3) and [RFC 8594 section 6](https://tools.ietf.org/html/rfc8594#section-6) as these do not provide a
@@ -65,7 +65,7 @@ significant benefit over the documentation provided via the API specification.
 
 The `Deprecation` header can either be set to `true` - if a feature is retired
 -, or carry a deprecation timestamp [RFC-9651 section 3.3.7](https://tools.ietf.org/html/rfc9651#section-3.3.7), at which a replacement will become/became available and consumers must
-not on-board any longer (see #191). The optional `Sunset` date carries
+not on-board any longer (see [#191](#rule-191)). The optional `Sunset` date carries
 the information when consumers latest have to stop using a feature. The sunset
 date should always offer an eligible time interval for switching to a
 replacement feature. Note, the deprecation and sunset headers use different time formats due to historic reasons:
@@ -153,12 +153,12 @@ semantics, will be obsolete with
 ## SHOULD add monitoring for `Deprecation` and `Sunset` header {#rule-190}
 
 Clients should monitor the `Deprecation` and `Sunset` headers in HTTP responses
-to get information about future sunset of APIs and API features (see #189).
+to get information about future sunset of APIs and API features (see [#189](#rule-189)).
 We recommend that client owners build alerts on this monitoring information to
 ensure alignment with service owners on required migration task.
 
 **Hint:** In earlier guideline versions, we used the `Warning` header to provide
-the deprecation info (see hint in #189).
+the deprecation info (see hint in [#189](#rule-189)).
 
 
 ## MUST not start using deprecated APIs {#rule-191}

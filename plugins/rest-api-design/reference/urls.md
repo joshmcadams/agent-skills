@@ -12,7 +12,7 @@ Guidelines for naming and designing resource paths and query parameters.
 > an `/api` prefix (e.g. `example.com/api/v1/users`). See the `NOTICE` file.
 
 Resources provided by a service should be made available under an `/api` base
-path, followed by the major version segment (see #114). The canonical shape of
+path, followed by the major version segment (see [#114](#rule-114)). The canonical shape of
 a resource path is therefore:
 
 ```http
@@ -26,7 +26,7 @@ endpoints clearly distinguished from non-API routes.
 If the service should also support non-public, internal APIs
 — for specific operational support functions, for example — we encourage
 you to maintain two different API specifications and provide
-API audience (#219).
+API audience ([#219](#rule-219)).
 
 The concrete host (and, if applicable, any additional path prefix) is part of
 deployment variant configuration and has to be declared in the
@@ -43,7 +43,7 @@ be modeled as a collection with cardinality 1 including definition of
 to make the cardinality constraint explicit.
 
 **Exception:** the *pseudo identifier* `self` used to specify a resource endpoint
-where the resource identifier is provided by authorization information (see #143).
+where the resource identifier is provided by authorization information (see [#143](#rule-143)).
 
 
 ## MUST use URL-friendly resource identifiers {#rule-228}
@@ -53,9 +53,9 @@ Resource IDs only consist of ASCII strings using letters, numbers, underscore, m
 period, and - on rare occasions - slash.
 
 **Note:** slashes are only allowed to build and signal resource identifiers
-consisting of compound keys (#241).
+consisting of compound keys ([#241](#rule-241)).
 
-**Note:** to prevent ambiguities of unnormalized paths (#136) resource
+**Note:** to prevent ambiguities of unnormalized paths ([#136](#rule-136)) resource
 identifiers must never be empty. Consequently, support of empty strings for
 path parameters is forbidden.
 
@@ -137,7 +137,7 @@ As a rule of thumb resources should be defined to cover 90% of all its client's
 use cases. A *useful* resource should contain as much information as necessary,
 but as little as possible. A great way to support the last 10% is to allow
 clients to specify their needs for more/less information by supporting
-filtering and embedding (#157).
+filtering and embedding ([#157](#rule-157)).
 
 
 ## MUST use domain-specific resource names {#rule-142}
@@ -188,7 +188,7 @@ also `/partners/{partner-id}/addresses`, `/partners/{partner-id}` and
 ```
 
 **Note:** resource identifiers may be build of multiple other resource
-identifiers (see #241).
+identifiers (see [#241](#rule-241)).
 
 **Exception:** In some situations the resource identifier is not passed as a
 path segment but  via the authorization information, e.g. an authorization
@@ -204,7 +204,7 @@ define `/employees/{empl-id}` or `/employees/{empl-id}/personal-details`.
 If a resource is best identified by a *compound key* consisting of multiple
 other resource identifiers, it is allowed to reuse the compound key in its
 natural form containing slashes instead of *technical* resource identifier in
-the resource path without violating the above rule #143 as follows:
+the resource path without violating the above rule [#143](#rule-143) as follows:
 
 ```http
 /resources/{compound-key-1}[delim-1]...[delim-n-1]{compound-key-n}
@@ -326,7 +326,7 @@ than 2000 characters.)
 
 ## MUST use snake_case (never camelCase) for query parameters {#rule-130}
 
-See also #118.
+See also [#118](#rule-118).
 
 ## MUST stick to conventional query parameters {#rule-137}
 
@@ -335,15 +335,15 @@ paginating, you must stick to the following naming conventions:
 
 - `q`: default query parameter, e.g. used by browser tab completion;
   should have an entity specific alias, e.g. sku.
-- `sort`: comma-separated list of fields (as defined by #154) to
+- `sort`: comma-separated list of fields (as defined by [#154](#rule-154)) to
   define the sort order. To indicate sorting direction, fields may be prefixed
   with `+` (ascending) or `-` (descending), e.g. /sales-orders?sort=+id.
 - `fields`: field name expression to retrieve only a subset of fields
-  of a resource. See #157 below.
+  of a resource. See [#157](#rule-157) below.
 - `embed`: field name expression to expand or embedded sub-entities,
   e.g. inside of an article entity, expand silhouette code into the silhouette
   object. Implementing `embed` correctly is difficult, so do it with care.
-  See #158 below.
+  See [#158](#rule-158) below.
 - `offset`: numeric offset of the first element provided on a page
   representing a collection request. See the *Pagination* section below.
 - `cursor`: an opaque pointer to a page, never to be inspected or

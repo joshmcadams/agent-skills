@@ -24,8 +24,8 @@ You **must** use these formats, whenever applicable:
 | `string` | `time-local` | non-UTC wall time syntactically defined as `partial-time` without `time-offset` in [RFC 3339](https://tools.ietf.org/html/rfc3339). It is typically complemented with a separate time-zone field. | `"06:43:40"` |
 | `string` | `date-time-local` | Format `date` and `time-local` separated by `"T"`. It is typically complemented with a separate time-zone field.  |`"2019-07-30T06:43:40"` |
 | `string` | `tz-id` | Time-zone id as defined by the [IANA time zone database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) standard (including daylight saving time definitions). |`"Europe/Berlin"` |
-| `string` | `duration` | defined in [RFC 3339](https://tools.ietf.org/html/rfc3339) according to [ISO 8601](https://tools.ietf.org/html/rfc3339#ref-ISO8601), see also rule #127 (#127) for details. | `"P1DT3H4S"` |
-| `string` | `period` | defined in [RFC 3339](https://tools.ietf.org/html/rfc3339) according to [ISO 8601](https://tools.ietf.org/html/rfc3339#ref-ISO8601), see also rule #127 (#127) for details. | `"2022-06-30T14:52:44/PT48H" "PT24H/2023-07-30T18:22:16.315Z" "2024-05-15T09:48:56/.."` |
+| `string` | `duration` | defined in [RFC 3339](https://tools.ietf.org/html/rfc3339) according to [ISO 8601](https://tools.ietf.org/html/rfc3339#ref-ISO8601), see also rule [#127](#rule-127) ([#127](#rule-127)) for details. | `"P1DT3H4S"` |
+| `string` | `period` | defined in [RFC 3339](https://tools.ietf.org/html/rfc3339) according to [ISO 8601](https://tools.ietf.org/html/rfc3339#ref-ISO8601), see also rule [#127](#rule-127) ([#127](#rule-127)) for details. | `"2022-06-30T14:52:44/PT48H" "PT24H/2023-07-30T18:22:16.315Z" "2024-05-15T09:48:56/.."` |
 | `string` | `password` |  | `"secret"` |
 | `string` | `email` | [RFC 5322](https://tools.ietf.org/html/rfc5322) | `"example@zalando.de"` |
 | `string` | `idn-email` | [RFC 6531](https://tools.ietf.org/html/rfc6531) | `"hello@bücher.example"` |
@@ -38,13 +38,13 @@ You **must** use these formats, whenever applicable:
 | `string` | `uri-template` | [RFC 6570](https://tools.ietf.org/html/rfc6570) | `"/users/{id}"` |
 | `string` | `iri` | [RFC 3987](https://tools.ietf.org/html/rfc3987) | `"https://bücher.example/"` |
 | `string` | `iri-reference` | [RFC 3987](https://tools.ietf.org/html/rfc3987) | `"/damenbekleidung-jacken-mäntel/"` |
-| `string` | `uuid` (#144) | [RFC 4122](https://tools.ietf.org/html/rfc4122) | `"e2ab873e-b295-11e9-9c02-..."` |
+| `string` | `uuid` ([#144](#rule-144)) | [RFC 4122](https://tools.ietf.org/html/rfc4122) | `"e2ab873e-b295-11e9-9c02-..."` |
 | `string` | `json-pointer` | [RFC 6901](https://tools.ietf.org/html/rfc6901) | `"/items/0/id"` |
 | `string` | `relative-json-pointer` | [Relative JSON pointers](https://tools.ietf.org/html/draft-handrews-relative-json-pointer) | `"1/id"` |
 | `string` | `regex` | regular expressions as defined in [ECMA 262](http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf) | `"^[a-z0-9]+$"` |
 
 **Note:** Formats `bigint` and `decimal` have been added to the OpenAPI defined formats --
-see also #171 and #169 below.
+see also [#171](#rule-171) and [#169](#rule-169) below.
 
 We add further OpenAPI formats that are useful especially in an e-commerce environment
 e.g. `language code`, `country code`, and `currency` based other ISO and IETF standards.
@@ -64,7 +64,7 @@ and everyone is encouraged to propose additions.
 
 ## MUST define a format for number and integer types {#rule-171}
 
-In #238 we added `bigint` and `decimal` to the OpenAPI defined formats.
+In [#238](#rule-238) we added `bigint` and `decimal` to the OpenAPI defined formats.
 As an implication, you must always provide one of the formats `int32`, `int64`, `bigint`
 or `float`, `double`, `decimal` when you define an API property of
 JSON type `number` or `integer`.
@@ -79,15 +79,15 @@ type with `decimal` format will translate into `BigDecimal` and `integer` type w
 ### MUST encode binary data in `base64url` {#rule-239}
 
 You may expose binary data. You must use a standard media type and data format,
-if applicable -- see Rule 168 (#168). If no standard is available, you must define
+if applicable -- see Rule 168 ([#168](#rule-168)). If no standard is available, you must define
 the binary data as `string` typed property with `binary` format using `base64url`
-encoding -- as also described in #238.
+encoding -- as also described in [#238](#rule-238).
 
 
 <a id="rule-126"></a>
 ## MUST use standard formats for date and time properties {#rule-169}
 
-As a specific case of #238, you must use the `string` typed formats
+As a specific case of [#238](#rule-238), you must use the `string` typed formats
 `date`, `time-local`, `date-time-local`, `time`, `date-time`, `duration`, or `period` for the definition of date and time properties.
 The formats are based on the standard [RFC 3339](https://tools.ietf.org/html/rfc3339) internet profile which is a
 subset of [ISO 8601](https://tools.ietf.org/html/rfc3339#ref-ISO8601).
@@ -116,7 +116,7 @@ issues with precision, e.g. whether to represent a timestamp as 1460062925,
 
 ## SHOULD use appropriate formats for date and time properties {#rule-255}
 
-When using standard formats for date and time properties (#169) you should take the following into account:
+When using standard formats for date and time properties ([#169](#rule-169)) you should take the following into account:
 
 - `date-time` should be used where an exact point-in-time is required,
 for instance, datetimes for supplier advice or specific processing events.
@@ -174,7 +174,7 @@ properties providing a time interval should be named `<time-property>_interval`.
 <a id="rule-128"></a>
 ## MUST use standard formats for country, language and currency properties {#rule-170}
 
-As a specific case of #238 you must use the following standard formats:
+As a specific case of [#238](#rule-238) you must use the following standard formats:
 
 - Country codes: [ISO 3166-1-alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) two letter country
   codes indicated via format `iso-3166-alpha-2` in the OpenAPI specification.
@@ -196,7 +196,7 @@ representations for an invoice resource. You should use
 support clients specifying via the standard HTTP headers `Accept`,
 `Accept-Language`, `Accept-Encoding` which representation is best suited for
 their use case, for example, which language of a document, representation /
-content format, or content encoding. You #172 like `application/json` or
+content format, or content encoding. You [#172](#rule-172) like `application/json` or
 `application/pdf` for defining the content format in the `Accept` header.
 
 

@@ -12,16 +12,16 @@ this point.)
 
 Common techniques include:
 
-- compression of request and response bodies (see #156)
+- compression of request and response bodies (see [#156](#rule-156))
 - querying field filters to retrieve a subset of resource attributes (see
-  #157 below)
+  [#157](#rule-157) below)
 - `ETag` and `If-Match`/`If-None-Match` headers to avoid re-fetching of
-  unchanged resources (see #182)
+  unchanged resources (see [#182](#rule-182))
 - `Prefer` header with `return=minimal` or `respond-async` to anticipate reduced
-  processing requirements of clients (see #181)
+  processing requirements of clients (see [#181](#rule-181))
 - the *Pagination* section for incremental access of larger collections of data items
 - caching of master data items, i.e. resources that change rarely or not
-  at all after creation (see #227).
+  at all after creation (see [#227](#rule-227)).
 
 Each of these items is described in greater detail below.
 
@@ -258,7 +258,7 @@ server to prefetch that data eagerly. Whether this is optimized on the
 server, e.g. a database join, or done in a generic way, e.g. an HTTP
 proxy that transparently embeds resources, is up to the implementation.
 
-See #137 for naming, e.g. "embed" for steering of embedded
+See [#137](#rule-137) for naming, e.g. "embed" for steering of embedded
 resource expansion. Please use the
 [BNF](https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form) grammar, as
 already defined above for filtering, when it comes to an embedding query
@@ -291,7 +291,7 @@ GET /order/123?embed=(items) HTTP/1.1
 ## MUST document cacheable `GET`, `HEAD`, and `POST` endpoints {#rule-227}
 
 Caching has to take many aspects into account, e.g. general *cacheability* of response information, our guideline to protect endpoints
-using SSL and OAuth authorization (#104), resource update and invalidation
+using SSL and OAuth authorization ([#104](#rule-104)), resource update and invalidation
 rules, existence of multiple consumer instances. Caching is in best case
 complex, e.g. with respect to consistency, in worst case inefficient.
 
@@ -343,14 +343,14 @@ components:
       $ref: 'https://opensource.zalando.com/restful-api-guidelines/models/headers-1.0.0.yaml#/ETag'
 ```
 
-See also #182.
+See also [#182](#rule-182).
 
 ### Cache Support Patterns
 
 To make best use of caching in micro service environments you need to provide
 efficient methods to warm up and update caches, e.g. as follows:
 
-- In general, you should support `ETag` Together With `If-Match`/`If-None-Match` Header (#182) on all *cacheable* endpoints.
+- In general, you should support `ETag` Together With `If-Match`/`If-None-Match` Header ([#182](#rule-182)) on all *cacheable* endpoints.
 - For larger data items you should support `HEAD` requests or more a bit more
   efficient `GET` requests with `If-None-Match` header to check for updates.
 - For small data sets you should provide a **get full collection** `GET` endpoint
@@ -363,13 +363,13 @@ efficient methods to warm up and update caches, e.g. as follows:
   generic client and proxy caches on HTTP layer.
 
 **Hint:** For proper cache support, you must return `304` without content on a
-failed `HEAD` or `GET` request with `If-None-Match: <entity-tag>` (#182)
-instead of `412`. For `ETag` see also #182.
+failed `HEAD` or `GET` request with `If-None-Match: <entity-tag>` ([#182](#rule-182))
+instead of `412`. For `ETag` see also [#182](#rule-182).
 
 #### Default Header Values
 
 The default setting for `Cache-Control` should contain the `private` directive
-for endpoints with standard OAuth authorization (#104), as well as the
+for endpoints with standard OAuth authorization ([#104](#rule-104)), as well as the
 `must-revalidate` directive to ensure, that the client does not use stale cache
 entries. Last, the `max-age` directive should be set to a value between a few
 seconds (`max-age=60`) and a few hours (`max-age=86400`) depending on the change

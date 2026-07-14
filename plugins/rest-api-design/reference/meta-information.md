@@ -6,14 +6,14 @@ API specifications must contain the following
 [OpenAPI meta information](https://spec.openapis.org/oas/latest.html#info-object):
 
 - `#/info/title` a (unique) identifying, functional descriptive name of the API
-- `#/info/version` the API specification document version following #116
+- `#/info/version` the API specification document version following [#116](#rule-116)
 - `#/info/description`  a proper description of the API
 - `#/info/contact/{name,url,email}` contact info of the team owning the API specification
 
 The following OpenAPI extension properties **must** be additionally provided:
 
-- `#/info/x-api-id` unique identifier of the API (see rule 215 (#215))
-- `#/info/x-audience` intended target audience of the API (see rule 219 (#219))
+- `#/info/x-api-id` unique identifier of the API (see rule 215 ([#215](#rule-215)))
+- `#/info/x-audience` intended target audience of the API (see rule 219 ([#219](#rule-219)))
 
 
 ## MUST use semantic versioning {#rule-116}
@@ -78,7 +78,7 @@ may change. We require API identifiers because we want  to support API clients
 and providers with API lifecycle management features, like change trackability
 and history or automated backward compatibility checks. The immutable API
 identifier allows the identification of all API specification versions of an
-API evolution. By using  API semantic version information (#116) or API publishing date (#192) as order criteria you get the **version** or
+API evolution. By using  API semantic version information ([#116](#rule-116)) or API publishing date ([#192](#rule-192)) as order criteria you get the **version** or
 **publication history** as a sequence of API specifications.
 
 **Note**: While it is nice to use human readable API identifiers based on
@@ -192,9 +192,9 @@ to and a unique a short identifier for the functional component itself:
 <functional-component> ::= [a-z][a-z0-9-]* -- name of API owning functional component
 ```
 
-Depending on the API audience (#219), you **must/should/may** follow the functional
-naming schema for hostnames (#224) and event names (#213)
-(and also permission names (#225), in future) as follows:
+Depending on the API audience ([#219](#rule-219)), you **must/should/may** follow the functional
+naming schema for hostnames ([#224](#rule-224)) and event names ([#213](#rule-213))
+(and also permission names ([#225](#rule-225)), in future) as follows:
 
 | **Functional Naming** | **Audience** |
 |---|---|
@@ -203,8 +203,8 @@ naming schema for hostnames (#224) and event names (#213)
 | **may** | component-internal |
 
 Please see the following rules for detailed functional naming patterns:
-- #224
-- #213
+- [#224](#rule-224)
+- [#213](#rule-213)
 
 
 **Internal Guideance**:  You *must* use the simple
@@ -221,7 +221,7 @@ managed in the registry.
 ## MUST follow naming convention for hostnames {#rule-224}
 
 Hostnames in APIs must, respectively should conform to the functional naming
-depending on the audience (#219) as follows (see #223 for details and
+depending on the audience ([#219](#rule-219)) as follows (see [#223](#rule-223) for details and
 `<functional-name>` definition):
 
 ```bnf
@@ -231,7 +231,7 @@ depending on the audience (#219) as follows (see #223 for details and
 ```
 
 **Hint:** The following convention (e.g. used by legacy STUPS infrastructure) is deprecated
-and **only** allowed for hostnames of component-internal (#219) APIs:
+and **only** allowed for hostnames of component-internal ([#219](#rule-219)) APIs:
 
 ```bnf
 <application-hostname> ::= <application-id>.<organization-unit>.zalan.do

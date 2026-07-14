@@ -27,7 +27,7 @@ components:
 
 The bearer security scheme can then be applied to all API endpoints, e.g. requiring
 the token to have `api-repository.read` scope for permission as follows (see
-also #105):
+also [#105](#rule-105)):
 
 ```yaml
 security:
@@ -51,7 +51,7 @@ because it exposes authentication server address details and may make use of red
 Endpoints must be equipped with permissions, if they require client authorization for protection
 since e.g. data is exposed that is classified as `orange` or `red` according to Zalando's
 [Data Classification Group Policy (internal link)](https://drive.google.com/file/d/1UPB0UbZP7IvcB52DVWQX41pmB7ugJdAX/view).
-Please refer to #225 for designing permission names.
+Please refer to [#225](#rule-225) for designing permission names.
 Some API endpoints may not require specific permissions for authorization e.g.
 in case of (i) authorization is *not* needed for the endpoint since all
 exposed data is classified as `green` or `yellow`,
@@ -61,7 +61,7 @@ it explicit by assigning the `uid` pseudo permission, which is always
 available as OAuth2 default scope for all clients in Zalando.
 
 The defined permissions are assigned to each API endpoint based on the
-security schema (see example in previous section (#104)) by specifying the
+security schema (see example in previous section ([#104](#rule-104))) by specifying the
 [security requirement](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/2.0.md#securityRequirementObject)
 as follows:
 
@@ -81,7 +81,7 @@ it is required and so to say implicitly defined via the security section.
 
 ## MUST follow the naming convention for permissions (scopes) {#rule-225}
 
-As long as the functional naming (#223) is not yet supported by our permission registry,
+As long as the functional naming ([#223](#rule-223)) is not yet supported by our permission registry,
 permission names in APIs must conform to the following naming pattern:
 
 ```bnf
@@ -137,7 +137,7 @@ permissions names of <<223, internal>> APIs:
 
 -->
 
-The permission naming schema corresponds to the naming schema for hostnames (#224) and event type names (#213), and typical examples are:
+The permission naming schema corresponds to the naming schema for hostnames ([#224](#rule-224)) and event type names ([#213](#rule-213)), and typical examples are:
 
 | Application ID | Resource ID | Access Type | Example |
 |---|---|---|---|

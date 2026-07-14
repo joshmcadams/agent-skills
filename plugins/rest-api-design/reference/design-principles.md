@@ -88,7 +88,7 @@ implementation optimizations at the expense of unnecessary client side
 obligations, and have a high attention on API quality and client
 developer experience.
 
-API as a Product is closely related to our API First principle (#100)
+API as a Product is closely related to our API First principle ([#100](#rule-100))
 (see next chapter) which is more focused on how we engineer high quality APIs.
 
 

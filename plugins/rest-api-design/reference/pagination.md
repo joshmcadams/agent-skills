@@ -19,11 +19,11 @@ There are two well known page iteration techniques:
 The technical conception of pagination should also consider user experience
 (see [Pagination Usability Findings In eCommerce](https://www.smashingmagazine.com/2016/03/pagination-infinite-scrolling-load-more-buttons/)), for
 instance, jumping to a specific page is far less used than navigation via
-`next`/`prev` page links (see #161). This favors an API design using
-cursor-based instead of offset-based pagination -- see #160.
+`next`/`prev` page links (see [#161](#rule-161)). This favors an API design using
+cursor-based instead of offset-based pagination -- see [#160](#rule-160).
 
 **Note:** To provide a consistent look and feel of pagination patterns,
-you must stick to the common query parameter names defined in #137.
+you must stick to the common query parameter names defined in [#137](#rule-137).
 
 
 
@@ -63,7 +63,7 @@ the *cursor-based pagination* section below).
 ## SHOULD use pagination response page object {#rule-248}
 
 For iterating over collections (result sets) we propose to either use cursors
-(see #160) or simple hypertext control links (see #161). To implement
+(see [#160](#rule-160)) or simple hypertext control links (see [#161](#rule-161)). To implement
 these in a consistent way, we have defined a response page object pattern with
 the following field semantics:
 
@@ -88,8 +88,8 @@ For responses to `GET with body` operations, the applied query filters **should*
   request to filter the collection resource. This can be directly used as the
   request body when following the pagination links.
 
-In conclusion, the standard response page using plain cursors (#160) or
-pagination links (#161) may be defined as follows:
+In conclusion, the standard response page using plain cursors ([#160](#rule-160)) or
+pagination links ([#161](#rule-161)) may be defined as follows:
 
 ```yaml
 ResponsePage:
@@ -136,12 +136,12 @@ ResponsePage:
 
 **Note:** While you may support plain cursors for `next`, `prev`, `first`, `last`, and
 `self`, it is best practice to replace these with pagination links -- see
-#161.
+[#161](#rule-161).
 
 
 ## SHOULD use pagination links {#rule-161}
 
-To simplify client design, APIs should support simplified hypertext controls (#165) as standard pagination links where applicable:
+To simplify client design, APIs should support simplified hypertext controls ([#165](#rule-165)) as standard pagination links where applicable:
 
 ```json
 {
@@ -162,9 +162,9 @@ For `GET with body` operations, the `query` object can to be used as a request
 body with either of these links. (It should be equivalent to just resend
 the original body.)
 
-See also #248 for details on the pagination fields and page result object.
+See also [#248](#rule-248) for details on the pagination fields and page result object.
 
-See also #217 for what kind of URLs to use (absolute ones, with the same base
+See also [#217](#rule-217) for what kind of URLs to use (absolute ones, with the same base
 URL as the original request).
 
 ## SHOULD avoid a total result count {#rule-254}
@@ -183,4 +183,4 @@ in the first place.
 
 If your consumer really requires a total result count in the response, you may
 support this requirement via the `Prefer` header adding the directive
-`return=total-count` (see also #181).
+`return=total-count` (see also [#181](#rule-181)).

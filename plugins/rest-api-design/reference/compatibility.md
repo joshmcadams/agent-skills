@@ -15,8 +15,8 @@ There are two techniques to change APIs without breaking them:
   [deprecation](https://opensource.zalando.com/restful-api-guidelines/#deprecation)
 
 We strongly encourage using compatible API extensions and discourage versioning
-(see #113 and #114 below). The following guidelines for service providers
-(#107) and consumers (#108) enable us (having Postel’s Law in mind) to
+(see [#113](#rule-113) and [#114](#rule-114) below). The following guidelines for service providers
+([#107](#rule-107)) and consumers ([#108](#rule-108)) enable us (having Postel’s Law in mind) to
 make compatible changes without versioning.
 
 **Note:** There is a difference between incompatible and breaking changes.
@@ -44,7 +44,7 @@ In general:
 
 - Never change the semantic of fields (e.g. changing the semantic from
   customer-number to customer-id, as both are different unique customer keys)
-- Consider #251 in case a URL has to change.
+- Consider [#251](#rule-251) in case a URL has to change.
 
 The compatibility of schema changes depends on whether the input and/or output objects are defined.
 
@@ -70,7 +70,7 @@ For schemas used in output only:
 - `enum` ranges can be reduced.
 - `enum` ranges **cannot** be extended — clients may
   not be prepared to handle it.
-- You should use #112 for enumerations that are used for output parameters and likely to
+- You should use [#112](#rule-112) for enumerations that are used for output parameters and likely to
   be extended with growing functionality. The API specification should be updated
   first before returning new values.
 
@@ -88,7 +88,7 @@ are allowed in both input and output.
   make sure that all constraints are clearly defined in description.
 - `enum` ranges can be reduced only if the server is ready to still accept and
    handle old values. They **cannot** be extended.
-- You should use #112 for enumerations that are used for output parameters and likely to
+- You should use [#112](#rule-112) for enumerations that are used for output parameters and likely to
   be extended with growing functionality. The API definition should be updated
   first before returning new values.
 
@@ -155,7 +155,7 @@ Service clients should apply the robustness principle:
     ["TolerantReader"](http://martinfowler.com/bliki/TolerantReader.html) post),
     i.e. ignore new fields but do not eliminate them from payload if needed for
     subsequent `PUT` requests.
-  - Be prepared that extensible enum (#112) return parameters
+  - Be prepared that extensible enum ([#112](#rule-112)) return parameters
     may deliver new values;
     either be agnostic or provide default behavior for unknown values, and
     do not eliminate them when passed to subsequent `PUT` requests.
@@ -185,7 +185,7 @@ is not required to make an object definition extensible:
   ignore fields sent by the server they cannot process. This allows API
   servers to evolve their data formats.
 - For API servers receiving unexpected data, the situation is slightly
-  different. According to #109, instead of ignoring fields,
+  different. According to [#109](#rule-109), instead of ignoring fields,
   servers *should* reject requests whose entities contain undefined fields
   in order to signal to clients that those fields would not be stored on behalf
   of the client.
@@ -198,7 +198,7 @@ prevents objects being extended in the future.
 
 Note that this guideline concentrates on default extensibility and does not
 exclude the use of `additionalProperties` with a schema as a value, which might
-be appropriate in some circumstances, e.g. see #216.
+be appropriate in some circumstances, e.g. see [#216](#rule-216).
 
 
 ## SHOULD avoid versioning {#rule-113}
@@ -232,9 +232,9 @@ we strongly recommend to only use the first two approaches.
 > with API gateways, and is highly visible. See the top-level `NOTICE` file.
 
 When API versioning is unavoidable — i.e. when you cannot make a change in a
-compatible way (see #113) — you have to design your multi-version RESTful APIs
+compatible way (see [#113](#rule-113)) — you have to design your multi-version RESTful APIs
 using **URL versioning**: include the **major** version number as a path segment
-placed immediately after the `/api` base path (see #135), of the form
+placed immediately after the `/api` base path (see [#135](#rule-135)), of the form
 `v<major>`.
 
 ```http
@@ -248,20 +248,20 @@ Rules for URL versioning:
   zeros: `v1`, `v2`, `v3`, … It contains the **major** version only.
 - Minor, backward-compatible changes **MUST NOT** change the URL. Only
   incompatible (breaking) changes justify a new major version, and versioning
-  itself should be avoided wherever a compatible change is possible (see #113).
+  itself should be avoided wherever a compatible change is possible (see [#113](#rule-113)).
 - All resources belonging to one API share the same major version segment; do
   not mix versions of the same API under a single deployment.
 - Because the version lives in the path, the media type stays the plain
-  `application/json` (see #172) — the version is **not** encoded in the
+  `application/json` (see [#172](#rule-172)) — the version is **not** encoded in the
   `Content-Type`/`Accept` header.
 - When you introduce a new major version, operate it in parallel with the
   previous version and migrate consumers using the deprecation process (see the
   *Deprecation* chapter). Prefer, where feasible, the compatible alternatives in
-  #113 (new resource variant, or a new service) over a new URL version.
+  [#113](#rule-113) (new resource variant, or a new service) over a new URL version.
 
 > **Note:** This versioning method applies to the resource path. Individual
 > incompatible schema changes should still be avoided in favor of compatible
-> extension (see #106, #107, #108); a new URL version is the tool of last resort
+> extension (see [#106](#rule-106), [#107](#rule-107), [#108](#rule-108)); a new URL version is the tool of last resort
 > for genuinely breaking changes.
 
 Further reading:
@@ -273,7 +273,7 @@ approaches to handle breaking changes without being opinionated.
 
 > **Adaptation:** This rule reverses the original Zalando guideline (originally
 > "MUST NOT use URL versioning"). Because this adaptation versions via the URL
-> (see #114), it does **not** use media type versioning. See the `NOTICE` file.
+> (see [#114](#rule-114)), it does **not** use media type versioning. See the `NOTICE` file.
 
 Do not encode API version information in the media type via the
 `Accept`/`Content-Type` headers, e.g. avoid
@@ -282,8 +282,8 @@ types. Media type / content-negotiation versioning is less visible, harder to
 exercise from a browser or simple client, and interacts awkwardly with API
 gateways and caches.
 
-Instead, carry the major version in the URL path (see #114) and keep the media
-type as the standard `application/json` (see #172).
+Instead, carry the major version in the URL path (see [#114](#rule-114)) and keep the media
+type as the standard `application/json` (see [#172](#rule-172)).
 
 
 ## MUST always return JSON objects as top-level data structures {#rule-110}
@@ -292,9 +292,9 @@ In a response body, you must always return a JSON object (and not e.g. an
 array) as a top level data structure to support future extensibility. JSON
 objects support compatible extension by additional attributes. This allows you
 to easily extend your response and e.g. add pagination later, without breaking
-backwards compatibility. See #161 for an example.
+backwards compatibility. See [#161](#rule-161) for an example.
 
-Maps (see #216), even though technically objects, are also forbidden as top
+Maps (see [#216](#rule-216)), even though technically objects, are also forbidden as top
 level data structures, since they don't support compatible, future extensions.
 
 
@@ -331,21 +331,21 @@ delivery_method:
   description: [Extensible enum](https://opensource.zalando.com/restful-api-guidelines/#112). The chosen delivery method of the invoice.
 ```
 
-See #240 about enum value naming conventions – these apply here too.
+See [#240](#rule-240) about enum value naming conventions – these apply here too.
 
 
 **Important**:
 
 - API consumers must be prepared for the fact that also other values can be returned
   with server responses (or be contained in consumed events), and implement a
-  fallback / default behavior for unknown new values, see  #108.
+  fallback / default behavior for unknown new values, see  [#108](#rule-108).
 - API owners must take care to extend these extensible enums in a compatible way, i.e.
   not changing the semantics of already existing / documented values.
 - API implementations should validate the values provided with the input payload
   and only accept values listed in `examples`.
 - The list should not be reduced for inputs (that would be an incompatible change).
 - Before additional values are accepted or returned, API owners should update the API description and extend
-  the `examples` list, see #107.
+  the `examples` list, see [#107](#rule-107).
 
 (Note that the last 3 bullet points do not apply for uses of `examples` *without* the
  "Extensible enum." prefix in the description – here any value fitting the rest
