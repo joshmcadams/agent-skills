@@ -301,7 +301,7 @@ components:
           The **If-None-Match header** field is used to declare a list of identifiers
           that are required to fail matching all the current resource version
           identifiers as a pre-condition for executing the request on the server
-          side. This is especially used in conjunction with an **\*** (asterix) that
+          side. This is especially used in conjunction with an **\*** (asterisk) that
           is matching all possible resource identifiers to ensure the initial
           creation of a resource. Other use cases are possible but rare.
 

@@ -256,7 +256,7 @@ If a sub-resource is only accessible via its parent resource and may not exist
 without parent resource, consider using a nested URL structure, for instance:
 
 ```http
-/shoping-carts/de/1681e6b88ec1/cart-items/1
+/shopping-carts/de/1681e6b88ec1/cart-items/1
 ```
 
 However, if the resource can be accessed directly via its unique id, then the
