@@ -16,6 +16,7 @@ comply with the adapted Zalando REST API Guidelines bundled with this plugin.
 > [shared adaptation notice](../../ADAPTATION.md) for the two deviations
 > from upstream Zalando that are authoritative for all skills in this plugin.
 
+This skill **modifies the API artifact**. Produce the edited file(s) and a short summary of every change made.
 ## Arguments
 
 `$ARGUMENTS` is a single path-like token — **never split it on spaces**; the `/`

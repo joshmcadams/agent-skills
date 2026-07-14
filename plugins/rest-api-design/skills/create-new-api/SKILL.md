@@ -17,6 +17,7 @@ first resource collection, problem+json errors, and OAuth2/bearer security.
 > [shared adaptation notice](../../ADAPTATION.md) for the two deviations
 > from upstream Zalando that are authoritative for all skills in this plugin.
 
+This skill **modifies the API artifact**. Produce the edited file(s) and a short summary of every change made.
 ## Arguments
 
 `$ARGUMENTS` (optional) is a human name/slug for the new API, e.g. `orders` or

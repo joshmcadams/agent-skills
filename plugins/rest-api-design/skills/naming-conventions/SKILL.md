@@ -15,6 +15,7 @@ parameters, and JSON property names. The rules below are self-contained; the
 > [shared adaptation notice](../../ADAPTATION.md) for the two deviations
 > from upstream Zalando that are authoritative for all skills in this plugin.
 
+This is a **knowledge** skill — it produces guidance and reference material, not edits to an artifact. Advise; do not modify files unless asked.
 ## Path & resource names
 
 - **kebab-case path segments** matching `^[a-z][a-z\-0-9]*$` (#129): first char a

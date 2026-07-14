@@ -15,6 +15,7 @@ rules when designing or reviewing how an API is secured.
 > [shared adaptation notice](../../ADAPTATION.md) for the two deviations
 > from upstream Zalando that are authoritative for all skills in this plugin.
 
+This is a **knowledge** skill — it produces guidance and reference material, not edits to an artifact. Advise; do not modify files unless asked.
 ## Rules
 
 1. **Secure every endpoint (#104).** Every endpoint MUST be protected with

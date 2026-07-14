@@ -14,6 +14,7 @@ own; cite the bundled chapter only for full detail.
 > [shared adaptation notice](../../ADAPTATION.md) for the two deviations
 > from upstream Zalando that are authoritative for all skills in this plugin.
 
+This is a **knowledge** skill — it produces guidance and reference material, not edits to an artifact. Advise; do not modify files unless asked.
 ## Rules
 
 - [ ] **Paginate every collection** that can grow beyond a few hundred entries

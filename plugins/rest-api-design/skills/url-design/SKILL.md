@@ -15,6 +15,7 @@ compound keys, and query parameters. The rules below are self-contained; the
 > [shared adaptation notice](../../ADAPTATION.md) for the two deviations
 > from upstream Zalando that are authoritative for all skills in this plugin.
 
+This is a **knowledge** skill — it produces guidance and reference material, not edits to an artifact. Advise; do not modify files unless asked.
 ## Base path & versioning (the deviations — design these first)
 
 - **`/api` base path** (#135): serve all resources under `/api`. This keeps API

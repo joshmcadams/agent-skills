@@ -17,6 +17,7 @@ edit the artifact and summarize the change.
 > [shared adaptation notice](../../ADAPTATION.md) for the two deviations
 > from upstream Zalando that are authoritative for all skills in this plugin.
 
+This skill **modifies the API artifact**. Produce the edited file(s) and a short summary of every change made.
 ## Arguments
 
 `$ARGUMENTS` (optional) names the operation to add as a `METHOD path` pair, e.g.

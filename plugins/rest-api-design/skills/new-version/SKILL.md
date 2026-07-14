@@ -18,6 +18,7 @@ cannot be made compatibly.
 > [shared adaptation notice](../../ADAPTATION.md) for the two deviations
 > from upstream Zalando that are authoritative for all skills in this plugin.
 
+This skill **modifies the API artifact**. Produce the edited file(s) and a short summary of every change made.
 ## Arguments
 
 `$ARGUMENTS` is the target major version, e.g. `2` or `v2`. **Normalize both to
