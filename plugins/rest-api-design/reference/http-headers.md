@@ -6,8 +6,8 @@ used effectively.
 
 **Note:** we generally discourage the usage of proprietary headers. However,
 they are sometimes useful to pass generic, service independent, overarching
-information relevant for our specific application architecture. We consistently
-define these proprietary headers below.
+information relevant for a specific application architecture. These are
+addressed in [#183](#rule-183).
 
 Whether a service supports a certain header is part of the service contract.
 Therefore APIs should use the `parameters` and `headers` definition of the API
@@ -407,71 +407,47 @@ is not standardized in an RFC. Our only reference are the usage in the
 However, we do not want to change the header name and semantic, and
 do not name it like the proprietary headers below.
 The header addresses a generic REST concern and is different from the
-Zalando landscape specific proprietary headers.
+domain-specific proprietary headers discussed in [#183](#rule-183).
 
 
-## SHOULD use only the specified proprietary Zalando headers {#rule-183}
+## SHOULD avoid proprietary headers {#rule-183}
 
-As a general rule, proprietary HTTP headers should be avoided. In addition
-from a conceptual point of view, the business semantics and intent of an
-operation should always be expressed via the path and query parameters, the
-method, and the content, but not via proprietary headers.
+As a general rule, proprietary HTTP headers should be avoided. From a conceptual
+point of view, the business semantics and intent of an operation should always be
+expressed via the path and query parameters, the method, and the content, but not
+via proprietary headers.
 
 Headers are typically used to implement protocol processing aspects, such as
 flow control, content negotiation, and authentication, and represent business
 agnostic request modifiers that provide generic context information
 ([RFC 9110 Section 10 "Message Context"](https://tools.ietf.org/html/rfc9110#section-10)).
 
-However, the exceptional usage of proprietary headers is still helpful when
-domain-specific generic context information
+However, the exceptional usage of proprietary headers may be helpful when
+domain-specific generic context information:
 
 1. needs to be passed *end-to-end* along the service call chain (even if not
-   all called services use it as input for steering service behavior, e.g.
-   `X-Sales-Channel` header), and/or
-2. is provided by specific gateway components, for instance, our Fashion Shop
-   API or Merchant API gateway.
+   all called services use it as input for steering service behavior), and/or
+2. is provided by specific gateway components that enrich requests with context
+   before they reach your service.
 
-Below, we explicitly define the list of proprietary headers usable for all
-services for passing through generic context information of our fashion domain
-(use case 1).
+If you define proprietary headers, keep the following conventions:
 
-Per convention, non standardized, proprietary header names are prefixed with
-`X-` and use the dash (`-`) as separator (dash-case). (Due to backward
-compatibility, we do not follow the recommendation of Internet Engineering
-Task Force in [RFC 6648](https://tools.ietf.org/html/rfc6648) to deprecate the usage of  `X-`headers.)
-Remember that HTTP header field names are not case-sensitive:
+- Per convention, non-standardized proprietary header names are prefixed with
+  `X-` and use the dash (`-`) as separator (dash-case). Note: [RFC 6648](https://tools.ietf.org/html/rfc6648) deprecates the `X-` prefix, but it remains a widely recognized convention.
+- HTTP header field names are case-insensitive (see [RFC 9110 Section 5.1](https://tools.ietf.org/html/rfc9110#section-5.1)), though for readability you should follow kebab-case with uppercase separate words ([#132](#rule-132)).
+- Document the header's purpose, allowed values, and propagation expectations
+  (see [#184](#rule-184)) in your API specification.
+- Consistently prefix organization- or domain-specific headers to avoid
+  collisions with headers from other services or teams.
 
-| Header field name | Type | Description | Header field value example |
-|---|---|---|---|
-| `X-Flow-ID` | String | For more information see [#233](#rule-233). | GKY7oDhpSiKY_gAAAABZ_A |
-| `X-Tenant-ID` | String | Identifies the tenant initiated the request to the multi tenant Zalando Platform. The `X-Tenant-ID` must be set according to the Business Partner ID extracted from the OAuth token when a request from a Business Partner hits the Zalando Platform. | 9f8b3ca3-4be5-436c-a847-9cd55460c495 |
-| `X-Sales-Channel` | String | Sales channels are owned by retailers and represent a specific consumer segment being addressed with a specific product assortment that is offered via CFA retailer catalogs to consumers (see [fashion platform glossary (internal link)](https://digital-experience.docs.zalando.net/glossary/glossary.html)). | 52b96501-0f8d-43e7-82aa-8a96fab134d7 |
-| `X-Frontend-Type` | String | Consumer facing applications (CFAs) provide business experience to their customers via different frontend application types, for instance, mobile app or browser. Info should be passed-through as generic aspect -- there are diverse concerns, e.g. pushing mobiles with specific coupons, that make use of it. Current range is mobile-app, browser, facebook-app, chat-app, email. | mobile-app |
-| `X-Device-Type` | String | There are also use cases for steering customer experience (incl. features and content) depending on device type. Via this header info should be passed-through as generic aspect. Current range is smartphone, tablet, desktop, other. | tablet |
-| `X-Device-OS` | String | On top of device type above, we even want to differ between device platform, e.g. smartphone Android vs. iOS. Via this header info should be passed-through as generic aspect. Current range is iOS, Android, Windows, Linux, MacOS. | Android |
-| `X-Mobile-Advertising-ID` | String | It is either the [IDFA](https://developer.apple.com/documentation/adsupport/asidentifiermanager) (Apple Identifier for mobile Advertising) for iOS, or the [GAID](https://support.google.com/googleplay/android-developer/answer/6048248) (Google mobile Advertising Identifier) for Android. It is a unique, customer-resettable identifier provided by mobile device’s operating system to facilitate personalized advertising, and usually passed by mobile apps via HTTP header when calling backend services. Called services should be ready to pass this parameter through when calling other services. It is not sent if the customer disables it in the settings for respective mobile platform. | b89fadce-1f42-46aa-9c83-b7bc49e76e1f |
-
-**Exception:** The only exception to this guideline are the conventional
-hop-by-hop `X-RateLimit-` headers which can be used as defined in [#153](#rule-153).
-
-As part of the guidelines we provide the default definition of all proprietary
-headers, so you can simply reference them when defining the API endpoint. For
-details see the *Using Standard Header definitions* section.
-
-**Hint:** This guideline does not standardize proprietary headers for our
-specific gateway components (2. use case above). This include, for instance,
-non pass-through headers `X-Zalando-Customer`, `X-Zalando-Client-ID`,
-`X-Zalando-Request-Host`, `X-Zalando-Request-URI` defined by Fashion Shop API
-(RKeep), or `X-Consumer`, `X-Consumer-Signature`, `X-Consumer-Key-ID` defined
-by Merchant API gateway, or `X-App-Version`, `X-Country-Code`, `X-Zalando-Auth`,
-`X-Forwarded-For` defined by Transactions Checkout Platform. All these proprietary
-headers are allow-listed in the API Linter (Zally) checking this rule.
+**Exception:** The conventional hop-by-hop `X-RateLimit-` headers can be used as
+defined in [#153](#rule-153).
 
 
 ## MUST propagate proprietary headers {#rule-184}
 
-All Zalando's proprietary headers defined in [#183](#rule-183) are end-to-end headers[^header-types] and must be propagated to the services down the call
-chain. The header names and values must remain unchanged.
+Proprietary headers defined as end-to-end headers[^header-types] must be propagated
+to the services down the call chain. The header names and values must remain unchanged.
 
 The values of custom headers can influence query results (e.g. `X-Device-Type` can
 affect recommendation results by conveying device‑type information).
@@ -484,24 +460,22 @@ information.
 [^header-types]: HTTP/1.1 standard ([RFC 9110 Section 7.6.1](https://tools.ietf.org/html/rfc9110#section-7.6.1)) defines two types of headers: *end-to-end* and *hop-by-hop* headers. End-to-end headers must be transmitted to the ultimate recipient of a request or response. Hop-by-hop headers, on the contrary, are meaningful for a single connection only.
 
 
-## MUST support `X-Flow-ID` {#rule-233}
+## MUST support a correlation ID header {#rule-233}
 
-The `Flow-ID` is a generic parameter to be passed through service APIs and
-events and written into log files and traces. A consequent usage of the
-`Flow-ID` facilitates the tracking of call flows through our system and allows
-the correlation of service activities initiated by a specific call. This is
-extremely helpful for operational troubleshooting and log analysis. Main use
-case of `Flow-ID` is to track service calls of our SaaS fashion commerce
-platform and initiated internal processing flows (executed synchronously via
-APIs or asynchronously via published events).
-
+A correlation ID (often called a Flow-ID or Request-ID) is a generic parameter to
+be passed through service APIs and events and written into log files and traces.
+Consistent use of a correlation ID facilitates the tracking of call flows through
+a system and allows the correlation of service activities initiated by a specific
+call. This is valuable for operational troubleshooting and log analysis, and
+supports distributed tracing.
 
 ### Data Definition
 
-The `Flow-ID` must be passed through:
+The correlation ID must be passed through:
 
-- RESTful API requests via `X-Flow-ID` proprietary header (see [#184](#rule-184))
-- Published events via `flow_id` event field (see the *metadata* section)
+- RESTful API requests via a proprietary header (see [#184](#rule-184)), commonly
+  named `X-Flow-ID`, `X-Request-ID`, or `X-Correlation-ID`
+- Published events via a `flow_id` or equivalent field in the event metadata
 
 The following formats are allowed:
 
@@ -511,34 +485,25 @@ The following formats are allowed:
 - Random unique string restricted to the character set `[a-zA-Z0-9/+_-=]`
   maximal of 128 characters.
 
-**Note:** If a legacy subsystem can only process `Flow-IDs` with a specific
+**Note:** If a legacy subsystem can only process correlation IDs with a specific
 format or length, it must define this restriction in its API specification,
-and be generous and remove invalid characters or cut the length to the
+and be generous — remove invalid characters or cut the length to the
 supported limit.
-
-**Hint:** In case distributed tracing is supported by
-[OpenTracing (internal link)](https://github.bus.zalan.do/SRE/opentracing) you should ensure that created
-*spans* are tagged using `flow_id` — see
-[How to Connect Log Output with OpenTracing Using Flow-IDs (internal link)](https://github.bus.zalan.do/SRE/opentracing/blob/master/wg-semantic-conventions/best-practices/flowid.md)  or
-[Best practices (internal link)](https://github.bus.zalan.do/SRE/opentracing/blob/master/wg-semantic-conventions/best-practices.md).
-
 
 ### Service Guidance
 
-- Services **must** support `Flow-ID` as generic input, i.e.
-  - RESTful API endpoints **must** support `X-Flow-ID` header in requests
-  - Event listeners **must** support the metadata `flow-id` from events.
+- Services **must** support the correlation ID as generic input, i.e.
+  - RESTful API endpoints **must** support the correlation ID header in requests
+  - Event listeners **must** support the correlation ID from event metadata.
 
+**Note:** API clients **must** provide the correlation ID when calling a service or
+producing events. If no correlation ID is provided in a request or event, the
+service must create a new one.
 
-**Note:** API-Clients **must** provide `Flow-ID` when calling a service or
-producing events. If no `Flow-ID` is provided in a request or event, the
-service must create a new `Flow-ID`.
-
-- Services **must** propagate `Flow-ID`, i.e. use `Flow-ID` received
+- Services **must** propagate the correlation ID, i.e. use the ID received
   with API calls or consumed events as...
-  - input for all API called and events published during processing
-  - data field written for logging and tracing
+  - input for all APIs called and events published during processing
+  - a data field written for logging and tracing
 
-**Hint:** This rule also applies to application internal interfaces and events
-not published via Nakadi (but e.g. via AWS SQS, Kinesis or service specific
-DB solutions).
+**Hint:** This rule also applies to application-internal interfaces and events, not
+just externally-facing APIs.
