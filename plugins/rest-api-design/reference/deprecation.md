@@ -49,7 +49,7 @@ API.
 Owners of an API, API version, or API feature used in production that is
 scheduled for sunset must monitor the usage of the sunset API, API version, or
 API feature in order to observe migration progress and avoid uncontrolled
-breaking effects on ongoing consumers. See also [#193](#rule-193).
+breaking effects on ongoing consumers. See also [#193](api-operation.md#rule-193).
 
 
 ## SHOULD add `Deprecation` and `Sunset` header to responses {#rule-189}

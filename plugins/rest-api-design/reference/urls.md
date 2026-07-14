@@ -12,7 +12,7 @@ Guidelines for naming and designing resource paths and query parameters.
 > an `/api` prefix (e.g. `example.com/api/v1/users`). See the `NOTICE` file.
 
 Resources provided by a service should be made available under an `/api` base
-path, followed by the major version segment (see [#114](#rule-114)). The canonical shape of
+path, followed by the major version segment (see [#114](compatibility.md#rule-114)). The canonical shape of
 a resource path is therefore:
 
 ```http
@@ -26,7 +26,7 @@ endpoints clearly distinguished from non-API routes.
 If the service should also support non-public, internal APIs
 — for specific operational support functions, for example — we encourage
 you to maintain two different API specifications and provide
-API audience ([#219](#rule-219)).
+API audience ([#219](meta-information.md#rule-219)).
 
 The concrete host (and, if applicable, any additional path prefix) is part of
 deployment variant configuration and has to be declared in the
@@ -137,7 +137,7 @@ As a rule of thumb resources should be defined to cover 90% of all its client's
 use cases. A *useful* resource should contain as much information as necessary,
 but as little as possible. A great way to support the last 10% is to allow
 clients to specify their needs for more/less information by supporting
-filtering and embedding ([#157](#rule-157)).
+filtering and embedding ([#157](performance.md#rule-157)).
 
 
 ## MUST use domain-specific resource names {#rule-142}
@@ -328,7 +328,7 @@ than 2000 characters.)
 
 Query parameter names must use snake_case (e.g. `sort_order`, `created_at`)
 and never camelCase (e.g. `sortOrder`, `createdAt`). This keeps query parameter
-naming consistent with JSON property naming conventions (see [#118](#rule-118)).
+naming consistent with JSON property naming conventions (see [#118](json-guidelines.md#rule-118)).
 
 ## MUST stick to conventional query parameters {#rule-137}
 
@@ -337,15 +337,15 @@ paginating, you must stick to the following naming conventions:
 
 - `q`: default query parameter, e.g. used by browser tab completion;
   should have an entity specific alias, e.g. sku.
-- `sort`: comma-separated list of fields (as defined by [#154](#rule-154)) to
+- `sort`: comma-separated list of fields (as defined by [#154](http-requests.md#rule-154)) to
   define the sort order. To indicate sorting direction, fields may be prefixed
   with `+` (ascending) or `-` (descending), e.g. /sales-orders?sort=+id.
 - `fields`: field name expression to retrieve only a subset of fields
-  of a resource. See [#157](#rule-157) below.
+  of a resource. See [#157](performance.md#rule-157) below.
 - `embed`: field name expression to expand or embedded sub-entities,
   e.g. inside of an article entity, expand silhouette code into the silhouette
   object. Implementing `embed` correctly is difficult, so do it with care.
-  See [#158](#rule-158) below.
+  See [#158](performance.md#rule-158) below.
 - `offset`: numeric offset of the first element provided on a page
   representing a collection request. See the *Pagination* section below.
 - `cursor`: an opaque pointer to a page, never to be inspected or

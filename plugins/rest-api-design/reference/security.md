@@ -132,7 +132,7 @@ permissions names of <<223, internal>> APIs:
 
 -->
 
-The permission naming schema corresponds to the naming schema for hostnames ([#224](#rule-224)) and event type names ([#213](#rule-213)), and typical examples are:
+The permission naming schema corresponds to the naming schema for hostnames ([#224](meta-information.md#rule-224)) and event type names ([#213](events.md#rule-213)), and typical examples are:
 
 | Application ID | Resource ID | Access Type | Example |
 |---|---|---|---|

@@ -117,7 +117,7 @@ The `Content-Location` header can be used to support the following use cases:
 
 - For reading operations `GET` and `HEAD`, a different location than the
   requested URL can be used to indicate that the returned resource is subject
-  to content negotiations ([#244](#rule-244)), and that the value provides a more specific
+  to content negotiations ([#244](data-formats.md#rule-244)), and that the value provides a more specific
   identifier of the resource.
 - For writing operations `PUT` and `PATCH`, an identical location to the
   requested URL can be used to explicitly indicate that the returned resource
@@ -137,7 +137,7 @@ Content-Type: image/png
 Content-Location: /products/123/images?format=raw
 ```
 
-See also [#227](#rule-227).
+See also [#227](performance.md#rule-227).
 
 
 ## MAY consider to support `Prefer` header to handle processing preferences {#rule-181}
@@ -441,7 +441,7 @@ If you define proprietary headers, keep the following conventions:
   collisions with headers from other services or teams.
 
 **Exception:** The conventional hop-by-hop `X-RateLimit-` headers can be used as
-defined in [#153](#rule-153).
+defined in [#153](http-status-codes-and-errors.md#rule-153).
 
 
 ## MUST propagate proprietary headers {#rule-184}

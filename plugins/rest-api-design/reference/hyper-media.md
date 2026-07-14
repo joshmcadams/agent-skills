@@ -7,10 +7,10 @@ We strive for a good implementation of
 make full use of HTTP verbs and status codes. You can see this expressed
 by many rules throughout these guidelines, e.g.:
 
-- [#138](#rule-138)
-- [#141](#rule-141)
-- [#148](#rule-148)
-- [#150](#rule-150)
+- [#138](urls.md#rule-138)
+- [#141](urls.md#rule-141)
+- [#148](http-requests.md#rule-148)
+- [#150](http-status-codes-and-errors.md#rule-150)
 
 Although this is not HATEOAS, it should not prevent you from designing
 proper link relationships in your APIs as stated in rules below.
@@ -29,7 +29,7 @@ also
 [RESTistential Crisis over Hypermedia APIs](https://www.infoq.com/news/2014/03/rest-at-odds-with-web-apis),
 [Why I Hate HATEOAS](https://jeffknupp.com/blog/2014/06/03/why-i-hate-hateoas/) and others for a detailed discussion):
 
-- We follow the API First principle ([#100](#rule-100)) with APIs explicitly defined
+- We follow the API First principle ([#100](general-guidelines.md#rule-100)) with APIs explicitly defined
   outside the code with standard specification language. HATEOAS does not
   really add value for SOA client engineers in terms of API
   self-descriptiveness: a client engineer finds necessary links and usage
@@ -54,7 +54,7 @@ also
 However, we do not forbid HATEOAS; you could use it, if you checked its
 limitations and still see clear value for your usage scenario that justifies
 its additional complexity. If you use HATEOAS please share experience and
-present your findings in the [API Guild (internal_link)](https://api.docs.zalando.net/).
+present your findings with your API governance group.
 
 
 ## MUST use common hypertext controls {#rule-164}
@@ -131,7 +131,7 @@ cognitive overhead. It consists of a simple URI value in combination with the
 corresponding [link relations](http://www.iana.org/assignments/link-relations), e.g. `next`, `prev`, `first`,
 `last`, or `self`.
 
-See [#164](#rule-164) and [#161](#rule-161) for more information and examples.
+See [#164](#rule-164) and [#161](pagination.md#rule-161) for more information and examples.
 
 
 ## MUST use full, absolute URI for resource identification (with same host, if applicable) {#rule-217}
@@ -143,7 +143,7 @@ URI uses an absolute or relative path) introduces avoidable client side
 complexity. It also requires clarity on the base URI, which might not be given
 when using features like embedding subresources. The primary advantage of
 non-absolute URI is reduction of the payload size, which is better achievable
-by following the recommendation to use [gzip compression]([#156](#rule-156))
+by following the recommendation to use [gzip compression]([#156](performance.md#rule-156))
 
 If the linked resource belongs to the same [API](https://opensource.zalando.com/restful-api-guidelines/#terminology) i.e. running service, the link should use the same scheme + host + port combination as the original request URI. (This only comes into play when the API is available at e.g. multiple host names.)
 

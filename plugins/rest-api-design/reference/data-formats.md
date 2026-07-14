@@ -27,13 +27,13 @@ You **must** use these formats, whenever applicable:
 | `string` | `duration` | defined in [RFC 3339](https://tools.ietf.org/html/rfc3339) according to [ISO 8601](https://tools.ietf.org/html/rfc3339#ref-ISO8601), see also rule [#127](#rule-127) ([#127](#rule-127)) for details. | `"P1DT3H4S"` |
 | `string` | `period` | defined in [RFC 3339](https://tools.ietf.org/html/rfc3339) according to [ISO 8601](https://tools.ietf.org/html/rfc3339#ref-ISO8601), see also rule [#127](#rule-127) ([#127](#rule-127)) for details. | `"2022-06-30T14:52:44/PT48H" "PT24H/2023-07-30T18:22:16.315Z" "2024-05-15T09:48:56/.."` |
 | `string` | `password` |  | `"secret"` |
-| `string` | `email` | [RFC 5322](https://tools.ietf.org/html/rfc5322) | `"example@zalando.de"` |
+| `string` | `email` | [RFC 5322](https://tools.ietf.org/html/rfc5322) | `"example@example.com"` |
 | `string` | `idn-email` | [RFC 6531](https://tools.ietf.org/html/rfc6531) | `"hello@bücher.example"` |
-| `string` | `hostname` | [RFC 1034](https://tools.ietf.org/html/rfc1034) | `"www.zalando.de"` |
+| `string` | `hostname` | [RFC 1034](https://tools.ietf.org/html/rfc1034) | `"www.example.com"` |
 | `string` | `idn-hostname` | [RFC 5890](https://tools.ietf.org/html/rfc5890) | `"bücher.example"` |
 | `string` | `ipv4` | [RFC 2673](https://tools.ietf.org/html/rfc2673) | `"104.75.173.179"` |
 | `string` | `ipv6` | [RFC 4291](https://tools.ietf.org/html/rfc4291) | `"2600:1401:2::8a"` |
-| `string` | `uri` | [RFC 3986](https://tools.ietf.org/html/rfc3986) | `"https://www.zalando.de/"` |
+| `string` | `uri` | [RFC 3986](https://tools.ietf.org/html/rfc3986) | `"https://www.example.com/"` |
 | `string` | `uri-reference` | [RFC 3986](https://tools.ietf.org/html/rfc3986) | `"/clothing/"` |
 | `string` | `uri-template` | [RFC 6570](https://tools.ietf.org/html/rfc6570) | `"/users/{id}"` |
 | `string` | `iri` | [RFC 3987](https://tools.ietf.org/html/rfc3987) | `"https://bücher.example/"` |
@@ -79,7 +79,7 @@ type with `decimal` format will translate into `BigDecimal` and `integer` type w
 ### MUST encode binary data in `base64url` {#rule-239}
 
 You may expose binary data. You must use a standard media type and data format,
-if applicable -- see Rule 168 ([#168](#rule-168)). If no standard is available, you must define
+if applicable -- see Rule 168 ([#168](json-guidelines.md#rule-168)). If no standard is available, you must define
 the binary data as `string` typed property with `binary` format using `base64url`
 encoding -- as also described in [#238](#rule-238).
 
@@ -196,7 +196,7 @@ representations for an invoice resource. You should use
 support clients specifying via the standard HTTP headers `Accept`,
 `Accept-Language`, `Accept-Encoding` which representation is best suited for
 their use case, for example, which language of a document, representation /
-content format, or content encoding. You [#172](#rule-172) like `application/json` or
+content format, or content encoding. You [#172](json-guidelines.md#rule-172) like `application/json` or
 `application/pdf` for defining the content format in the `Accept` header.
 
 

@@ -85,7 +85,7 @@ X-Tenant-ID:
   name: X-Tenant-ID
   description: |-
     The unique identifier of the tenant that initiated the request to the
-    multi-tenant Zalando Platform. The X-Tenant-ID is set to the ID of the
+    multi-tenant platform. The X-Tenant-ID is set to the ID of the
     business partner extracted from the `OAuth`-token of the request. The
     `X-Tenant-ID` should be passed-through as generic aspect.
   in: header

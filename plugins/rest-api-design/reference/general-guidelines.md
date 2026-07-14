@@ -13,7 +13,7 @@ You must follow the *API First Principle*, more specifically:
   an API linter or automated rule checking for continuous validation.
 - You must call for early review feedback from peers and client developers, and apply
   a lightweight API review process for all component-external APIs, i.e. all APIs
-  with `x-api-audience =/= component-internal` (see [#219](#rule-219)).
+  with `x-api-audience =/= component-internal` (see [#219](meta-information.md#rule-219)).
 
 
 ## MUST provide API Specifications using OpenAPI {#rule-101}
@@ -23,10 +23,10 @@ to define API specifications. API designers are required to provide the API
 specification using a single self-contained YAML file for better readability.
 We encourage using [OpenAPI 3.1 version](https://swagger.io/specification/),
 especially for new APIs. The API specification documents should be subject to version
-control using a source code management system, and you must publish them following [#192](#rule-192).
+control using a source code management system, and you must publish them following [#192](api-operation.md#rule-192).
 
 **Hint:** Our API infrastructure does not break, but might not yet fully support
-all OpenAPI 3.1 changes (e.g. displaying `examples` in Sunrise), and continues
+all OpenAPI 3.1 changes (e.g. displaying `examples` in some API tooling), and continues
 supporting OpenAPI 3.0 (and 2.0, aka Swagger 2).
 
 **Hint:** The *OpenAPI 3.1 major change* is that Schema Object definitions are now
@@ -82,7 +82,7 @@ to include a link to the API user manual into the API specification using the
 API specification files should be **self-contained** by default: they should
 not contain references to arbitrary local or remote content, e.g.
 `../fragment.yaml#/element` or
-`$ref: 'https://github.com/zalando/zally/blob/master/server/src/main/resources/api/zally-api.yaml#/schemas/LintingRequest'`.
+`$ref: 'https://github.com/example-org/some-api/blob/main/api/some-api.yaml#/schemas/SomeSchema'`.
 The reason is that the content referred to is *in general* **not durable** and
 **not immutable**. As a consequence, the semantic of an API may change in
 unexpected ways. (For example, the second link is already outdated due to code restructuring.)
@@ -98,8 +98,8 @@ service URLs:
 **Hint:** The formerly used remote references to the `Problem` API fragment
 (aliases `https://opensource.zalando.com/problem/` and
 `https://zalando.github.io/problem/`) are deprecated, but still supported for
-compatibility ([#176](#rule-176) on how to replace).
+compatibility ([#176](http-status-codes-and-errors.md#rule-176) on how to replace).
 
 As we control these URLs, we ensure that their content is **durable** and
 **immutable**. This allows to define API specifications by using fragments
-published via these sources, as suggested in [#151](#rule-151).
+published via these sources, as suggested in [#151](http-status-codes-and-errors.md#rule-151).

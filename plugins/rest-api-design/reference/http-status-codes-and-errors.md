@@ -113,7 +113,7 @@ returned resource exists before.
 Returned on successful resource creation.
 `201` is returned with or without response payload (unlike `200` / `204`).
 We recommend additionally to return the created resource URL via the `Location`
-response header (see [#133](#rule-133)).
+response header (see [#133](http-headers.md#rule-133)).
 
 #### 202 Accepted
 
@@ -122,7 +122,7 @@ response header (see [#133](#rule-133)).
 The request was successful and will be processed asynchronously.
 Only applicable to methods which change something, with the exception of
 `GET` methods indicating that a resources is still created asynchronously
-as described in [#253](#rule-253).
+as described in [#253](http-requests.md#rule-253).
 
 #### 204 No content
 
@@ -368,7 +368,7 @@ to restful APIs.
 [RFC](https://tools.ietf.org/html/rfc6585#section-7.1) · **use** · **do not document** · `<all>`
 
 Server requires the request to be conditional, e.g. to make sure that the "lost
-update problem" is avoided (see [#182](#rule-182)). Instead of documenting this response
+update problem" is avoided (see [#182](http-headers.md#rule-182)). Instead of documenting this response
 status, the required headers should be documented (and marked as required).
 
 #### 429 Too many requests
@@ -609,7 +609,7 @@ information.
 to be resolved. [RFC 9457](https://tools.ietf.org/html/rfc9457) encourages that problem types are URI
 references that point to human-readable documentation, **but** we deliberately
 decided against that, as all important parts of the API must be documented
-using OpenAPI ([#101](#rule-101)) anyway. In addition, URLs tend to be fragile and not
+using OpenAPI ([#101](general-guidelines.md#rule-101)) anyway. In addition, URLs tend to be fragile and not
 very stable over longer periods because of organizational and documentation
 changes and descriptions might easily get out of sync.
 
@@ -652,7 +652,7 @@ better accomplished by one of the following.
 For idempotent `POST` cases, where you want to inform the client that a resource
 already exists at a certain location, you should instead use `200` with the
 `Location` header set. This is along the same lines as the creation case where
-`201` is used instead. See also [#229](#rule-229).
+`201` is used instead. See also [#229](http-requests.md#rule-229).
 
 For non-idempotent `POST` cases, where you want to inform the client that the
 resource has already been created and cannot be created again (e.g. payment),

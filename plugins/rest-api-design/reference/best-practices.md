@@ -8,7 +8,7 @@ implementing RESTful APIs.
 ## Cursor-based pagination in RESTful APIs
 
 Cursor-based pagination is a very powerful and valuable technique (see also
-[#160](#rule-160)) that allows to efficiently provide a stable view on changing data.
+[#160](pagination.md#rule-160)) that allows to efficiently provide a stable view on changing data.
 This is obtained by using an anchor element that allows to retrieve all page
 elements directly via an ordering index, usually based on `created_at` or
 `modified_at` in combination with a tie breaker, mostly the resource `id` or a
@@ -114,17 +114,13 @@ complexity but also to avoid scalability and performance issues.
 
 ### Example
 
-A real-world example can be found in
-[api-repository](https://github.com/zalando-build/api-repository/) (internal
-link).
+A real-world example can be found in an internal API repository.
 
-- The actual `cursor` implementation in
-  [api-repository/domain/model/ApiRevisions.kt#L16-L132](https://github.com/zalando-build/api-repository/blob/main/src/main/java/org/zalando/infrastructure/api/repository/domain/model/ApiRevisions.kt#L16-L132)
-  (internal) is varying from the above pattern using a cursor-`type` instead of
-  `element` to simplify cursor representation following above figure.
-- The `cursor` is passed down to data access object implementation in
-  [api-repository/repository/ApiRevisionViewRepository.kt#L48-L76](https://github.com/zalando-build/api-repository/blob/main/src/main/java/org/zalando/infrastructure/api/repository/repository/ApiRevisionViewRepository.kt#L48-L76)
-  (internal) to create the SQL request.
+- The actual `cursor` implementation can vary from the above pattern by using a
+  cursor-`type` instead of `element` to simplify cursor representation following
+  the above figure.
+- The `cursor` is passed down to the data access object implementation to create
+  the SQL request.
 
 The API repository, in this case does not need any combined index, since the
 primary ordering based on `modified_at` allows to efficiently access the data
@@ -351,7 +347,7 @@ We suggest to either use the *`ETag` in result entities* or *`Last-Modified`
 
 Client must not eliminate unknown optional fields from the
 fetched resource payload, and to serialize them later when submitting the
-complete resource payload back to the API server via `PUT` ([#108](#rule-108)).
+complete resource payload back to the API server via `PUT` ([#108](compatibility.md#rule-108)).
 
 When using Java with Jackson serialization, for example, that can be achieved
 by including a field in the Java class representing the API resource, like the

@@ -23,7 +23,7 @@ instance, jumping to a specific page is far less used than navigation via
 cursor-based instead of offset-based pagination -- see [#160](#rule-160).
 
 **Note:** To provide a consistent look and feel of pagination patterns,
-you must stick to the common query parameter names defined in [#137](#rule-137).
+you must stick to the common query parameter names defined in [#137](urls.md#rule-137).
 
 
 
@@ -141,15 +141,15 @@ ResponsePage:
 
 ## SHOULD use pagination links {#rule-161}
 
-To simplify client design, APIs should support simplified hypertext controls ([#165](#rule-165)) as standard pagination links where applicable:
+To simplify client design, APIs should support simplified hypertext controls ([#165](hyper-media.md#rule-165)) as standard pagination links where applicable:
 
 ```json
 {
-  "self": "https://my-service.zalandoapis.com/resources?cursor=<self-position>",
-  "first": "https://my-service.zalandoapis.com/resources?cursor=<first-position>",
-  "prev": "https://my-service.zalandoapis.com/resources?cursor=<previous-position>",
-  "next": "https://my-service.zalandoapis.com/resources?cursor=<next-position>",
-  "last": "https://my-service.zalandoapis.com/resources?cursor=<last-position>",
+  "self": "https://my-service.example.com/resources?cursor=<self-position>",
+  "first": "https://my-service.example.com/resources?cursor=<first-position>",
+  "prev": "https://my-service.example.com/resources?cursor=<previous-position>",
+  "next": "https://my-service.example.com/resources?cursor=<next-position>",
+  "last": "https://my-service.example.com/resources?cursor=<last-position>",
   "query": {
     "query-param-<1>": ...,
     "query-param-<n>": ...
@@ -164,7 +164,7 @@ the original body.)
 
 See also [#248](#rule-248) for details on the pagination fields and page result object.
 
-See also [#217](#rule-217) for what kind of URLs to use (absolute ones, with the same base
+See also [#217](hyper-media.md#rule-217) for what kind of URLs to use (absolute ones, with the same base
 URL as the original request).
 
 ## SHOULD avoid a total result count {#rule-254}
@@ -183,4 +183,4 @@ in the first place.
 
 If your consumer really requires a total result count in the response, you may
 support this requirement via the `Prefer` header adding the directive
-`return=total-count` (see also [#181](#rule-181)).
+`return=total-count` (see also [#181](http-headers.md#rule-181)).

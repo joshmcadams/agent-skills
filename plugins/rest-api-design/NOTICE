@@ -61,6 +61,26 @@ following ways:
   Points in the reference text where guidance was substantively changed are
   marked inline with an "> **Adaptation:**" note.
 
+  4. REMOVAL OF ORGANIZATION-SPECIFIC CONTENT (de-branding)
+     Content specific to Zalando SE and its internal systems has been removed or
+     generalized so the guidance stands on its own. This includes: company-
+     specific framing and product/platform descriptions; the Zalando-specific
+     proprietary header catalog (e.g. `X-Sales-Channel`, `X-Tenant-ID`),
+     generalized to generic proprietary-header conventions; the `X-Flow-ID` rule,
+     generalized to a correlation-ID pattern; internal-only links and references;
+     and brand-specific example values. Retained: the attribution in this NOTICE
+     and in `index.md`, references to Zalando's public canonical guidelines, and
+     links to Zalando's open-source tooling.
+
+  5. EDITORIAL AND CORRECTNESS FIXES
+     Minor edits were made that are not intended to change substantive meaning:
+     fixing typos, repairing sentence fragments and headings introduced during
+     conversion, resolving internal contradictions already present in the source
+     (e.g. the 403 status-code documentation guidance and rule #234 on remote
+     references), correcting an out-of-range `int32` example, expanding a sparse
+     rule body, and converting rule cross-references into working intra-document
+     links.
+
 All other guidance is reproduced from the original with the intent of
 preserving its meaning.
 

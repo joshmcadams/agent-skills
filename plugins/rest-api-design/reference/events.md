@@ -24,7 +24,7 @@ published can then be validated against the overall structure of its
 event type and the schema for its custom data.
 
 The basic model described above was originally developed in open-source
-event messaging projects, such as the [Nakadi project](https://github.com/zalando/nakadi),
+event messaging systems,
 which act as a reference implementation of the event type registry and as a
 validating publish/subscribe broker for event producers and consumers.
 
@@ -79,7 +79,7 @@ follows:
 - A well known event category, such as a general or data change
 category.
 - The name of the event type.
-- The definition of the event target audience ([#219](#rule-219)).
+- The definition of the event target audience ([#219](meta-information.md#rule-219)).
 - An owning application, and by implication, an owning team.
 - A schema defining the event payload.
 - The compatibility mode for the type.
@@ -180,7 +180,7 @@ EventType:
         ordering key are supported (first item is most significant).
 
         This is an informational only event type attribute for specification of
-        application level ordering. Nakadi transportation layer is not affected,
+        application level ordering. The event broker's transportation layer is not affected,
         where events are delivered to consumers in the order they were published.
 
         Scope of the ordering is all events (of all partitions), unless it is
@@ -220,7 +220,7 @@ EventType:
         which ordering_key_fields provides a strict order. It is typically a single
         field, but multiple fields for compound identifier keys are also supported.
 
-        This is an informational only event type attribute without specific Nakadi
+        This is an informational only event type attribute without specific event broker
         semantics for specification of application level ordering. It only can be
         used in combination with `ordering_key_fields`.
 
@@ -246,7 +246,7 @@ EventType:
 
 APIs such as registries supporting event types, may extend the model,
 including the set of supported categories and schema formats. For
-example the Nakadi API's event category registration also allows the
+example the event broker's event category registration also allows the
 declaration of validation and enrichment strategies for events, along
 with supplemental information, such as how events are partitioned in the
 stream (see [#204](#rule-204)).
@@ -254,8 +254,8 @@ stream (see [#204](#rule-204)).
 
 ## MUST follow naming convention for event type names {#rule-213}
 
-Event type names must (or should, see [#223](#rule-223) for details and definition)
-conform to the functional naming depending on the audience ([#219](#rule-219)) as follows:
+Event type names must (or should, see [#223](meta-information.md#rule-223) for details and definition)
+conform to the functional naming depending on the audience ([#219](meta-information.md#rule-219)) as follows:
 
 ```bnf
 <event-type-name>       ::= <functional-event-name> | <application-event-name>
@@ -268,7 +268,7 @@ conform to the functional naming depending on the audience ([#219](#rule-219)) a
 ```
 
 **Hint:** The following convention (e.g. used by legacy STUPS infrastructure) is deprecated
-and **only** allowed for internal ([#223](#rule-223)) event type names:
+and **only** allowed for internal ([#223](meta-information.md#rule-223)) event type names:
 
 ```bnf
 <application-event-name> ::= [<organization-id>.]<application-id>.<event-name>
@@ -397,13 +397,13 @@ defines a field to be of a different type that was already being
 emitted, or, is changing the type of an undefined field. Both of these
 are prevented by not using `additionalProperties`.
 
-See also rule [#111](#rule-111) in the *Compatibility* section for further guidelines
+See also rule [#111](compatibility.md#rule-111) in the *Compatibility* section for further guidelines
 on the use of `additionalProperties`.
 
 
 ## MUST use semantic versioning of event type schemas {#rule-246}
 
-Event schemas must be versioned -- analog to [#116](#rule-116) for REST API specifications.
+Event schemas must be versioned -- analog to [#116](meta-information.md#rule-116) for REST API specifications.
 The compatibility mode interact with revision numbers in the schema
 `version` field, which follows semantic versioning (MAJOR.MINOR.PATCH):
 
@@ -620,7 +620,7 @@ EventMetadata:
 Please note that intermediaries acting between the producer of an event
 and its ultimate consumers, may perform operations like validation of
 events and enrichment of an event's metadata. For
-example brokers such as Nakadi, can validate and enrich events with
+example, event brokers can validate and enrich events with
 arbitrary additional fields that are not specified here and may set default
 or other values, if some of the specified fields are not supplied. How
 such systems work is outside the scope of these guidelines but producers
@@ -637,7 +637,7 @@ event type / stream lifetime.
 
 Event producers must use the same `eid` when publishing the same event object
 multiple times. For instance, producers must ensure that publish event
-retries -- e.g. due to temporary Nakadi or network failures or fail-overs -- use
+retries -- e.g. due to temporary event broker or network failures or fail-overs -- use
 the same `eid` value as the initial (possibly failed) attempt.
 
 The `eid` supports event consumers in detecting and being robust against
@@ -710,8 +710,8 @@ jump forward and backward to compensate drifts or leap-seconds. If you use anywa
 timestamps to indicate event ordering, you *must* carefully ensure that the designated
 event order is not messed up by these effects and use UTC time zone format.
 
-**Note:** The `received_at` and `partition_offset` metadata set by Nakadi typically is
-different from the business event ordering, since (1) Nakadi is a distributed concurrent
+**Note:** The `received_at` and `partition_offset` metadata set by the event broker typically is
+different from the business event ordering, since (1) the event broker is a distributed concurrent
 system without atomic, ordered event creation and (2) the application's implementation
 of event publishing may not exactly reflect the business order. The business ordering
 information is application knowledge, and implemented in the scope of event
@@ -813,8 +813,8 @@ data keys and change ordering -- see [#202](#rule-202) and [#242](#rule-242).
 source for analytics. Raw event datasets materialized in the lake are typically
 cleaned-up (including deduplication and data synchronization) and provided as
 transactional data copy or curated data products, for instance
-[curated product data \[internal link\]](https://curated-product-data.docs.zalando.net/) or
-[curated sales data \[internal link\]](https://curated-sales-data.docs.zalando.net/).
+curated product data or
+curated sales data.
 
 **Context:** One *source of duplicate events* are the event producers, for instance,
 due to publish call retries or publisher client failovers. Another source is
@@ -831,7 +831,7 @@ rate (95th percentile) for high volume events.)
 
 ## SHOULD design for idempotent out-of-order processing {#rule-212}
 
-Events that are designed for idempotent ([#149](#rule-149)) out-of-order
+Events that are designed for idempotent ([#149](http-requests.md#rule-149)) out-of-order
 processing allow for extremely resilient systems: If processing an event
 fails, consumers and producers can skip/delay/retry it without stopping
 the world or corrupting the processing result.
@@ -859,7 +859,7 @@ key to recreate a (partially) ordered sequence of events.
 Events are intended to be used by other services including business
 process/data analytics and monitoring. They should be based around the
 resources and business processes you have defined for your service
-domain and adhere to its natural lifecycle (see also [#139](#rule-139) and [#140](#rule-140)).
+domain and adhere to its natural lifecycle (see also [#139](urls.md#rule-139) and [#140](urls.md#rule-140)).
 
 As there is a cost in creating an explosion of event types and topics,
 prefer to define event types that are abstract/generic enough to be
@@ -898,7 +898,7 @@ stored as entity by the service.
 ## MUST maintain backwards compatibility for events {#rule-209}
 
 Changes to events must be based around making additive and backward
-compatible changes. This follows the [#106](#rule-106) guideline.
+compatible changes. This follows the [#106](compatibility.md#rule-106) guideline.
 
 In the context of events, compatibility issues are complicated by the
 fact that producers and consumers of events are highly asynchronous and
@@ -917,7 +917,7 @@ seen by consumers:
   field – actually removing it from the schema is not allowed, as otherwise
   it could be added back with an incompatible type).
 - Removing an individual value from an enumeration.
-- Adding new values to extensible enum fields (see rule 112 ([#112](#rule-112)) and rule 108 ([#108](#rule-108))).
+- Adding new values to extensible enum fields (see rule 112 ([#112](compatibility.md#rule-112)) and rule 108 ([#108](compatibility.md#rule-108))).
 
 These are considered backwards-incompatible changes, as seen by
 consumers:
@@ -929,7 +929,7 @@ consumers:
 known as a tuple).
 - Adding a new optional field to redefine the meaning of a (previously)
   existing field (also known as a co-occurrence constraint).
-- Adding a value to an `enum` enumeration. Instead, you should use [#112](#rule-112) (extensible enums).
+- Adding a value to an `enum` enumeration. Instead, you should use [#112](compatibility.md#rule-112) (extensible enums).
 
 When an incompatible change is required, it needs to be aligned with all consumers.
 Only start sending values not covered by the previous schema after all consumers

@@ -4,14 +4,14 @@
 ## MUST publish OpenAPI specification for APIs {#rule-192}
 
 All service applications must publish API specifications of their external
-APIs (see API Audience definition ([#219](#rule-219))). While this is optional
-for component-internal ([#219](#rule-219)) APIs, we recommend doing so to benefit from
+APIs (see API Audience definition ([#219](meta-information.md#rule-219))). While this is optional
+for component-internal ([#219](meta-information.md#rule-219)) APIs, we recommend doing so to benefit from
 API management infrastructure and review services.
 
 API specifications should be published alongside the deployment of the
 implementing service, typically by copying a self-contained YAML file to a
 well-known location. The published directory must only contain *self-contained
-YAML files* that each describe one API (exception see [#234](#rule-234)).
+YAML files* that each describe one API (exception see [#234](general-guidelines.md#rule-234)).
 
 **Motivation:** In a dynamic and complex service infrastructure, it is important
 to provide API client developers a central place with online access to the API

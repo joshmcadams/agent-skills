@@ -9,7 +9,7 @@ Problem:
         it SHOULD provide human-readable documentation for the problem type
         (e.g., using HTML).
       default: 'about:blank'
-      example: 'https://zalando.github.io/problem/constraint-violation'
+      example: 'https://example.com/problem/constraint-violation'
     title:
       type: string
       description: |

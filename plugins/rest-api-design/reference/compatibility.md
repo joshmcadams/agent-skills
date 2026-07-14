@@ -44,7 +44,7 @@ In general:
 
 - Never change the semantic of fields (e.g. changing the semantic from
   customer-number to customer-id, as both are different unique customer keys)
-- Consider [#251](#rule-251) in case a URL has to change.
+- Consider [#251](http-status-codes-and-errors.md#rule-251) in case a URL has to change.
 
 The compatibility of schema changes depends on whether the input and/or output objects are defined.
 
@@ -198,7 +198,7 @@ prevents objects being extended in the future.
 
 Note that this guideline concentrates on default extensibility and does not
 exclude the use of `additionalProperties` with a schema as a value, which might
-be appropriate in some circumstances, e.g. see [#216](#rule-216).
+be appropriate in some circumstances, e.g. see [#216](json-guidelines.md#rule-216).
 
 
 ## SHOULD avoid versioning {#rule-113}
@@ -234,7 +234,7 @@ we strongly recommend to only use the first two approaches.
 When API versioning is unavoidable — i.e. when you cannot make a change in a
 compatible way (see [#113](#rule-113)) — you have to design your multi-version RESTful APIs
 using **URL versioning**: include the **major** version number as a path segment
-placed immediately after the `/api` base path (see [#135](#rule-135)), of the form
+placed immediately after the `/api` base path (see [#135](urls.md#rule-135)), of the form
 `v<major>`.
 
 ```http
@@ -252,7 +252,7 @@ Rules for URL versioning:
 - All resources belonging to one API share the same major version segment; do
   not mix versions of the same API under a single deployment.
 - Because the version lives in the path, the media type stays the plain
-  `application/json` (see [#172](#rule-172)) — the version is **not** encoded in the
+  `application/json` (see [#172](json-guidelines.md#rule-172)) — the version is **not** encoded in the
   `Content-Type`/`Accept` header.
 - When you introduce a new major version, operate it in parallel with the
   previous version and migrate consumers using the deprecation process (see the
@@ -283,7 +283,7 @@ exercise from a browser or simple client, and interacts awkwardly with API
 gateways and caches.
 
 Instead, carry the major version in the URL path (see [#114](#rule-114)) and keep the media
-type as the standard `application/json` (see [#172](#rule-172)).
+type as the standard `application/json` (see [#172](json-guidelines.md#rule-172)).
 
 
 ## MUST always return JSON objects as top-level data structures {#rule-110}
@@ -292,9 +292,9 @@ In a response body, you must always return a JSON object (and not e.g. an
 array) as a top level data structure to support future extensibility. JSON
 objects support compatible extension by additional attributes. This allows you
 to easily extend your response and e.g. add pagination later, without breaking
-backwards compatibility. See [#161](#rule-161) for an example.
+backwards compatibility. See [#161](pagination.md#rule-161) for an example.
 
-Maps (see [#216](#rule-216)), even though technically objects, are also forbidden as top
+Maps (see [#216](json-guidelines.md#rule-216)), even though technically objects, are also forbidden as top
 level data structures, since they don't support compatible, future extensions.
 
 
@@ -331,7 +331,7 @@ delivery_method:
   description: [Extensible enum](https://opensource.zalando.com/restful-api-guidelines/#112). The chosen delivery method of the invoice.
 ```
 
-See [#240](#rule-240) about enum value naming conventions – these apply here too.
+See [#240](json-guidelines.md#rule-240) about enum value naming conventions – these apply here too.
 
 
 **Important**:

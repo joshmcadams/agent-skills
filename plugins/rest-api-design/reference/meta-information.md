@@ -78,7 +78,7 @@ may change. We require API identifiers because we want  to support API clients
 and providers with API lifecycle management features, like change trackability
 and history or automated backward compatibility checks. The immutable API
 identifier allows the identification of all API specification versions of an
-API evolution. By using  API semantic version information ([#116](#rule-116)) or API publishing date ([#192](#rule-192)) as order criteria you get the **version** or
+API evolution. By using  API semantic version information ([#116](#rule-116)) or API publishing date ([#192](api-operation.md#rule-192)) as order criteria you get the **version** or
 **publication history** as a sequence of API specifications.
 
 **Note**: While it is nice to use human readable API identifiers based on
@@ -155,7 +155,7 @@ reason a smaller audience group is intentionally included in the wider group
 and thus does not need to be declared additionally. If parts of your API have
 a different target audience, we recommend to split API specifications along
 the target audience — even if this creates redundancies
-([rationale (internal_link)](https://apis.zalando.net/redirect/85ee93a3-7a78-4461-8bf1-08ffdaebcd18)).
+(rationale).
 
 Example:
 
@@ -170,7 +170,7 @@ info:
 ```
 
 For details and more information on audience groups see the
-[API Audience narrative (internal_link)](https://apis.zalando.net/redirect/85ee93a3-7a78-4461-8bf1-08ffdaebcd18).
+API Audience narrative.
 
 
 ## MUST/SHOULD/MAY use functional naming schema {#rule-223}
@@ -194,8 +194,8 @@ and a unique short identifier for the functional component itself:
 ```
 
 Depending on the API audience ([#219](#rule-219)), you **must/should/may** follow the functional
-naming schema for hostnames ([#224](#rule-224)) and event names ([#213](#rule-213))
-(and also permission names ([#225](#rule-225), in future) as follows:
+naming schema for hostnames ([#224](#rule-224)) and event names ([#213](events.md#rule-213))
+(and also permission names ([#225](security.md#rule-225), in future) as follows:
 
 | **Functional Naming** | **Audience** |
 |---|---|
@@ -205,7 +205,7 @@ naming schema for hostnames ([#224](#rule-224)) and event names ([#213](#rule-21
 
 Please see the following rules for detailed functional naming patterns:
 - [#224](#rule-224)
-- [#213](#rule-213)
+- [#213](events.md#rule-213)
 
 
 **Guidance:** You should use a functional name registry to register your
