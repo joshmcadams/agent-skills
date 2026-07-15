@@ -6,7 +6,7 @@ that produced it.
 
 ## Background & repo layout
 
-This plugin (`rest-apis/plugins/rest-api-design/`) packages an **adapted
+This plugin (`agent-skills/plugins/rest-api-design/`) packages an **adapted
 Zalando REST API guideline set** as Claude Code skills:
 
 ```

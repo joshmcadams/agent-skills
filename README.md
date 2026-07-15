@@ -1,13 +1,15 @@
-# REST APIs — Claude Code Skills Marketplace
+# Agent Skills — Claude Code Skills Marketplace
 
 A Claude Code [plugin marketplace](https://code.claude.com/docs/en/plugin-marketplaces)
-that helps agents **design new REST APIs, audit existing ones, and safely extend
-them**, following an adapted version of the
+of personal coding-standards plugins. It currently contains one plugin,
+**`rest-api-design`**, which helps agents **design new REST APIs, audit existing
+ones, and safely extend them**, following an adapted version of the
 [Zalando RESTful API Guidelines](https://github.com/zalando/restful-api-guidelines).
+More plugins may be added over time.
 
 ## What's inside
 
-One plugin, **`rest-api-design`**, containing:
+### `rest-api-design`
 
 | Kind | Skill | Purpose |
 |------|-------|---------|
@@ -32,7 +34,7 @@ The full, adapted guidelines are bundled as Markdown under
 [`plugins/rest-api-design/reference/`](plugins/rest-api-design/reference/) and are
 cited by the skills.
 
-## Deviations from the upstream Zalando guidelines
+#### Deviations from the upstream Zalando guidelines
 
 This is a **modified** version. Two rules were intentionally reversed to match
 common industry practice:
@@ -47,14 +49,14 @@ Combined, the canonical resource path convention here is:
 /api/v1/{resources}
 ```
 
-See the [`NOTICE`](NOTICE) file for the complete list of modifications and the
-attribution required by the upstream license.
+See the plugin's [`NOTICE`](plugins/rest-api-design/NOTICE) file for the complete
+list of modifications and the attribution required by the upstream license.
 
 ## Installing
 
 ```
 /plugin marketplace add <this-repo-url-or-path>
-/plugin install rest-api-design@rest-apis
+/plugin install rest-api-design@agent-skills
 ```
 
 Then invoke named operations like `/rest-api-design:audit` or
@@ -63,8 +65,16 @@ skills activate automatically while you design an API.
 
 ## License & attribution
 
-The bundled guidelines are derived from the Zalando RESTful API Guidelines,
-© Zalando SE, licensed under
-[Creative Commons Attribution 4.0 International (CC BY 4.0)](LICENSE). This
-adaptation is likewise distributed under CC BY 4.0. Modifications are documented
-in [`NOTICE`](NOTICE). This project is not affiliated with or endorsed by Zalando SE.
+This repository uses a dual-license structure:
+
+- **Everything outside `plugins/rest-api-design/`** (including this README and
+  the marketplace config) is licensed under the permissive [MIT License](LICENSE).
+- **`plugins/rest-api-design/`** is licensed separately under
+  [Creative Commons Attribution 4.0 International (CC BY 4.0)](plugins/rest-api-design/LICENSE),
+  since its bundled guidelines are derived from the Zalando RESTful API
+  Guidelines, © Zalando SE. Modifications are documented in
+  [`NOTICE`](plugins/rest-api-design/NOTICE). This project is not affiliated
+  with or endorsed by Zalando SE.
+
+Each plugin's `plugin.json` declares its own `license` field; check there before
+assuming a plugin follows the repo-wide default.

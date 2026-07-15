@@ -1,6 +1,6 @@
 {
-  "name": "rest-apis",
-  "description": "Skills for designing, auditing, and evolving RESTful APIs following an adapted version of the Zalando REST API Guidelines (URL-based versioning, /api base path).",
+  "name": "agent-skills",
+  "description": "A grab-bag marketplace of Claude Code plugins for personal coding standards and workflows. Currently includes rest-api-design: skills for designing, auditing, and evolving RESTful APIs following an adapted version of the Zalando REST API Guidelines (URL-based versioning, /api base path).",
   "owner": {
     "name": "Josh McAdams",
     "email": "61422+joshmcadams@users.noreply.github.com"
