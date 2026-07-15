@@ -56,7 +56,7 @@ list of modifications and the attribution required by the upstream license.
 
 ```
 /plugin marketplace add <this-repo-url-or-path>
-/plugin install rest-api-design@agent-skills
+/plugin install rest-api-design@my-skills
 ```
 
 Then invoke named operations like `/rest-api-design:audit` or
