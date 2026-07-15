@@ -79,6 +79,17 @@ to include a link to the API user manual into the API specification using the
 
 ## MUST only use durable and immutable remote references {#rule-234}
 
+> **Adaptation:** The original Zalando guideline carved out a specific set of
+> Zalando-hosted URLs (`https://opensource.zalando.com/restful-api-guidelines/…`)
+> as the allowed durable exception, because Zalando controls those URLs and
+> guarantees their content. This plugin does not control them, so that concrete
+> whitelist is generalized below to "URLs whose content the API owner controls
+> and can guarantee durable and immutable." The guideline's own re-usable
+> fragments (the `Problem` object, the `Money` object, the standard header
+> definitions) are instead **bundled with this plugin** under
+> [`reference/models/`](models/) and meant to be copied into your spec rather
+> than referenced over the network. See the `NOTICE` file.
+
 API specification files should be **self-contained** by default: they should
 not contain references to arbitrary local or remote content, e.g.
 `../fragment.yaml#/element` or
@@ -87,19 +98,16 @@ The reason is that the content referred to is *in general* **not durable** and
 **not immutable**. As a consequence, the semantic of an API may change in
 unexpected ways. (For example, the second link is already outdated due to code restructuring.)
 
-However, you may use remote references to resources accessible by the following
-service URLs:
+The only remote references you may use are to resources whose content **you (the
+API owner) control** and can guarantee to be **durable** and **immutable** — a
+location under your own governance whose content at a given path never changes
+meaning. If you cannot make that guarantee for a reference, inline the fragment
+instead.
 
-- `https://opensource.zalando.com/restful-api-guidelines/{model.yaml}` – used
-  to refer to guideline-defined re-usable API fragments (see `{model.yaml}` files in
-  [restful-api-guidelines/models](https://github.com/zalando/restful-api-guidelines/tree/main/models)
-  for details).
-
-**Hint:** The formerly used remote references to the `Problem` API fragment
-(aliases `https://opensource.zalando.com/problem/` and
-`https://zalando.github.io/problem/`) are deprecated, but still supported for
-compatibility ([#176](http-status-codes-and-errors.md#rule-176) on how to replace).
-
-As we control these URLs, we ensure that their content is **durable** and
-**immutable**. This allows to define API specifications by using fragments
-published via these sources, as suggested in [#151](http-status-codes-and-errors.md#rule-151).
+The re-usable API fragments defined by this guideline are **bundled with this
+plugin** under [`reference/models/`](models/) rather than served from a remote
+URL. Do **not** `$ref` them over the network: copy the fragment you need (e.g.
+the `Problem` object, the `Money` object, or a standard header) into your spec's
+own `components/` and `$ref` it locally, keeping the spec self-contained (see
+[#176](http-status-codes-and-errors.md#rule-176) for the `Problem` object and
+[#151](http-status-codes-and-errors.md#rule-151) for referencing fragments).
