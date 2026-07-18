@@ -1,0 +1,23 @@
+{
+  "name": "go-ddd",
+  "displayName": "Go DDD",
+  "description": "Design, build, and audit Domain-Driven Go backend services: onion architecture, entities and value objects that guard their own invariants, aggregates referenced by Id, repository interfaces in the domain with sqlc in infrastructure, CQRS, a transactional outbox for domain events, and race-safe idempotent commands. Adapted from sklinkert/go-ddd.",
+  "version": "0.1.1",
+  "author": {
+    "name": "Josh McAdams",
+    "email": "61422+joshmcadams@users.noreply.github.com"
+  },
+  "license": "MIT",
+  "keywords": [
+    "go",
+    "golang",
+    "ddd",
+    "domain-driven-design",
+    "cqrs",
+    "onion-architecture",
+    "hexagonal",
+    "outbox",
+    "idempotency",
+    "sqlc"
+  ]
+}

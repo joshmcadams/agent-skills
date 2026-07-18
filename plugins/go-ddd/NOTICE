@@ -1,0 +1,53 @@
+# NOTICE
+
+## Attribution
+
+The guidance in this plugin — the architecture rules, the tactical DDD patterns
+(entities, value objects, aggregates, repositories, CQRS, the transactional
+outbox, idempotent commands), and the code idioms shown throughout the skills
+and `reference/` — is **derived from the [`sklinkert/go-ddd`](https://github.com/sklinkert/go-ddd)
+project by Simon Klinkert**, which is distributed under the MIT License
+(© 2023 Simon Klinkert). See [`LICENSE`](LICENSE) for the full text and the
+combined copyright notice.
+
+That project is a production-grade Go template and a nine-chapter DDD tutorial;
+this plugin distills its documentation and example code into task-oriented
+Claude Code skills. This plugin is **not affiliated with or endorsed by** the
+`go-ddd` project or its author.
+
+## These are opinions, not a standard
+
+Unlike a plugin adapted from a published specification, this one does **not**
+encode an external standard, and there is no "correct" body of rules it deviates
+from. The go-ddd project is one experienced practitioner's **defensible set of
+choices** for building Go backends with real business rules — and it says so
+itself (the source's FAQ is candid about when DDD is overkill, what it
+deliberately omits, and where it would decide differently).
+
+This plugin keeps that spirit. Treat its guidance as a coherent, opinionated
+house style to adopt wholesale or adapt, not as universal law. Notable choices
+that are deliberate and reasonable people reverse:
+
+- **`Id`, not `ID`** — house style, enforced on purpose (the corresponding
+  linter rules are disabled deliberately in the source). Pick one and apply it
+  everywhere.
+- **sqlc over an ORM** — chosen so the row-to-aggregate mapping stays explicit
+  and reviewable. Nothing in the architecture requires it; the repository
+  interfaces don't know it exists.
+- **Onion / DDD layering, one bounded context, one deployable** — the honest
+  starting point for most services, not a mandate to build microservices.
+- **Money as integer minor units, currency attached** — the one choice this
+  guidance treats as close to non-negotiable for anything touching prices.
+
+Where a skill states a rule, it also tries to state *why*, so you can judge
+whether the reason applies to your project.
+
+## Where to go deeper
+
+The source project's tutorial and reference docs are the fuller treatment, with
+every pattern anchored to runnable code:
+
+- Project & tutorial: <https://github.com/sklinkert/go-ddd> /
+  <https://sklinkert.github.io/go-ddd/>
+- The outbox pattern as a standalone, broker-agnostic library:
+  <https://github.com/sklinkert/go-outbox>

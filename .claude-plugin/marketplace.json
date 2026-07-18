@@ -1,6 +1,6 @@
 {
   "name": "my-skills",
-  "description": "A grab-bag marketplace of Claude Code plugins for personal coding standards and workflows. Currently includes rest-api-design: skills for designing, auditing, and evolving RESTful APIs following an adapted version of the Zalando REST API Guidelines (URL-based versioning, /api base path).",
+  "description": "A grab-bag marketplace of Claude Code plugins for personal coding standards and workflows. Includes rest-api-design (designing, auditing, and evolving RESTful APIs following an adapted version of the Zalando REST API Guidelines) and go-ddd (building and auditing Domain-Driven Go backend services following an adapted version of the sklinkert/go-ddd patterns).",
   "owner": {
     "name": "Josh McAdams",
     "email": "61422+joshmcadams@users.noreply.github.com"
@@ -10,6 +10,11 @@
       "name": "rest-api-design",
       "source": "./plugins/rest-api-design",
       "description": "Design, audit, and extend RESTful APIs: named operations (/audit, /add-collection, /add-resource, /new-version) plus builders for schema changes, deprecation, and compliance fixes, and knowledge skills covering API-first/OpenAPI, naming, URLs, JSON, HTTP methods, pagination, errors, compatibility, security, headers, async operations, performance, and event design."
+    },
+    {
+      "name": "go-ddd",
+      "source": "./plugins/go-ddd",
+      "description": "Build and audit Domain-Driven Go backend services: a named operation (/audit) plus builders (add-aggregate, add-value-object, add-command, add-query, add-domain-event, add-repository-method, add-migration, modify-schema) that wire changes across all four layers, and knowledge skills covering the onion architecture, entities, value objects, aggregates, repositories, CQRS, the transactional outbox, idempotency, testing, and conventions. Adapted from sklinkert/go-ddd."
     }
   ]
 }

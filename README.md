@@ -1,10 +1,16 @@
 # Agent Skills — Claude Code Skills Marketplace
 
 A Claude Code [plugin marketplace](https://code.claude.com/docs/en/plugin-marketplaces)
-of personal coding-standards plugins. It currently contains one plugin,
-**`rest-api-design`**, which helps agents **design new REST APIs, audit existing
-ones, and safely extend them**, following an adapted version of the
-[Zalando RESTful API Guidelines](https://github.com/zalando/restful-api-guidelines).
+of personal coding-standards plugins:
+
+- **`rest-api-design`** — **design new REST APIs, audit existing ones, and safely
+  extend them**, following an adapted version of the
+  [Zalando RESTful API Guidelines](https://github.com/zalando/restful-api-guidelines).
+- **`go-ddd`** — **build and audit Domain-Driven Go backend services** (onion
+  architecture, CQRS, transactional outbox, idempotent commands), following an
+  adapted version of the [`sklinkert/go-ddd`](https://github.com/sklinkert/go-ddd)
+  patterns.
+
 More plugins may be added over time.
 
 ## What's inside
@@ -52,29 +58,69 @@ Combined, the canonical resource path convention here is:
 See the plugin's [`NOTICE`](plugins/rest-api-design/NOTICE) file for the complete
 list of modifications and the attribution required by the upstream license.
 
+### `go-ddd`
+
+Skills for building and auditing **Domain-Driven Go backend services** — the
+onion architecture with dependencies pointing inward, entities and value objects
+that guard their own invariants, aggregates referenced by Id, repository
+interfaces in the domain with sqlc in infrastructure, CQRS, a transactional
+outbox for domain events, and race-safe idempotent commands.
+
+| Kind | Skill | Purpose |
+|------|-------|---------|
+| Named op | `/audit` | Audit a Go service against the go-ddd architecture and conventions (grep-able checklist). |
+| Builder | `add-aggregate` | Add a new aggregate end-to-end across all four layers. |
+| Builder | `add-value-object` | Add an immutable, value-compared type (Money, Email, …) validated at construction. |
+| Builder | `add-command` | Add a write use case (command + result + idempotent service method) to an aggregate. |
+| Builder | `add-query` | Add a read use case (query + output result + read repository method). |
+| Builder | `add-domain-event` | Add a past-tense event recorded by the aggregate and wired through the outbox. |
+| Builder | `add-repository-method` | Add an access pattern: interface method → sqlc query → generated code → impl. |
+| Builder | `add-migration` | Add a golang-migrate `up`/`down` pair, then regenerate sqlc. |
+| Builder | `modify-schema` | Add/remove/rename/retype a field across every layer coherently. |
+| Fundamentals | `architecture`, `entities`, `value-objects`, `aggregates`, `repositories` | The onion + import rules, and the core domain building blocks. |
+| Cross-cutting | `cqrs`, `domain-events-outbox`, `idempotency`, `testing`, `conventions` | Concerns that span the layers. |
+
+The adapted guidance is bundled as Markdown under
+[`plugins/go-ddd/reference/`](plugins/go-ddd/reference/) (architecture, entities,
+value objects, aggregates, repositories, CQRS, domain events & outbox,
+idempotency, testing, conventions, tooling) and is cited by the skills.
+
+Unlike `rest-api-design`, this plugin does not adapt an external *standard* — it
+encodes one project's opinionated house style. The choices (e.g. `Id` over `ID`,
+sqlc over an ORM) are deliberate and documented in the plugin's
+[`NOTICE`](plugins/go-ddd/NOTICE); adopt them wholesale or adapt them.
+
 ## Installing
 
 ```
 /plugin marketplace add <this-repo-url-or-path>
 /plugin install rest-api-design@my-skills
+/plugin install go-ddd@my-skills
 ```
 
 Then invoke named operations like `/rest-api-design:audit` or
-`/rest-api-design:add-collection orders/line-items`, or just let the knowledge
-skills activate automatically while you design an API.
+`/rest-api-design:add-collection orders/line-items`, or `/go-ddd:audit` and
+`/go-ddd:add-aggregate Review`, or just let the knowledge skills activate
+automatically while you design an API or a Go service.
 
 ## License & attribution
 
-This repository uses a dual-license structure:
+This repository uses a mixed-license structure:
 
-- **Everything outside `plugins/rest-api-design/`** (including this README and
-  the marketplace config) is licensed under the permissive [MIT License](LICENSE).
+- **Everything outside the plugin directories** (including this README and the
+  marketplace config) is licensed under the permissive [MIT License](LICENSE).
 - **`plugins/rest-api-design/`** is licensed separately under
   [Creative Commons Attribution 4.0 International (CC BY 4.0)](plugins/rest-api-design/LICENSE),
   since its bundled guidelines are derived from the Zalando RESTful API
   Guidelines, © Zalando SE. Modifications are documented in
   [`NOTICE`](plugins/rest-api-design/NOTICE). This project is not affiliated
   with or endorsed by Zalando SE.
+- **`plugins/go-ddd/`** is licensed under the [MIT License](plugins/go-ddd/LICENSE),
+  since its bundled guidance is derived from the MIT-licensed
+  [`sklinkert/go-ddd`](https://github.com/sklinkert/go-ddd) project, © 2023 Simon
+  Klinkert. Attribution and the deliberate design choices are documented in
+  [`NOTICE`](plugins/go-ddd/NOTICE). This project is not affiliated with or
+  endorsed by that project or its author.
 
 Each plugin's `plugin.json` declares its own `license` field; check there before
 assuming a plugin follows the repo-wide default.
