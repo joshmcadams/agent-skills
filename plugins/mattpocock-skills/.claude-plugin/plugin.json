@@ -1,0 +1,17 @@
+{
+  "name": "mattpocock-skills",
+  "displayName": "Matt Pocock Skills",
+  "description": "A collection of AI skills for engineering and productivity, adapted from Matt Pocock's skills repository.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Matt Pocock",
+    "email": "matt@totaltypescript.com"
+  },
+  "license": "MIT",
+  "keywords": [
+    "skills",
+    "engineering",
+    "productivity",
+    "ai"
+  ]
+}

@@ -20,6 +20,11 @@
       "name": "okf",
       "source": "./plugins/okf",
       "description": "Create, validate, and enrich Open Knowledge Format (OKF) bundles: represent organizational knowledge as markdown files with YAML frontmatter for agent and human consumption. Adapted from the official Google Knowledge Catalog."
+    },
+    {
+      "name": "mattpocock-skills",
+      "source": "./plugins/mattpocock-skills",
+      "description": "A collection of AI skills for engineering and productivity, adapted from Matt Pocock's skills repository."
     }
   ]
 }

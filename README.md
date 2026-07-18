@@ -12,6 +12,8 @@ of personal coding-standards plugins:
   patterns.
 - **`okf`** — **create, validate, and enrich Open Knowledge Format (OKF) bundles**,
   adapted from the official [Google Knowledge Catalog](https://github.com/GoogleCloudPlatform/knowledge-catalog) and [fabricioctelles/skills](https://github.com/fabricioctelles/skills).
+- **`mattpocock-skills`** — **AI skills for engineering and productivity**,
+  adapted from [Matt Pocock's skills repository](https://github.com/mattpocock/skills).
 
 More plugins may be added over time.
 
@@ -105,6 +107,22 @@ Skills for creating, validating, and enriching **Open Knowledge Format (OKF)** b
 | Knowledge | `okf-spec` | Core OKF format info: frontmatter, structure, terminology. |
 | Knowledge | `okf-conversion` | Guide to converting from Notion, Obsidian, or CSV to OKF. |
 
+### `mattpocock-skills`
+
+A curated selection of skills from Matt Pocock's repository for engineering, codebase design, and productivity.
+
+| Kind | Skill | Purpose |
+|------|-------|---------|
+| Named op | `design-an-interface` | Generate multiple radically different interface designs for a module. |
+| Named op | `grill-with-docs` | A relentless interview to sharpen a plan or design, creating ADRs and glossaries. |
+| Named op | `domain-modeling` | Build and sharpen a project's domain model and ubiquitous language. |
+| Named op | `code-review` | Review changes along two axes: Standards and Spec. |
+| Named op | `codebase-design` | Shared vocabulary for designing deep modules. |
+| Named op | `grill-me` | A relentless interview to sharpen a plan or design. |
+| Named op | `teach` | Teach the user a new skill or concept. |
+| Knowledge | `writing-great-skills` | Reference for writing and editing skills well. |
+| Named op | `handoff` | Compact the current conversation into a handoff document for another agent. |
+
 ## Installing
 
 ```
@@ -112,6 +130,7 @@ Skills for creating, validating, and enriching **Open Knowledge Format (OKF)** b
 /plugin install rest-api-design@my-skills
 /plugin install go-ddd@my-skills
 /plugin install okf@my-skills
+/plugin install mattpocock-skills@my-skills
 ```
 
 Then invoke named operations like `/rest-api-design:audit` or
@@ -141,6 +160,8 @@ This repository uses a mixed-license structure:
   since its bundled guidance is derived from the Apache 2.0-licensed
   Google Knowledge Catalog and fabricioctelles/skills repositories. Attribution
   is documented in [`NOTICE`](plugins/okf/NOTICE).
+- **`plugins/mattpocock-skills/`** is licensed under the [MIT License](plugins/mattpocock-skills/LICENSE),
+  originating from [mattpocock/skills](https://github.com/mattpocock/skills), © 2026 Matt Pocock.
 
 Each plugin's `plugin.json` declares its own `license` field; check there before
 assuming a plugin follows the repo-wide default.
