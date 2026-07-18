@@ -15,6 +15,11 @@
       "name": "go-ddd",
       "source": "./plugins/go-ddd",
       "description": "Build and audit Domain-Driven Go backend services: a named operation (/audit) plus builders (add-aggregate, add-value-object, add-command, add-query, add-domain-event, add-repository-method, add-migration, modify-schema) that wire changes across all four layers, and knowledge skills covering the onion architecture, entities, value objects, aggregates, repositories, CQRS, the transactional outbox, idempotency, testing, and conventions. Adapted from sklinkert/go-ddd."
+    },
+    {
+      "name": "okf",
+      "source": "./plugins/okf",
+      "description": "Create, validate, and enrich Open Knowledge Format (OKF) bundles: represent organizational knowledge as markdown files with YAML frontmatter for agent and human consumption. Adapted from the official Google Knowledge Catalog."
     }
   ]
 }

@@ -1,0 +1,19 @@
+{
+  "name": "okf",
+  "displayName": "Open Knowledge Format (OKF)",
+  "description": "Create, validate, and enrich Open Knowledge Format (OKF) bundles. Represent organizational knowledge as markdown files with YAML frontmatter for agent and human consumption. Adapted from the official Google Knowledge Catalog and fabricioctelles OKF skill.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Josh McAdams",
+    "email": "61422+joshmcadams@users.noreply.github.com"
+  },
+  "license": "Apache-2.0",
+  "keywords": [
+    "okf",
+    "open-knowledge-format",
+    "markdown",
+    "knowledge-base",
+    "knowledge-catalog",
+    "llm-wiki"
+  ]
+}

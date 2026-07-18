@@ -10,6 +10,8 @@ of personal coding-standards plugins:
   architecture, CQRS, transactional outbox, idempotent commands), following an
   adapted version of the [`sklinkert/go-ddd`](https://github.com/sklinkert/go-ddd)
   patterns.
+- **`okf`** — **create, validate, and enrich Open Knowledge Format (OKF) bundles**,
+  adapted from the official [Google Knowledge Catalog](https://github.com/GoogleCloudPlatform/knowledge-catalog) and [fabricioctelles/skills](https://github.com/fabricioctelles/skills).
 
 More plugins may be added over time.
 
@@ -90,18 +92,32 @@ encodes one project's opinionated house style. The choices (e.g. `Id` over `ID`,
 sqlc over an ORM) are deliberate and documented in the plugin's
 [`NOTICE`](plugins/go-ddd/NOTICE); adopt them wholesale or adapt them.
 
+### `okf`
+
+Skills for creating, validating, and enriching **Open Knowledge Format (OKF)** bundles — the open specification for representing organizational knowledge as markdown files with YAML frontmatter.
+
+| Kind | Skill | Purpose |
+|------|-------|---------|
+| Named op | `/audit` | Validate a directory as an OKF bundle (checking frontmatter and structure). |
+| Builder | `create-bundle` | Scaffold a new OKF bundle structure. |
+| Builder | `add-concept` | Add a new OKF concept to an existing bundle. |
+| Builder | `enrich-concept` | Enrich an existing OKF concept with schema, examples, and citations. |
+| Knowledge | `okf-spec` | Core OKF format info: frontmatter, structure, terminology. |
+| Knowledge | `okf-conversion` | Guide to converting from Notion, Obsidian, or CSV to OKF. |
+
 ## Installing
 
 ```
 /plugin marketplace add <this-repo-url-or-path>
 /plugin install rest-api-design@my-skills
 /plugin install go-ddd@my-skills
+/plugin install okf@my-skills
 ```
 
 Then invoke named operations like `/rest-api-design:audit` or
 `/rest-api-design:add-collection orders/line-items`, or `/go-ddd:audit` and
-`/go-ddd:add-aggregate Review`, or just let the knowledge skills activate
-automatically while you design an API or a Go service.
+`/go-ddd:add-aggregate Review`, or `/okf:audit` and `/okf:create-bundle my-knowledge-base`,
+or just let the knowledge skills activate automatically.
 
 ## License & attribution
 
@@ -121,6 +137,10 @@ This repository uses a mixed-license structure:
   Klinkert. Attribution and the deliberate design choices are documented in
   [`NOTICE`](plugins/go-ddd/NOTICE). This project is not affiliated with or
   endorsed by that project or its author.
+- **`plugins/okf/`** is licensed under the [Apache 2.0 License](plugins/okf/LICENSE),
+  since its bundled guidance is derived from the Apache 2.0-licensed
+  Google Knowledge Catalog and fabricioctelles/skills repositories. Attribution
+  is documented in [`NOTICE`](plugins/okf/NOTICE).
 
 Each plugin's `plugin.json` declares its own `license` field; check there before
 assuming a plugin follows the repo-wide default.
